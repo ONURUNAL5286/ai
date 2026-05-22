@@ -5,6 +5,7 @@
   "description": "Telegram sprint intake bot that creates GitHub Issues for an AI Agent Office workflow.",
   "type": "module",
   "scripts": {
+    "doctor": "node src/doctor.js",
     "start": "node src/index.js",
     "test": "node --test"
   },

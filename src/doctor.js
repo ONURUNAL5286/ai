@@ -1,0 +1,72 @@
+import { config, validateConfig } from "./config.js";
+
+async function checkTelegram() {
+  const response = await fetch(
+    `https://api.telegram.org/bot${config.telegramBotToken}/getMe`,
+  );
+  const payload = await response.json().catch(() => ({}));
+
+  if (!response.ok || !payload.ok) {
+    const message = payload.description ?? response.statusText;
+    throw new Error(`Telegram token check failed: ${message}`);
+  }
+
+  return payload.result;
+}
+
+async function checkGitHub() {
+  if (config.dryRun) {
+    return {
+      skipped: true,
+      reason: "DRY_RUN=true",
+    };
+  }
+
+  const response = await fetch(`https://api.github.com/repos/${config.githubRepo}`, {
+    headers: {
+      Accept: "application/vnd.github+json",
+      Authorization: `Bearer ${config.githubToken}`,
+      "X-GitHub-Api-Version": "2022-11-28",
+      "User-Agent": "ai-agent-office-bot",
+    },
+  });
+
+  const payload = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    const message = payload.message ?? response.statusText;
+    throw new Error(`GitHub repo check failed: ${response.status} ${message}`);
+  }
+
+  return payload;
+}
+
+async function main() {
+  validateConfig();
+
+  console.log("Checking AI Agent Office config...");
+  console.log(`GitHub repo: ${config.githubRepo}`);
+  console.log(`Dry run: ${config.dryRun}`);
+  console.log(
+    `Allowed chats: ${
+      config.allowedChatIds.size > 0 ? [...config.allowedChatIds].join(", ") : "all"
+    }`,
+  );
+
+  const telegram = await checkTelegram();
+  console.log(`Telegram bot: @${telegram.username}`);
+
+  const github = await checkGitHub();
+  if (github.skipped) {
+    console.log(`GitHub check skipped: ${github.reason}`);
+  } else {
+    console.log(`GitHub repo found: ${github.full_name}`);
+  }
+
+  console.log("Doctor check passed.");
+}
+
+main().catch((error) => {
+  console.error(error.message);
+  process.exitCode = 1;
+});

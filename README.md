@@ -54,6 +54,12 @@ npm.cmd test
 npm.cmd start
 ```
 
+Calismadan once token ve GitHub ayarlarini kontrol etmek icin:
+
+```powershell
+npm.cmd run doctor
+```
+
 `.env` icine sunlari gir:
 
 ```text
@@ -73,3 +79,23 @@ DRY_RUN=true
 ## GitHub Token Yetkisi
 
 GitHub token'in issue acabilmesi gerekir. Fine-grained token kullanirsan `ONURUNAL5286/ai` reposu icin `Issues: Read and write` yetkisi ver.
+
+## Sorun Giderme
+
+Telegram'da mesaj gonderince hic cevap gelmiyorsa en olasi neden botun bilgisayarda calismiyor olmasidir. GitHub'a pushlamak botu calistirmaz; bu MVP yerel bilgisayarinda `npm.cmd start` komutu acik kaldigi surece Telegram mesajlarini dinler.
+
+Kontrol sirasi:
+
+1. `.env` dosyasi var mi?
+2. `TELEGRAM_BOT_TOKEN` dogru bot tokeni mi?
+3. `GITHUB_TOKEN` issue acma yetkisine sahip mi?
+4. `npm.cmd run doctor` basarili mi?
+5. `npm.cmd start` terminalde acik kaldi mi?
+
+`npm.cmd start` calisirken terminalde su satiri gormelisin:
+
+```text
+AI Agent Office bot started for ONURUNAL5286/ai
+```
+
+Bu terminal acik degilse bot Telegram mesajlarini alamaz.
