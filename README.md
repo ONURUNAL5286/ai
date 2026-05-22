@@ -22,3 +22,54 @@ Baslangic dosyalari:
 V1 ilkesi:
 
 Agentlar surekli calisir; ama musteriye teslim edilecek her sey test, demo, PR ve insan onayi kapisindan gecer.
+
+## Calistirma
+
+Bu repoda ilk calisan MVP olarak Telegram'dan sprint plani alip GitHub Issues acan bot bulunur.
+
+Gerekenler:
+- Node.js 20 veya uzeri
+- Telegram bot token
+- GitHub token
+- GitHub repository: `ONURUNAL5286/ai`
+
+Kurulum:
+
+```bash
+cp .env.example .env
+npm test
+npm start
+```
+
+Windows PowerShell'de `.env` dosyasini elle olusturabilir veya su komutu kullanabilirsin:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+PowerShell `npm.ps1 cannot be loaded` hatasi verirse komutlari soyle calistir:
+
+```powershell
+npm.cmd test
+npm.cmd start
+```
+
+`.env` icine sunlari gir:
+
+```text
+TELEGRAM_BOT_TOKEN=...
+GITHUB_TOKEN=...
+GITHUB_REPO=ONURUNAL5286/ai
+```
+
+Telegram'dan bota `/start` yaz. Sonra `templates/SPRINT_PLAN.md` formatinda `SPRINT BASLAT` ile baslayan bir mesaj gonder.
+
+Test amacli GitHub issue acmadan denemek icin:
+
+```text
+DRY_RUN=true
+```
+
+## GitHub Token Yetkisi
+
+GitHub token'in issue acabilmesi gerekir. Fine-grained token kullanirsan `ONURUNAL5286/ai` reposu icin `Issues: Read and write` yetkisi ver.

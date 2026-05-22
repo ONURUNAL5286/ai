@@ -1,0 +1,14 @@
+{
+  "name": "ai-agent-office",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Telegram sprint intake bot that creates GitHub Issues for an AI Agent Office workflow.",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
