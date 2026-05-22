@@ -1,9 +1,12 @@
 import { config, validateConfig } from "./config.js";
+import { fetchWithRetry } from "./network.js";
 
 async function checkTelegram() {
-  const response = await fetch(
+  const response = await fetchWithRetry(
     `https://api.telegram.org/bot${config.telegramBotToken}/getMe`,
-  );
+  ).catch((error) => {
+    throw new Error(`Telegram network check failed: ${error.message}`);
+  });
   const payload = await response.json().catch(() => ({}));
 
   if (!response.ok || !payload.ok) {
@@ -22,13 +25,15 @@ async function checkGitHub() {
     };
   }
 
-  const response = await fetch(`https://api.github.com/repos/${config.githubRepo}`, {
+  const response = await fetchWithRetry(`https://api.github.com/repos/${config.githubRepo}`, {
     headers: {
       Accept: "application/vnd.github+json",
       Authorization: `Bearer ${config.githubToken}`,
       "X-GitHub-Api-Version": "2022-11-28",
       "User-Agent": "ai-agent-office-bot",
     },
+  }).catch((error) => {
+    throw new Error(`GitHub network check failed: ${error.message}`);
   });
 
   const payload = await response.json().catch(() => ({}));

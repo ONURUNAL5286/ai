@@ -1,3 +1,5 @@
+import { fetchWithRetry } from "./network.js";
+
 export class TelegramBot {
   constructor({ token }) {
     this.token = token;
@@ -10,7 +12,12 @@ export class TelegramBot {
     url.searchParams.set("timeout", "20");
     url.searchParams.set("offset", String(this.offset));
 
-    const response = await fetch(url);
+    const response = await fetchWithRetry(url, {}, 3).catch((error) => {
+      throw new Error(
+        `Telegram getUpdates network request failed: ${error.message}. ` +
+          "Internet, DNS, proxy, VPN veya firewall ayarlarini kontrol et.",
+      );
+    });
     const payload = await response.json();
 
     if (!payload.ok) {
@@ -25,7 +32,7 @@ export class TelegramBot {
   }
 
   async sendMessage(chatId, text) {
-    const response = await fetch(`${this.baseUrl}/sendMessage`, {
+    const response = await fetchWithRetry(`${this.baseUrl}/sendMessage`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,6 +42,11 @@ export class TelegramBot {
         text,
         disable_web_page_preview: true,
       }),
+    }, 3).catch((error) => {
+      throw new Error(
+        `Telegram sendMessage network request failed: ${error.message}. ` +
+          "Internet, DNS, proxy, VPN veya firewall ayarlarini kontrol et.",
+      );
     });
 
     const payload = await response.json();
