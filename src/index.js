@@ -82,6 +82,26 @@ async function handleMessage(bot, message) {
   );
 }
 
+async function handleUpdate(bot, update) {
+  if (!update.message) {
+    return;
+  }
+
+  try {
+    await handleMessage(bot, update.message);
+  } catch (error) {
+    console.error(error);
+
+    const chatId = update.message.chat?.id;
+    if (chatId) {
+      await bot.sendMessage(
+        chatId,
+        `Sprint islenirken hata olustu.\n\n${error.message}`,
+      );
+    }
+  }
+}
+
 async function main() {
   validateConfig();
 
@@ -93,9 +113,7 @@ async function main() {
       const updates = await bot.getUpdates();
 
       for (const update of updates) {
-        if (update.message) {
-          await handleMessage(bot, update.message);
-        }
+        await handleUpdate(bot, update);
       }
     } catch (error) {
       console.error(error);
