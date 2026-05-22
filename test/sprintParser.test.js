@@ -6,6 +6,7 @@ import {
   sprintToTaskIssues,
   taskSummaryComment,
 } from "../src/sprintParser.js";
+import { buildProjectFiles, createProjectContext } from "../src/projectBuilder.js";
 
 test("parses a Turkish sprint message", () => {
   const { sprint, warnings } = parseSprintMessage(`SPRINT BASLAT
@@ -56,26 +57,51 @@ Olmazsa olmazlar:
   const parentIssue = {
     number: 10,
   };
+  const context = createProjectContext(sprint, new Date("2026-05-22T20:00:00Z"));
 
-  const tasks = sprintToTaskIssues(sprint, parentIssue);
+  const tasks = sprintToTaskIssues(sprint, parentIssue, context);
 
   assert.equal(tasks.length, 4);
-  assert.match(tasks[0].title, /\[Task\] CRM - 01 Feature: Listeleme/);
-  assert.match(tasks[2].title, /\[Task\] CRM - 03 Requirement: Mobil uyum/);
+  assert.match(tasks[0].title, /\[CRM\] 01 Frontend\/Backend: Listeleme/);
+  assert.match(tasks[2].title, /\[CRM\] 03 Product\/QA: Mobil uyum/);
   assert.match(tasks[3].title, /QA smoke test and delivery report/);
   assert.match(tasks[0].body, /Parent sprint: #10/);
+  assert.match(tasks[0].body, /projects\/crm/);
 });
 
 test("builds parent task summary comment", () => {
+  const context = {
+    projectPath: "projects/crm",
+    sprintPath: "projects/crm/sprints/sprint-20260522T20.md",
+    taskPath: "projects/crm/tasks/sprint-20260522T20-tasks.md",
+  };
   const comment = taskSummaryComment(
     { number: 10 },
     [
-      { number: 11, title: "[Task] CRM - 01 Feature: Listeleme" },
-      { number: 12, title: "[Task] CRM - 02 QA: QA smoke test" },
+      { number: 11, title: "[CRM] 01 Frontend/Backend: Listeleme" },
+      { number: 12, title: "[CRM] 02 QA: QA smoke test" },
     ],
+    context,
   );
 
   assert.match(comment, /#11/);
   assert.match(comment, /#12/);
   assert.match(comment, /Parent sprint is done/);
+  assert.match(comment, /projects\/crm/);
+});
+
+test("builds isolated project files", () => {
+  const { sprint } = parseSprintMessage(`SPRINT BASLAT
+Proje adi: KOBI Teklif Takip
+Hedef: Teklif surecini takip etmek
+Ana ozellikler:
+1. Musteri kaydi`);
+
+  const context = createProjectContext(sprint, new Date("2026-05-22T20:00:00Z"));
+  const files = buildProjectFiles(sprint, context);
+
+  assert.equal(context.projectSlug, "kobi-teklif-takip");
+  assert.equal(context.projectPath, "projects/kobi-teklif-takip");
+  assert.ok(files.some((file) => file.path === "projects/kobi-teklif-takip/public/index.html"));
+  assert.ok(files.some((file) => file.path === "projects/kobi-teklif-takip/package.json"));
 });

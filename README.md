@@ -72,11 +72,17 @@ Telegram'dan bota `/start` yaz. Sonra `templates/SPRINT_PLAN.md` formatinda `SPR
 
 Bot basarili calisirsa:
 
-1. Bir ana sprint issue acar.
-2. `Ana ozellikler` altindaki her madde icin ayri task issue acar.
-3. `Olmazsa olmazlar` altindaki her madde icin ayri requirement issue acar.
-4. QA smoke test ve delivery report icin ek bir task issue acar.
-5. Ana sprint issue altina task listesini yorum olarak ekler.
+1. `projects/<proje-adi>/` altinda ayri calisan proje klasoru olusturur.
+2. Proje icin `README.md`, `package.json`, `server.js` ve `public/index.html` dosyalari yazar.
+3. Sprint planini `sprints/` altina kaydeder.
+4. Agent task checklist dosyasini `tasks/` altina kaydeder.
+5. Bir ana sprint issue acar.
+6. `Ana ozellikler` altindaki her madde icin ayri task issue acar.
+7. `Olmazsa olmazlar` altindaki her madde icin ayri requirement issue acar.
+8. QA smoke test ve delivery report icin ek bir task issue acar.
+9. Ana sprint issue altina task listesini yorum olarak ekler.
+
+Farkli `Proje adi` ile gelen sprintler farkli `projects/<proje-adi>/` klasorlerine yazilir. Ayni proje adi ile gelen sprintler ayni proje klasoru altinda yeni `sprints/` ve `tasks/` dosyalari olarak tutulur.
 
 Test amacli GitHub issue acmadan denemek icin:
 
@@ -86,7 +92,23 @@ DRY_RUN=true
 
 ## GitHub Token Yetkisi
 
-GitHub token'in issue acabilmesi gerekir. Fine-grained token kullanirsan `ONURUNAL5286/ai` reposu icin `Issues: Read and write` yetkisi ver.
+GitHub token'in issue acabilmesi ve proje dosyalarini repoya yazabilmesi gerekir. Fine-grained token kullanirsan `ONURUNAL5286/ai` reposu icin su yetkileri ver:
+
+- `Issues: Read and write`
+- `Contents: Read and write`
+
+Yeni sprint geldiginde bot farkli projeleri karistirmamak icin dosyalari su yapida olusturur:
+
+```text
+projects/
+  proje-adi/
+    README.md
+    package.json
+    server.js
+    public/index.html
+    sprints/sprint-YYYYMMDDTHH.md
+    tasks/sprint-YYYYMMDDTHH-tasks.md
+```
 
 ## Sorun Giderme
 

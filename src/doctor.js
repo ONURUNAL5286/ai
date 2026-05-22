@@ -46,6 +46,45 @@ async function checkGitHub() {
   return payload;
 }
 
+async function checkGitHubContentsPermission() {
+  if (config.dryRun) {
+    return {
+      skipped: true,
+      reason: "DRY_RUN=true",
+    };
+  }
+
+  const response = await fetchWithRetry(`https://api.github.com/repos/${config.githubRepo}/contents/README.md`, {
+    headers: {
+      Accept: "application/vnd.github+json",
+      Authorization: `Bearer ${config.githubToken}`,
+      "X-GitHub-Api-Version": "2022-11-28",
+      "User-Agent": "ai-agent-office-bot",
+    },
+  }).catch((error) => {
+    throw new Error(`GitHub contents network check failed: ${error.message}`);
+  });
+
+  if (response.status === 404) {
+    return {
+      readable: true,
+      note: "README.md not found, but contents endpoint is reachable",
+    };
+  }
+
+  const payload = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    const message = payload.message ?? response.statusText;
+    throw new Error(`GitHub contents check failed: ${response.status} ${message}`);
+  }
+
+  return {
+    readable: true,
+    note: "README.md readable",
+  };
+}
+
 async function main() {
   validateConfig();
 
@@ -66,6 +105,13 @@ async function main() {
     console.log(`GitHub check skipped: ${github.reason}`);
   } else {
     console.log(`GitHub repo found: ${github.full_name}`);
+  }
+
+  const contents = await checkGitHubContentsPermission();
+  if (contents.skipped) {
+    console.log(`GitHub contents check skipped: ${contents.reason}`);
+  } else {
+    console.log(`GitHub contents endpoint reachable: ${contents.note}`);
   }
 
   console.log("Doctor check passed.");

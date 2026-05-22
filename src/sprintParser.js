@@ -115,12 +115,32 @@ export function parseSprintMessage(text) {
   };
 }
 
-export function sprintToIssue(sprint, warnings = []) {
+export function sprintToIssue(sprint, warnings = [], context = null) {
   const title = `[Sprint] ${sprint.projectName}`;
   const list = (items) =>
     items.length > 0 ? items.map((item) => `- ${item}`).join("\n") : "- Belirtilmedi";
 
-  const body = `# Sprint Intake
+  const projectSection = context
+    ? `## Repository Project
+
+- Project folder: \`${context.projectPath}\`
+- Sprint file: \`${context.sprintPath}\`
+- Task checklist: \`${context.taskPath}\`
+
+`
+    : "";
+
+  const body = `# Sprint Intake: ${sprint.projectName}
+
+${projectSection}
+## Status
+
+- [ ] Project files created in repo
+- [ ] Agent task issues created
+- [ ] Implementation completed
+- [ ] Tests passed
+- [ ] Demo verified
+- [ ] Delivery report prepared
 
 ## Goal
 
@@ -164,12 +184,10 @@ ${list(warnings)}
 
 ## Definition of Done
 
-- [ ] Tasks are split into agent-ready issues
-- [ ] Code is pushed to a branch
-- [ ] Pull request is opened
-- [ ] Tests pass
-- [ ] Demo URL is available
-- [ ] Sprint report is prepared
+- [ ] All child task issues are closed
+- [ ] Project runs locally from its own folder
+- [ ] Test or smoke-test evidence is linked
+- [ ] Final delivery notes are added to this sprint
 `;
 
   return {
@@ -179,14 +197,19 @@ ${list(warnings)}
   };
 }
 
-function taskTitle(projectName, index, item, type) {
-  return `[Task] ${projectName} - ${String(index).padStart(2, "0")} ${type}: ${item}`;
+function taskTitle(projectName, index, item, role) {
+  return `[${projectName}] ${String(index).padStart(2, "0")} ${role}: ${item}`;
 }
 
-function taskBody({ sprint, parentIssue, item, type, index }) {
-  return `# Agent Task
+function taskBody({ sprint, parentIssue, item, role, index, context }) {
+  return `# ${role} Task
 
-Parent sprint: #${parentIssue.number}
+## Links
+
+- Parent sprint: #${parentIssue.number}
+- Project folder: \`${context.projectPath}\`
+- Sprint file: \`${context.sprintPath}\`
+- Task checklist: \`${context.taskPath}\`
 
 ## Goal
 
@@ -197,14 +220,15 @@ ${item}
 Project: ${sprint.projectName}
 Sprint goal: ${sprint.goal || "Belirtilmedi"}
 Target user: ${sprint.userType || "Belirtilmedi"}
-Task type: ${type}
+Agent role: ${role}
 Task number: ${index}
 
 ## Acceptance Criteria
 
-- [ ] Requirement is implemented or documented
-- [ ] Related user flow is tested
-- [ ] Result is linked back to parent sprint
+- [ ] Scope is completed inside \`${context.projectPath}\`
+- [ ] Related user flow or document is updated
+- [ ] Result is linked back to parent sprint #${parentIssue.number}
+- [ ] No unrelated project folder is changed
 
 ## Test Plan
 
@@ -221,19 +245,20 @@ Task number: ${index}
 `;
 }
 
-export function sprintToTaskIssues(sprint, parentIssue) {
+export function sprintToTaskIssues(sprint, parentIssue, context) {
   const tasks = [];
   let index = 1;
 
   for (const feature of sprint.features) {
     tasks.push({
-      title: taskTitle(sprint.projectName, index, feature, "Feature"),
+      title: taskTitle(sprint.projectName, index, feature, "Frontend/Backend"),
       body: taskBody({
         sprint,
         parentIssue,
         item: feature,
-        type: "Feature",
+        role: "Frontend/Backend",
         index,
+        context,
       }),
       labels: [],
     });
@@ -242,13 +267,14 @@ export function sprintToTaskIssues(sprint, parentIssue) {
 
   for (const mustHave of sprint.mustHaves) {
     tasks.push({
-      title: taskTitle(sprint.projectName, index, mustHave, "Requirement"),
+      title: taskTitle(sprint.projectName, index, mustHave, "Product/QA"),
       body: taskBody({
         sprint,
         parentIssue,
         item: mustHave,
-        type: "Requirement",
+        role: "Product/QA",
         index,
+        context,
       }),
       labels: [],
     });
@@ -261,8 +287,9 @@ export function sprintToTaskIssues(sprint, parentIssue) {
       sprint,
       parentIssue,
       item: "QA smoke test and delivery report",
-      type: "QA",
+      role: "QA",
       index,
+      context,
     }),
     labels: [],
   });
@@ -270,7 +297,7 @@ export function sprintToTaskIssues(sprint, parentIssue) {
   return tasks;
 }
 
-export function taskSummaryComment(parentIssue, taskIssues) {
+export function taskSummaryComment(parentIssue, taskIssues, context) {
   const taskList = taskIssues
     .map((issue) => `- [ ] #${issue.number} ${issue.title}`)
     .join("\n");
@@ -279,12 +306,17 @@ export function taskSummaryComment(parentIssue, taskIssues) {
 
 Sprint issue: #${parentIssue.number}
 
+Project folder: \`${context.projectPath}\`
+Sprint file: \`${context.sprintPath}\`
+Task checklist: \`${context.taskPath}\`
+
 ${taskList}
 
 ## Workflow
 
-1. Each task issue should be implemented on its own branch.
-2. Each completed task should link a PR, test result, or delivery note.
-3. Parent sprint is done only after all task issues are closed.
+1. Work only inside the listed project folder.
+2. Each task issue should be implemented on its own branch.
+3. Each completed task should link a PR, test result, or delivery note.
+4. Parent sprint is done only after all task issues are closed.
 `;
 }

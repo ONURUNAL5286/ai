@@ -1,5 +1,10 @@
 import { config, validateConfig } from "./config.js";
-import { createGitHubIssue, createGitHubIssueComment } from "./github.js";
+import {
+  createGitHubIssue,
+  createGitHubIssueComment,
+  upsertGitHubFiles,
+} from "./github.js";
+import { buildProjectFiles, createProjectContext } from "./projectBuilder.js";
 import {
   parseSprintMessage,
   sprintToIssue,
@@ -65,15 +70,24 @@ async function handleMessage(bot, message) {
   }
 
   const { sprint, warnings } = parseSprintMessage(text);
-  const issue = sprintToIssue(sprint, warnings);
+  const context = createProjectContext(sprint);
+  const issue = sprintToIssue(sprint, warnings, context);
 
   if (config.dryRun) {
     await bot.sendMessage(
       chatId,
-      `DRY_RUN aktif. GitHub issue acilmadi.\n\nBaslik: ${issue.title}\nTask sayisi: ${sprint.features.length + sprint.mustHaves.length + 1}\nUyari sayisi: ${warnings.length}`,
+      `DRY_RUN aktif. GitHub'a yazilmadi.\n\nProje: ${context.projectPath}\nBaslik: ${issue.title}\nTask sayisi: ${sprint.features.length + sprint.mustHaves.length + 1}\nUyari sayisi: ${warnings.length}`,
     );
     return;
   }
+
+  const projectFiles = buildProjectFiles(sprint, context);
+  await upsertGitHubFiles({
+    token: config.githubToken,
+    repo: config.githubRepo,
+    files: projectFiles,
+    message: `Create project workspace for ${sprint.projectName}`,
+  });
 
   const parentIssue = await createGitHubIssue({
     token: config.githubToken,
@@ -81,7 +95,7 @@ async function handleMessage(bot, message) {
     ...issue,
   });
 
-  const taskPayloads = sprintToTaskIssues(sprint, parentIssue);
+  const taskPayloads = sprintToTaskIssues(sprint, parentIssue, context);
   const taskIssues = [];
 
   for (const taskPayload of taskPayloads) {
@@ -97,7 +111,7 @@ async function handleMessage(bot, message) {
     token: config.githubToken,
     repo: config.githubRepo,
     issueNumber: parentIssue.number,
-    body: taskSummaryComment(parentIssue, taskIssues),
+    body: taskSummaryComment(parentIssue, taskIssues, context),
   });
 
   const taskLinks = taskIssues
@@ -106,7 +120,7 @@ async function handleMessage(bot, message) {
 
   await bot.sendMessage(
     chatId,
-    `Sprint proje olarak olusturuldu.\n\nAna sprint:\n${parentIssue.html_url}\n\nTasklar:\n${taskLinks}`,
+    `Sprint ayri proje olarak olusturuldu.\n\nProje klasoru:\n${context.projectPath}\n\nAna sprint:\n${parentIssue.html_url}\n\nTasklar:\n${taskLinks}`,
   );
 }
 
