@@ -178,3 +178,113 @@ ${list(warnings)}
     labels: ["sprint-intake", "agent-office"],
   };
 }
+
+function taskTitle(projectName, index, item, type) {
+  return `[Task] ${projectName} - ${String(index).padStart(2, "0")} ${type}: ${item}`;
+}
+
+function taskBody({ sprint, parentIssue, item, type, index }) {
+  return `# Agent Task
+
+Parent sprint: #${parentIssue.number}
+
+## Goal
+
+${item}
+
+## Context
+
+Project: ${sprint.projectName}
+Sprint goal: ${sprint.goal || "Belirtilmedi"}
+Target user: ${sprint.userType || "Belirtilmedi"}
+Task type: ${type}
+Task number: ${index}
+
+## Acceptance Criteria
+
+- [ ] Requirement is implemented or documented
+- [ ] Related user flow is tested
+- [ ] Result is linked back to parent sprint
+
+## Test Plan
+
+- [ ] Run relevant unit/integration tests
+- [ ] Run smoke test for affected flow
+- [ ] Add screenshots or demo notes when useful
+
+## Definition of Done
+
+- [ ] Code or document change is pushed
+- [ ] Pull request or delivery note is linked
+- [ ] Tests pass
+- [ ] Known risks are documented
+`;
+}
+
+export function sprintToTaskIssues(sprint, parentIssue) {
+  const tasks = [];
+  let index = 1;
+
+  for (const feature of sprint.features) {
+    tasks.push({
+      title: taskTitle(sprint.projectName, index, feature, "Feature"),
+      body: taskBody({
+        sprint,
+        parentIssue,
+        item: feature,
+        type: "Feature",
+        index,
+      }),
+      labels: [],
+    });
+    index += 1;
+  }
+
+  for (const mustHave of sprint.mustHaves) {
+    tasks.push({
+      title: taskTitle(sprint.projectName, index, mustHave, "Requirement"),
+      body: taskBody({
+        sprint,
+        parentIssue,
+        item: mustHave,
+        type: "Requirement",
+        index,
+      }),
+      labels: [],
+    });
+    index += 1;
+  }
+
+  tasks.push({
+    title: taskTitle(sprint.projectName, index, "QA smoke test and delivery report", "QA"),
+    body: taskBody({
+      sprint,
+      parentIssue,
+      item: "QA smoke test and delivery report",
+      type: "QA",
+      index,
+    }),
+    labels: [],
+  });
+
+  return tasks;
+}
+
+export function taskSummaryComment(parentIssue, taskIssues) {
+  const taskList = taskIssues
+    .map((issue) => `- [ ] #${issue.number} ${issue.title}`)
+    .join("\n");
+
+  return `# Project Task Breakdown
+
+Sprint issue: #${parentIssue.number}
+
+${taskList}
+
+## Workflow
+
+1. Each task issue should be implemented on its own branch.
+2. Each completed task should link a PR, test result, or delivery note.
+3. Parent sprint is done only after all task issues are closed.
+`;
+}

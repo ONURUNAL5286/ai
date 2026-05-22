@@ -1,6 +1,11 @@
 import { config, validateConfig } from "./config.js";
-import { createGitHubIssue } from "./github.js";
-import { parseSprintMessage, sprintToIssue } from "./sprintParser.js";
+import { createGitHubIssue, createGitHubIssueComment } from "./github.js";
+import {
+  parseSprintMessage,
+  sprintToIssue,
+  sprintToTaskIssues,
+  taskSummaryComment,
+} from "./sprintParser.js";
 import { TelegramBot } from "./telegram.js";
 
 const HELP = `AI Agent Office hazir.
@@ -65,20 +70,43 @@ async function handleMessage(bot, message) {
   if (config.dryRun) {
     await bot.sendMessage(
       chatId,
-      `DRY_RUN aktif. GitHub issue acilmadi.\n\nBaslik: ${issue.title}\n\nUyari sayisi: ${warnings.length}`,
+      `DRY_RUN aktif. GitHub issue acilmadi.\n\nBaslik: ${issue.title}\nTask sayisi: ${sprint.features.length + sprint.mustHaves.length + 1}\nUyari sayisi: ${warnings.length}`,
     );
     return;
   }
 
-  const createdIssue = await createGitHubIssue({
+  const parentIssue = await createGitHubIssue({
     token: config.githubToken,
     repo: config.githubRepo,
     ...issue,
   });
 
+  const taskPayloads = sprintToTaskIssues(sprint, parentIssue);
+  const taskIssues = [];
+
+  for (const taskPayload of taskPayloads) {
+    const taskIssue = await createGitHubIssue({
+      token: config.githubToken,
+      repo: config.githubRepo,
+      ...taskPayload,
+    });
+    taskIssues.push(taskIssue);
+  }
+
+  await createGitHubIssueComment({
+    token: config.githubToken,
+    repo: config.githubRepo,
+    issueNumber: parentIssue.number,
+    body: taskSummaryComment(parentIssue, taskIssues),
+  });
+
+  const taskLinks = taskIssues
+    .map((taskIssue) => `#${taskIssue.number} ${taskIssue.title}`)
+    .join("\n");
+
   await bot.sendMessage(
     chatId,
-    `Sprint alindi ve GitHub issue acildi.\n\n${createdIssue.html_url}`,
+    `Sprint proje olarak olusturuldu.\n\nAna sprint:\n${parentIssue.html_url}\n\nTasklar:\n${taskLinks}`,
   );
 }
 

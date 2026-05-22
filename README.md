@@ -25,7 +25,7 @@ Agentlar surekli calisir; ama musteriye teslim edilecek her sey test, demo, PR v
 
 ## Calistirma
 
-Bu repoda ilk calisan MVP olarak Telegram'dan sprint plani alip GitHub Issues acan bot bulunur.
+Bu repoda ilk calisan MVP olarak Telegram'dan sprint plani alip GitHub Issues uzerinde proje/task yapisi acan bot bulunur.
 
 Gerekenler:
 - Node.js 20 veya uzeri
@@ -69,6 +69,14 @@ GITHUB_REPO=ONURUNAL5286/ai
 ```
 
 Telegram'dan bota `/start` yaz. Sonra `templates/SPRINT_PLAN.md` formatinda `SPRINT BASLAT` ile baslayan bir mesaj gonder.
+
+Bot basarili calisirsa:
+
+1. Bir ana sprint issue acar.
+2. `Ana ozellikler` altindaki her madde icin ayri task issue acar.
+3. `Olmazsa olmazlar` altindaki her madde icin ayri requirement issue acar.
+4. QA smoke test ve delivery report icin ek bir task issue acar.
+5. Ana sprint issue altina task listesini yorum olarak ekler.
 
 Test amacli GitHub issue acmadan denemek icin:
 
