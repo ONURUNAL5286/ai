@@ -99,3 +99,17 @@ AI Agent Office bot started for ONURUNAL5286/ai
 ```
 
 Bu terminal acik degilse bot Telegram mesajlarini alamaz.
+
+`Sprint islenirken hata olustu: fetch failed` veya `GitHub API network request failed` hatasi gorursen bot Telegram'a ulasiyor ama GitHub API'ye baglanamiyor demektir. Kontrol icin:
+
+```powershell
+npm.cmd run doctor
+```
+
+GitHub'a ag erisimini ayri kontrol etmek icin:
+
+```powershell
+Invoke-WebRequest https://api.github.com/repos/ONURUNAL5286/ai
+```
+
+Bu komut da hata verirse sorun kodda degil; internet, DNS, VPN, proxy veya firewall tarafindadir.
