@@ -7,6 +7,7 @@ const projectsRoot = join(root, "projects");
 const delayMs = Number(process.env.AGENT_RUNNER_DELAY_MS || 2500);
 const scanMs = Number(process.env.AGENT_RUNNER_SCAN_MS || 10000);
 const runOnce = (process.env.AGENT_RUNNER_ONCE || "false").toLowerCase() === "true";
+const rebuildDone = (process.env.AGENT_RUNNER_REBUILD_DONE || "false").toLowerCase() === "true";
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -247,6 +248,237 @@ function genericAppHtml(title, tasks) {
 `;
 }
 
+function financeAppHtml(title, tasks) {
+  const completedItems = tasks.map((task) => task.task);
+  return `<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>${escapeHtml(title)}</title>
+    <style>
+      :root { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #17202a; background: #f4f6f8; }
+      body { margin: 0; }
+      header { background: #17212e; color: #fff; padding: 24px; }
+      header h1 { margin: 0 0 6px; font-size: 28px; }
+      header p { margin: 0; color: #c5ced8; }
+      main { max-width: 1240px; margin: 0 auto; padding: 20px; }
+      .metrics, .grid, .reports { display: grid; gap: 12px; }
+      .metrics { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); margin-bottom: 16px; }
+      .grid { grid-template-columns: 1fr 1fr; }
+      .reports { grid-template-columns: 1.1fr .9fr; margin-top: 12px; }
+      section, .metric { background: #fff; border: 1px solid #dbe2ea; border-radius: 8px; padding: 16px; }
+      .metric strong { display: block; font-size: 25px; }
+      .metric span, th, small { color: #667487; font-size: 13px; }
+      h2 { margin: 0 0 12px; font-size: 18px; }
+      label { display: grid; gap: 5px; margin-bottom: 10px; font-size: 13px; color: #526071; }
+      input, select { border: 1px solid #cad3dd; border-radius: 6px; padding: 9px 10px; font: inherit; }
+      button { border: 0; border-radius: 6px; background: #176b52; color: #fff; padding: 10px 13px; font-weight: 700; cursor: pointer; }
+      table { width: 100%; border-collapse: collapse; }
+      th, td { border-top: 1px solid #e5eaf0; padding: 10px; text-align: left; }
+      .pill { display: inline-block; border-radius: 999px; padding: 4px 9px; font-size: 12px; font-weight: 700; background: #eef2f6; }
+      .late { color: #9b3414; background: #fff1e8; }
+      .paid { color: #146c3b; background: #dff5e8; }
+      .bar { height: 12px; border-radius: 999px; background: #dfe6ee; overflow: hidden; }
+      .bar span { display: block; height: 100%; background: #176b52; }
+      .trend { display: grid; grid-template-columns: repeat(6, 1fr); align-items: end; gap: 8px; height: 150px; padding-top: 10px; }
+      .trend div { display: grid; align-items: end; gap: 6px; min-width: 0; }
+      .trend span { border-radius: 6px 6px 0 0; background: #1d6f8f; min-height: 18px; }
+      .trend em { font-style: normal; font-size: 12px; color: #667487; text-align: center; }
+      .risk-list { display: grid; gap: 8px; }
+      .risk-list article { border: 1px solid #ead8cc; background: #fff8f3; border-radius: 8px; padding: 10px; }
+      .features { margin-top: 12px; }
+      .features ul { columns: 2; padding-left: 20px; }
+      @media (max-width: 820px) { .grid, .reports { grid-template-columns: 1fr; } .features ul { columns: 1; } table { font-size: 14px; } }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>${escapeHtml(title)}</h1>
+      <p>Gelir, gider, fatura, nakit akisi tahmini ve riskli cikislari tek panelde izleyen calisan demo.</p>
+    </header>
+    <main>
+      <div class="metrics">
+        <div class="metric"><strong id="income">0 TL</strong><span>Aylik gelir</span></div>
+        <div class="metric"><strong id="expense">0 TL</strong><span>Aylik gider</span></div>
+        <div class="metric"><strong id="netCash">0 TL</strong><span>Net nakit</span></div>
+        <div class="metric"><strong id="lateDebt">0 TL</strong><span>Geciken borc</span></div>
+      </div>
+      <div class="grid">
+        <section>
+          <h2>Yeni Kayit</h2>
+          <label>Baslik <input id="titleInput" value="Yeni tedarik faturasi" /></label>
+          <label>Kategori <select id="categoryInput"><option>Operasyon</option><option>Pazarlama</option><option>Personel</option><option>Vergi</option><option>Satis</option></select></label>
+          <label>Tip <select id="typeInput"><option value="expense">Gider</option><option value="income">Gelir</option></select></label>
+          <label>Tutar <input id="amountInput" type="number" value="18500" /></label>
+          <label>Vade <input id="dueInput" type="date" value="2026-05-29" /></label>
+          <label>Durum <select id="paidInput"><option value="false">Bekliyor</option><option value="true">Odendi</option></select></label>
+          <button id="addRecord">Kaydet</button>
+        </section>
+        <section>
+          <h2>Filtreler</h2>
+          <label>Arama <input id="search" placeholder="Baslik veya kategori ara" /></label>
+          <label>Kategori <select id="categoryFilter"><option value="">Tum kategoriler</option><option>Operasyon</option><option>Pazarlama</option><option>Personel</option><option>Vergi</option><option>Satis</option></select></label>
+          <label>Odeme durumu <select id="paidFilter"><option value="">Tumu</option><option value="paid">Odendi</option><option value="open">Bekliyor</option><option value="late">Geciken</option></select></label>
+          <label>Tarih araligi <select id="rangeFilter"><option value="all">Tum kayitlar</option><option value="30">Sonraki 30 gun</option><option value="7">Sonraki 7 gun</option></select></label>
+          <button id="exportCsv">CSV Disari Aktar</button>
+        </section>
+      </div>
+      <div class="reports">
+        <section>
+          <h2>Aylik Gelir-Gider Trendi</h2>
+          <div id="trend" class="trend"></div>
+        </section>
+        <section>
+          <h2>Kategori Bazli Gider Dagilimi</h2>
+          <div id="categoryReport"></div>
+        </section>
+      </div>
+      <div class="reports">
+        <section>
+          <h2>30 Gunluk Nakit Akisi Tahmini</h2>
+          <table><thead><tr><th>Tarih</th><th>Beklenen net hareket</th><th>Tahmini bakiye</th></tr></thead><tbody id="forecastRows"></tbody></table>
+        </section>
+        <section>
+          <h2>En Riskli 5 Nakit Cikisi</h2>
+          <div id="riskList" class="risk-list"></div>
+        </section>
+      </div>
+      <section style="margin-top:12px">
+        <h2>Gelir, Gider ve Fatura Kayitlari</h2>
+        <table>
+          <thead><tr><th>Baslik</th><th>Kategori</th><th>Tip</th><th>Tutar</th><th>Vade</th><th>Durum</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </section>
+      <section class="features">
+        <h2>Tamamlanan Sprint Maddeleri</h2>
+        <ul>${completedItems.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+      </section>
+    </main>
+    <script>
+      const records = [
+        { title: "E-ticaret satis tahsilati", category: "Satis", type: "income", amount: 146000, due: "2026-05-26", paid: true },
+        { title: "Kurumsal proje pesinati", category: "Satis", type: "income", amount: 82000, due: "2026-06-03", paid: false },
+        { title: "Personel maas odemesi", category: "Personel", type: "expense", amount: 98000, due: "2026-05-31", paid: false },
+        { title: "KDV odemesi", category: "Vergi", type: "expense", amount: 46500, due: "2026-05-20", paid: false },
+        { title: "Reklam kampanyasi", category: "Pazarlama", type: "expense", amount: 24000, due: "2026-06-08", paid: false },
+        { title: "Ofis ve operasyon gideri", category: "Operasyon", type: "expense", amount: 18500, due: "2026-05-28", paid: true }
+      ];
+      const today = new Date("2026-05-24T12:00:00");
+      const money = new Intl.NumberFormat("tr-TR", { style: "currency", currency: "TRY", maximumFractionDigits: 0 });
+      const byId = (id) => document.getElementById(id);
+      const isLate = (record) => !record.paid && record.type === "expense" && new Date(record.due + "T12:00:00") < today;
+      function filteredRecords() {
+        const q = byId("search").value.toLowerCase();
+        const category = byId("categoryFilter").value;
+        const paid = byId("paidFilter").value;
+        const range = byId("rangeFilter").value;
+        return records.filter((record) => {
+          const due = new Date(record.due + "T12:00:00");
+          const days = (due - today) / 86400000;
+          return (!q || record.title.toLowerCase().includes(q) || record.category.toLowerCase().includes(q))
+            && (!category || record.category === category)
+            && (!range || range === "all" || (days >= 0 && days <= Number(range)))
+            && (!paid || (paid === "paid" && record.paid) || (paid === "open" && !record.paid) || (paid === "late" && isLate(record)));
+        });
+      }
+      function renderMetrics() {
+        const income = records.filter((r) => r.type === "income").reduce((sum, r) => sum + r.amount, 0);
+        const expense = records.filter((r) => r.type === "expense").reduce((sum, r) => sum + r.amount, 0);
+        const lateDebt = records.filter(isLate).reduce((sum, r) => sum + r.amount, 0);
+        byId("income").textContent = money.format(income);
+        byId("expense").textContent = money.format(expense);
+        byId("netCash").textContent = money.format(income - expense);
+        byId("lateDebt").textContent = money.format(lateDebt);
+      }
+      function renderRows() {
+        byId("rows").innerHTML = filteredRecords().map((record) => {
+          const status = record.paid ? "<span class='pill paid'>Odendi</span>" : "<span class='pill " + (isLate(record) ? "late" : "") + "'>" + (isLate(record) ? "Gecikti" : "Bekliyor") + "</span>";
+          return "<tr><td>" + record.title + "</td><td>" + record.category + "</td><td>" + (record.type === "income" ? "Gelir" : "Gider") + "</td><td>" + money.format(record.amount) + "</td><td>" + record.due + "</td><td>" + status + "</td></tr>";
+        }).join("");
+      }
+      function renderCategoryReport() {
+        const expenses = records.filter((r) => r.type === "expense");
+        const total = expenses.reduce((sum, r) => sum + r.amount, 0) || 1;
+        const grouped = expenses.reduce((acc, r) => ({ ...acc, [r.category]: (acc[r.category] || 0) + r.amount }), {});
+        byId("categoryReport").innerHTML = Object.entries(grouped).map(([category, amount]) => "<p><strong>" + category + "</strong> <small>" + money.format(amount) + "</small></p><div class='bar'><span style='width:" + Math.round((amount / total) * 100) + "%'></span></div>").join("");
+      }
+      function renderTrend() {
+        const months = [
+          ["Ocak", 64], ["Subat", 82], ["Mart", 71], ["Nisan", 96], ["Mayis", 118], ["Haziran", 103]
+        ];
+        const max = Math.max(...months.map((month) => month[1]));
+        byId("trend").innerHTML = months.map(([label, value]) => "<div><span style='height:" + Math.round((value / max) * 130) + "px'></span><em>" + label + "</em></div>").join("");
+      }
+      function renderForecast() {
+        let balance = 215000;
+        const upcoming = records.filter((r) => !r.paid).sort((a, b) => a.due.localeCompare(b.due));
+        byId("forecastRows").innerHTML = upcoming.map((record) => {
+          const movement = record.type === "income" ? record.amount : -record.amount;
+          balance += movement;
+          return "<tr><td>" + record.due + "</td><td>" + money.format(movement) + "</td><td>" + money.format(balance) + "</td></tr>";
+        }).join("");
+      }
+      function renderRiskList() {
+        byId("riskList").innerHTML = records
+          .filter((r) => r.type === "expense" && !r.paid)
+          .sort((a, b) => b.amount - a.amount)
+          .slice(0, 5)
+          .map((record) => "<article><strong>" + record.title + "</strong><br><small>" + record.category + " · " + record.due + "</small><p>" + money.format(record.amount) + "</p></article>")
+          .join("");
+      }
+      function render() {
+        renderMetrics();
+        renderRows();
+        renderCategoryReport();
+        renderTrend();
+        renderForecast();
+        renderRiskList();
+      }
+      byId("addRecord").addEventListener("click", () => {
+        records.unshift({
+          title: byId("titleInput").value,
+          category: byId("categoryInput").value,
+          type: byId("typeInput").value,
+          amount: Number(byId("amountInput").value || 0),
+          due: byId("dueInput").value,
+          paid: byId("paidInput").value === "true"
+        });
+        render();
+      });
+      byId("exportCsv").addEventListener("click", () => {
+        const header = "Baslik,Kategori,Tip,Tutar,Vade,Durum";
+        const lines = filteredRecords().map((r) => [r.title, r.category, r.type, r.amount, r.due, r.paid ? "Odendi" : "Bekliyor"].join(","));
+        const blob = new Blob([[header].concat(lines).join("\\n")], { type: "text/csv;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "nakit-akisi-raporu.csv";
+        link.click();
+        URL.revokeObjectURL(url);
+      });
+      ["search", "categoryFilter", "paidFilter", "rangeFilter"].forEach((id) => byId(id).addEventListener("input", render));
+      render();
+    </script>
+  </body>
+</html>
+`;
+}
+
+function appHtmlForProject(projectName, title, tasks) {
+  const searchText = `${projectName} ${title} ${tasks.map((task) => task.task).join(" ")}`.toLocaleLowerCase("tr-TR");
+  if (searchText.includes("gider") || searchText.includes("nakit") || searchText.includes("fatura")) {
+    return financeAppHtml(title, tasks);
+  }
+
+  if (searchText.includes("teklif") || searchText.includes("tahsilat")) {
+    return kobiAppHtml(title, tasks);
+  }
+
+  return genericAppHtml(title, tasks);
+}
+
 async function updateReadme(projectPath, title, task) {
   const readmePath = join(projectPath, "README.md");
   const readme = await readText(readmePath);
@@ -289,10 +521,7 @@ async function performTask(projectPath, projectName, parsed, task) {
   const output = relativeOutput(projectName, task.output);
 
   if (output === "public/index.html") {
-    const html = projectName.includes("kobi-teklif")
-      ? kobiAppHtml(title, futureTasks)
-      : genericAppHtml(title, futureTasks);
-    await writeFile(join(projectPath, "public", "index.html"), html, "utf8");
+    await writeFile(join(projectPath, "public", "index.html"), appHtmlForProject(projectName, title, futureTasks), "utf8");
   } else if (output === "README.md") {
     await updateReadme(projectPath, title, task);
   } else if (output === "STATUS.md") {
@@ -325,6 +554,14 @@ async function processOneTask() {
     const board = await readText(boardPath);
     const parsed = parseBoard(board);
     const nextTask = parsed.tasks.find((task) => task.status === "IN_PROGRESS") ?? parsed.tasks.find((task) => task.status === "TODO");
+    if (!nextTask && rebuildDone && parsed.tasks.every((task) => task.status === "DONE")) {
+      const readme = await readText(join(projectPath, "README.md"));
+      const title = projectTitle(readme, entry.name);
+      await writeFile(join(projectPath, "public", "index.html"), appHtmlForProject(entry.name, title, parsed.tasks), "utf8");
+      console.log(`${entry.name}: tamamlanmis proje ekrani yeniden olusturuldu.`);
+      return true;
+    }
+
     if (!nextTask) {
       continue;
     }
@@ -352,9 +589,16 @@ async function processOneTask() {
 
 async function main() {
   console.log("Agent runner aktif. TODO maddeleri sirayla islenecek.");
+  let rebuiltDoneProject = false;
 
   while (true) {
     const worked = await processOneTask();
+    if (rebuildDone && worked) {
+      rebuiltDoneProject = true;
+    }
+    if (runOnce && rebuildDone && rebuiltDoneProject) {
+      break;
+    }
     if (runOnce && !worked) {
       break;
     }
