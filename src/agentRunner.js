@@ -223,6 +223,8 @@ function kobiAppHtml(title, tasks) {
 }
 
 function genericAppHtml(title, tasks) {
+  const featureItems = tasks.map((task) => task.task);
+  const rows = featureItems.slice(0, 8);
   return `<!doctype html>
 <html lang="tr">
   <head>
@@ -233,17 +235,99 @@ function genericAppHtml(title, tasks) {
       :root { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #18202a; background: #f5f7fa; }
       body { margin: 0; }
       header { padding: 24px; background: #1d2733; color: white; }
-      main { max-width: 1040px; margin: 0 auto; padding: 20px; }
-      section { background: white; border: 1px solid #dce3eb; border-radius: 8px; padding: 16px; margin-bottom: 12px; }
-      li { margin: 8px 0; }
-      .done { color: #176b52; font-weight: 700; }
+      header p { color: #c8d2de; margin: 0; }
+      main { max-width: 1180px; margin: 0 auto; padding: 20px; }
+      .metrics, .grid { display: grid; gap: 12px; }
+      .metrics { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); margin-bottom: 14px; }
+      .grid { grid-template-columns: .9fr 1.1fr; }
+      section, .metric { background: white; border: 1px solid #dce3eb; border-radius: 8px; padding: 16px; }
+      .metric strong { display: block; font-size: 26px; }
+      .metric span, th, small { color: #667487; font-size: 13px; }
+      h2 { margin: 0 0 12px; font-size: 18px; }
+      label { display: grid; gap: 5px; margin-bottom: 10px; color: #526071; font-size: 13px; }
+      input, select { border: 1px solid #cad3dd; border-radius: 6px; padding: 9px 10px; font: inherit; }
+      button { border: 0; border-radius: 6px; background: #176b52; color: #fff; padding: 10px 13px; font-weight: 700; cursor: pointer; }
+      table { width: 100%; border-collapse: collapse; }
+      th, td { border-top: 1px solid #e5eaf0; padding: 10px; text-align: left; }
+      .pill { display: inline-block; border-radius: 999px; padding: 4px 9px; font-size: 12px; font-weight: 700; background: #eef2f6; color: #314155; }
+      .done { background: #dff5e8; color: #146c3b; }
+      .progress { background: #dcecff; color: #145ca8; }
+      .features { margin-top: 12px; }
+      .features ul { columns: 2; padding-left: 20px; }
+      @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } .features ul { columns: 1; } table { font-size: 14px; } }
     </style>
   </head>
   <body>
-    <header><h1>${escapeHtml(title)}</h1><p>AI Agent Office tarafindan uretilen calisan proje taslagi.</p></header>
+    <header><h1>${escapeHtml(title)}</h1><p>Sprint maddelerinden uretilen calisan operasyon paneli.</p></header>
     <main>
-      <section><h2>Uygulama Modulleri</h2><ul>${tasks.map((task) => `<li><span class="done">DONE</span> ${escapeHtml(task.task)}</li>`).join("")}</ul></section>
+      <div class="metrics">
+        <div class="metric"><strong id="totalCount">0</strong><span>Toplam kayit</span></div>
+        <div class="metric"><strong id="openCount">0</strong><span>Acik is</span></div>
+        <div class="metric"><strong id="doneCount">0</strong><span>Tamamlanan</span></div>
+        <div class="metric"><strong id="riskCount">0</strong><span>Oncelikli</span></div>
+      </div>
+      <div class="grid">
+        <section>
+          <h2>Yeni Kayit</h2>
+          <label>Baslik <input id="titleInput" value="${escapeHtml(rows[0] || "Yeni operasyon kaydi")}" /></label>
+          <label>Sorumlu <input id="ownerInput" value="Operasyon Ekibi" /></label>
+          <label>Durum <select id="statusInput"><option>Acik</option><option>Devam</option><option>Tamamlandi</option></select></label>
+          <label>Oncelik <select id="priorityInput"><option>Yuksek</option><option>Normal</option><option>Dusuk</option></select></label>
+          <button id="addRecord">Kaydet</button>
+        </section>
+        <section>
+          <h2>Arama ve Filtre</h2>
+          <label>Arama <input id="search" placeholder="Baslik veya sorumlu ara" /></label>
+          <label>Durum <select id="statusFilter"><option value="">Tum durumlar</option><option>Acik</option><option>Devam</option><option>Tamamlandi</option></select></label>
+          <label>Oncelik <select id="priorityFilter"><option value="">Tum oncelikler</option><option>Yuksek</option><option>Normal</option><option>Dusuk</option></select></label>
+        </section>
+      </div>
+      <section style="margin-top:12px">
+        <h2>Operasyon Listesi</h2>
+        <table>
+          <thead><tr><th>Baslik</th><th>Sorumlu</th><th>Durum</th><th>Oncelik</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </section>
+      <section class="features">
+        <h2>Sprint Kapsami</h2>
+        <ul>${featureItems.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+      </section>
     </main>
+    <script>
+      const records = ${JSON.stringify(rows.map((item, index) => ({
+        title: item,
+        owner: index % 2 === 0 ? "Frontend/Backend Agent" : "Product/QA Agent",
+        status: index < 2 ? "Tamamlandi" : index < 5 ? "Devam" : "Acik",
+        priority: index % 3 === 0 ? "Yuksek" : "Normal",
+      })))};
+      const byId = (id) => document.getElementById(id);
+      function filteredRecords() {
+        const q = byId("search").value.toLowerCase();
+        const status = byId("statusFilter").value;
+        const priority = byId("priorityFilter").value;
+        return records.filter((record) =>
+          (!q || record.title.toLowerCase().includes(q) || record.owner.toLowerCase().includes(q))
+          && (!status || record.status === status)
+          && (!priority || record.priority === priority)
+        );
+      }
+      function render() {
+        byId("totalCount").textContent = records.length;
+        byId("openCount").textContent = records.filter((record) => record.status !== "Tamamlandi").length;
+        byId("doneCount").textContent = records.filter((record) => record.status === "Tamamlandi").length;
+        byId("riskCount").textContent = records.filter((record) => record.priority === "Yuksek").length;
+        byId("rows").innerHTML = filteredRecords().map((record) =>
+          "<tr><td>" + record.title + "</td><td>" + record.owner + "</td><td><span class='pill " + (record.status === "Tamamlandi" ? "done" : "progress") + "'>" + record.status + "</span></td><td>" + record.priority + "</td></tr>"
+        ).join("");
+      }
+      byId("addRecord").addEventListener("click", () => {
+        records.unshift({ title: byId("titleInput").value, owner: byId("ownerInput").value, status: byId("statusInput").value, priority: byId("priorityInput").value });
+        render();
+      });
+      ["search", "statusFilter", "priorityFilter"].forEach((id) => byId(id).addEventListener("input", render));
+      render();
+    </script>
   </body>
 </html>
 `;
@@ -906,7 +990,7 @@ function serviceOpsAppHtml(title, tasks) {
 `;
 }
 
-function appHtmlForProject(projectName, title, tasks) {
+export function appHtmlForProject(projectName, title, tasks) {
   const searchText = `${projectName} ${title} ${tasks.map((task) => task.task).join(" ")}`.toLocaleLowerCase("tr-TR");
   if (
     searchText.includes("servis") ||
@@ -1064,7 +1148,9 @@ async function main() {
   }
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+if (process.argv[1] && process.argv[1].replaceAll("\\", "/").endsWith("/agentRunner.js")) {
+  main().catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}
