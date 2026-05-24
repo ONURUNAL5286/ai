@@ -24,9 +24,9 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 | 17 | Product/QA Agent | DONE | public/index.html gercek uygulama ekranini korumali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
 | 18 | Product/QA Agent | DONE | Sadece DONE listesi yazan ekran kabul edilmez | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
 | 19 | Product/QA Agent | DONE | Kayitlar sayfa yenilendikten sonra kaybolmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
-| 20 | Product/QA Agent | TODO | localStorage kullanimi kodda net gorunmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
-| 21 | Product/QA Agent | TODO | Futuristic UI belirgin sekilde gorunmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
-| 22 | Product/QA Agent | TODO | Harici npm paketi eklenmemeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
+| 20 | Product/QA Agent | DONE | localStorage kullanimi kodda net gorunmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
+| 21 | Product/QA Agent | DONE | Futuristic UI belirgin sekilde gorunmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
+| 22 | Product/QA Agent | IN_PROGRESS | Harici npm paketi eklenmemeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
 | 23 | Product/QA Agent | TODO | Harici CSS framework kullanilmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
 | 24 | Product/QA Agent | TODO | start.cmd calismaya devam etmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
 | 25 | Product/QA Agent | TODO | README ve STATUS.md guncellenmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
