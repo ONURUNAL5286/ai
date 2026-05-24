@@ -104,4 +104,6 @@ Ana ozellikler:
   assert.equal(context.projectPath, "projects/kobi-teklif-takip");
   assert.ok(files.some((file) => file.path === "projects/kobi-teklif-takip/public/index.html"));
   assert.ok(files.some((file) => file.path === "projects/kobi-teklif-takip/package.json"));
+  assert.ok(files.some((file) => file.path === "projects/kobi-teklif-takip/start.cmd"));
+  assert.ok(files.some((file) => file.path === "projects/kobi-teklif-takip/start.ps1"));
 });

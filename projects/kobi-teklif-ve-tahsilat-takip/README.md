@@ -12,20 +12,37 @@ Kucuk ve orta olcekli hizmet firmalarinin teklif, musteri ve tahsilat sureclerin
 
 ## Run
 
-~~~bash
-npm install
-npm start
+Windows'ta en kolay calistirma:
+
+~~~powershell
+.\start.cmd
 ~~~
 
-Sonra tarayicida:
+PowerShell ile:
+
+~~~powershell
+.\start.ps1
+~~~
+
+Alternatif:
+
+~~~powershell
+npm.cmd start
+~~~
+
+Sunucu bos portu otomatik secer. Terminalde su satiri ara:
 
 ~~~text
-http://localhost:3000
+KOBI Teklif ve Tahsilat Takip running at http://localhost:<port>
 ~~~
+
+Sonra tarayicida terminalde yazan URL'yi ac.
 
 ## Project Structure
 
 - public/index.html: Calisan ilk demo ekran.
 - server.js: Basit statik dosya sunucusu.
+- start.cmd: Windows icin tek komutla baslatma.
+- start.ps1: PowerShell icin tek komutla baslatma.
 - sprints/: Bu projeye ait sprint planlari.
 - tasks/: Bu projeye ait agent task listeleri.

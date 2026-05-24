@@ -120,7 +120,7 @@ async function handleMessage(bot, message) {
 
   await bot.sendMessage(
     chatId,
-    `Sprint ayri proje olarak olusturuldu.\n\nProje klasoru:\n${context.projectPath}\n\nAna sprint:\n${parentIssue.html_url}\n\nTasklar:\n${taskLinks}`,
+    `Sprint ayri proje olarak olusturuldu.\n\nProje klasoru:\n${context.projectPath}\n\nCalistirma:\ngit pull\ncd ${context.projectPath}\nstart.cmd\n\nTarayici:\nTerminalde yazan localhost adresini ac.\n\nAna sprint:\n${parentIssue.html_url}\n\nTasklar:\n${taskLinks}`,
   );
 }
 
