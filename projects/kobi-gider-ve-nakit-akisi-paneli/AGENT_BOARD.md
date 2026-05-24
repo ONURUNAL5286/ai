@@ -14,10 +14,10 @@ Project folder: `projects/kobi-gider-ve-nakit-akisi-paneli`
 | 7 | Frontend/Backend Agent | DONE | Aylik gelir-gider trend grafigi | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
 | 8 | Frontend/Backend Agent | DONE | 30 gunluk nakit akisi tahmini tablosu | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
 | 9 | Frontend/Backend Agent | DONE | En riskli 5 nakit cikisi listesi | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
-| 10 | Frontend/Backend Agent | IN_PROGRESS | Arama, kategori, tarih araligi ve odeme durumu filtreleri | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
-| 11 | Frontend/Backend Agent | TODO | Filtrelenmis kayitlari CSV olarak disari aktarma | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
-| 12 | Frontend/Backend Agent | TODO | Yeni kayit eklenince metrik, tablo ve raporlarin aninda guncellenmesi | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
-| 13 | Product/QA Agent | TODO | Mevcut proje klasoru guncellenmeli, yeni proje acilmamali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2053-tasks.md` |
+| 10 | Frontend/Backend Agent | DONE | Arama, kategori, tarih araligi ve odeme durumu filtreleri | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 11 | Frontend/Backend Agent | DONE | Filtrelenmis kayitlari CSV olarak disari aktarma | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 12 | Frontend/Backend Agent | DONE | Yeni kayit eklenince metrik, tablo ve raporlarin aninda guncellenmesi | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 13 | Product/QA Agent | IN_PROGRESS | Mevcut proje klasoru guncellenmeli, yeni proje acilmamali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2053-tasks.md` |
 | 14 | Product/QA Agent | TODO | public/index.html gercek uygulama ekranina donusmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2053-tasks.md` |
 | 15 | Product/QA Agent | TODO | Sadece task listesi yazan basit ekran kabul edilmez | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2053-tasks.md` |
 | 16 | Product/QA Agent | TODO | Demo finans verileri ilk acilista dolu gelmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2053-tasks.md` |
