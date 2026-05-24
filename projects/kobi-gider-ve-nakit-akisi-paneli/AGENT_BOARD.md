@@ -1,21 +1,24 @@
-# Agent Board - KOBI Gider ve Nakit Akisi Paneli
+# Agent Board - KOBI Gider ve Nakit Akisi Paneli - Gelismis Raporlama
 
-Sprint: `sprint-20260524T2032`
+Sprint: `sprint-20260524T2035`
 Project folder: `projects/kobi-gider-ve-nakit-akisi-paneli`
 
 | # | Agent | Status | Task | Output |
 |---|---|---|---|---|
-| 1 | Frontend/Backend Agent | DONE | Gelir ve gider kaydi ekleme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
-| 2 | Frontend/Backend Agent | DONE | Fatura vade tarihi ve odendi bilgisi takip etme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
-| 3 | Frontend/Backend Agent | DONE | Geciken odemeleri uyarili gosterme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
-| 4 | Frontend/Backend Agent | DONE | Aylik gelir, gider, net nakit ve geciken borc metrikleri | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
-| 5 | Frontend/Backend Agent | DONE | Kategoriye gore filtreleme ve arama | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
-| 6 | Product/QA Agent | DONE | Demo finans verileri | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2032-tasks.md` |
-| 7 | Product/QA Agent | DONE | Mobil uyumlu sade dashboard | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2032-tasks.md` |
-| 8 | Product/QA Agent | DONE | Calisan start.cmd | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2032-tasks.md` |
-| 9 | Product/QA Agent | DONE | README calistirma adimlari | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2032-tasks.md` |
-| 10 | Product/QA Agent | DONE | Smoke test checklisti | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2032-tasks.md` |
-| 11 | QA Agent | DONE | QA smoke test and delivery report | `projects/kobi-gider-ve-nakit-akisi-paneli/STATUS.md` |
+| 1 | Frontend/Backend Agent | TODO | Aylik gelir-gider trend grafigi ekleme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 2 | Frontend/Backend Agent | TODO | Kategori bazli gider dagilimi raporu olusturma | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 3 | Frontend/Backend Agent | TODO | 30 gunluk nakit akisi tahmini paneli ekleme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 4 | Frontend/Backend Agent | TODO | Geciken faturalar icin onceliklendirilmis takip listesi olusturma | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 5 | Frontend/Backend Agent | TODO | Gelir, gider ve fatura kayitlarini CSV olarak disari aktarma | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 6 | Frontend/Backend Agent | TODO | Tarih araligi, kategori ve odeme durumu filtreleri ekleme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 7 | Frontend/Backend Agent | TODO | Ana dashboard uzerinde en riskli 5 nakit cikisini gosterme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 8 | Product/QA Agent | TODO | Mevcut proje klasoru guncellenmeli, yeni proje acilmamali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2035-tasks.md` |
+| 9 | Product/QA Agent | TODO | Demo finans verileri yeni raporlari gosterecek sekilde zenginlestirilmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2035-tasks.md` |
+| 10 | Product/QA Agent | TODO | Mobil ekranda grafikler ve tablolar tasma yapmamali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2035-tasks.md` |
+| 11 | Product/QA Agent | TODO | README icinde yeni raporlama ozellikleri anlatilmali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2035-tasks.md` |
+| 12 | Product/QA Agent | TODO | STATUS.md icinde manuel test checklisti guncellenmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2035-tasks.md` |
+| 13 | Product/QA Agent | TODO | Calisan start.cmd korunmali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2035-tasks.md` |
+| 14 | QA Agent | TODO | QA smoke test and delivery report | `projects/kobi-gider-ve-nakit-akisi-paneli/STATUS.md` |
 
 ## Status Legend
 
