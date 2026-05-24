@@ -219,7 +219,6 @@ function renderPage(projects) {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="refresh" content="3" />
     <title>AI Agent Office Dashboard</title>
     <style>
       :root {
@@ -481,6 +480,25 @@ function renderPage(projects) {
           : ""
       }
     </main>
+    <script>
+      const details = Array.from(document.querySelectorAll(".project details"));
+
+      for (const detail of details) {
+        const project = detail.closest(".project");
+        const key = "agent-board-open:" + (project ? project.id : "");
+        detail.open = localStorage.getItem(key) === "true";
+        detail.addEventListener("toggle", () => {
+          localStorage.setItem(key, detail.open ? "true" : "false");
+        });
+      }
+
+      setInterval(() => {
+        const userIsReadingDetails = details.some((detail) => detail.open);
+        if (!userIsReadingDetails) {
+          window.location.reload();
+        }
+      }, 3000);
+    </script>
   </body>
 </html>`;
 }
