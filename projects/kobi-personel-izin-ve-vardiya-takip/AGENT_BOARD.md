@@ -23,9 +23,9 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 | 16 | Product/QA Agent | DONE | Rustic tema belirgin sekilde gorunmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2301-tasks.md` |
 | 17 | Product/QA Agent | DONE | Stok ve sevkiyat fonksiyonlari bozulmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2301-tasks.md` |
 | 18 | Product/QA Agent | DONE | Arama ve filtreler calismaya devam etmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2301-tasks.md` |
-| 19 | Product/QA Agent | IN_PROGRESS | Demo veriler korunmali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2301-tasks.md` |
-| 20 | Product/QA Agent | TODO | start.cmd calismaya devam etmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2301-tasks.md` |
-| 21 | QA Agent | TODO | QA smoke test and delivery report | `projects/kobi-personel-izin-ve-vardiya-takip/STATUS.md` |
+| 19 | Product/QA Agent | DONE | Demo veriler korunmali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2301-tasks.md` |
+| 20 | Product/QA Agent | DONE | start.cmd calismaya devam etmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2301-tasks.md` |
+| 21 | QA Agent | IN_PROGRESS | QA smoke test and delivery report | `projects/kobi-personel-izin-ve-vardiya-takip/STATUS.md` |
 
 ## Status Legend
 
