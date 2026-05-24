@@ -21,9 +21,9 @@ Project folder: `projects/kobi-gider-ve-nakit-akisi-paneli`
 | 14 | Product/QA Agent | DONE | public/index.html gercek uygulama ekranina donusmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
 | 15 | Product/QA Agent | DONE | Sadece task listesi yazan basit ekran kabul edilmez | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
 | 16 | Product/QA Agent | DONE | Demo finans verileri ilk acilista dolu gelmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
-| 17 | Product/QA Agent | IN_PROGRESS | Mobil gorunum bozulmamali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
-| 18 | Product/QA Agent | TODO | start.cmd calismaya devam etmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
-| 19 | Product/QA Agent | TODO | README yeni ozelliklerle guncellenmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
+| 17 | Product/QA Agent | DONE | Mobil gorunum bozulmamali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
+| 18 | Product/QA Agent | DONE | start.cmd calismaya devam etmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
+| 19 | Product/QA Agent | DONE | README yeni ozelliklerle guncellenmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
 | 20 | Product/QA Agent | TODO | STATUS.md teslim ve test ozeti icermeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
 | 21 | QA Agent | TODO | QA smoke test and delivery report | `projects/kobi-gider-ve-nakit-akisi-paneli/STATUS.md` |
 
