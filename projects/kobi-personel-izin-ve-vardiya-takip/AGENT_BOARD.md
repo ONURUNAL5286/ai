@@ -6,9 +6,9 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 | # | Agent | Status | Task | Output |
 |---|---|---|---|---|
 | 1 | Frontend/Backend Agent | DONE | Urun kayitlari localStorage ile kalici tutulmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 2 | Frontend/Backend Agent | IN_PROGRESS | Stok giris ve stok cikis hareketleri eklenebilmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 3 | Frontend/Backend Agent | TODO | Raf konumu, barkod, kategori ve kritik stok seviyesi takip edilmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 4 | Frontend/Backend Agent | TODO | Kritik seviyenin altindaki urunler neon uyari kartlariyla gosterilmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 2 | Frontend/Backend Agent | DONE | Stok giris ve stok cikis hareketleri eklenebilmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 3 | Frontend/Backend Agent | DONE | Raf konumu, barkod, kategori ve kritik stok seviyesi takip edilmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 4 | Frontend/Backend Agent | IN_PROGRESS | Kritik seviyenin altindaki urunler neon uyari kartlariyla gosterilmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 5 | Frontend/Backend Agent | TODO | Bugun hazirlanacak sevkiyatlar operasyon akisi olarak listelenmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 6 | Frontend/Backend Agent | TODO | Sevkiyat durumlari Hazirlaniyor, Paketlendi, Kargoya Verildi, Iptal olarak guncellenebilmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 7 | Frontend/Backend Agent | TODO | Ana panelde toplam urun, kritik stok, bugunku sevkiyat ve bekleyen paket metrikleri gorunmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
