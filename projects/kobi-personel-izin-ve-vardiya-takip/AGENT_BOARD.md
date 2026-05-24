@@ -9,9 +9,9 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 | 2 | Frontend/Backend Agent | DONE | Toplam personel, bekleyen izin, bugun izinli ve bos vardiya metrikleri icin modern kart tasarimi | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 3 | Frontend/Backend Agent | DONE | Metrik kartlarinda belirgin ikon benzeri semboller ve renkli durum vurgulari | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 4 | Frontend/Backend Agent | DONE | Personel ve izin talebi ekleme formunun iki kolonlu, temiz ve okunabilir hale getirilmesi | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 5 | Frontend/Backend Agent | TODO | Arama ve filtre alanlarinin ayri bir kontrol paneli olarak tasarlanmasi | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 6 | Frontend/Backend Agent | TODO | Haftalik vardiya planinin gunlere ayrilmis kartlar halinde gosterilmesi | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 7 | Frontend/Backend Agent | TODO | Bos vardiya ve cakisan izin uyarilarinin dikkat cekici ama sade uyari kartlari olarak gosterilmesi | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 5 | Frontend/Backend Agent | DONE | Arama ve filtre alanlarinin ayri bir kontrol paneli olarak tasarlanmasi | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 6 | Frontend/Backend Agent | DONE | Haftalik vardiya planinin gunlere ayrilmis kartlar halinde gosterilmesi | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 7 | Frontend/Backend Agent | IN_PROGRESS | Bos vardiya ve cakisan izin uyarilarinin dikkat cekici ama sade uyari kartlari olarak gosterilmesi | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 8 | Frontend/Backend Agent | TODO | Izin talepleri tablosunda durum etiketlerinin Onaylandi, Bekliyor, Reddedildi renkleriyle gosterilmesi | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 9 | Frontend/Backend Agent | TODO | Bugun izinli personeller icin ozet liste kartlari | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 10 | Frontend/Backend Agent | TODO | Mobil ekranda tum kartlarin tek sutuna dusmesi ve tablo alanlarinin yatay kaydirilmasi | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
