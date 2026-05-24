@@ -44,7 +44,7 @@ function listen(port) {
   });
 
   server.listen(port, () => {
-    console.log(`KOBI Gider ve Nakit Akisi Paneli - Gelismis Raporlama running at http://localhost:${port}`);
+    console.log(`KOBI Gider ve Nakit Akisi Paneli - Finans Operasyon Guncellemesi running at http://localhost:${port}`);
   });
 }
 
