@@ -5,9 +5,9 @@ Project folder: `projects/kobi-gider-ve-nakit-akisi-paneli`
 
 | # | Agent | Status | Task | Output |
 |---|---|---|---|---|
-| 1 | Frontend/Backend Agent | TODO | Aylik gelir-gider trend grafigi ekleme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
-| 2 | Frontend/Backend Agent | TODO | Kategori bazli gider dagilimi raporu olusturma | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
-| 3 | Frontend/Backend Agent | TODO | 30 gunluk nakit akisi tahmini paneli ekleme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 1 | Frontend/Backend Agent | DONE | Aylik gelir-gider trend grafigi ekleme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 2 | Frontend/Backend Agent | DONE | Kategori bazli gider dagilimi raporu olusturma | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 3 | Frontend/Backend Agent | IN_PROGRESS | 30 gunluk nakit akisi tahmini paneli ekleme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
 | 4 | Frontend/Backend Agent | TODO | Geciken faturalar icin onceliklendirilmis takip listesi olusturma | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
 | 5 | Frontend/Backend Agent | TODO | Gelir, gider ve fatura kayitlarini CSV olarak disari aktarma | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
 | 6 | Frontend/Backend Agent | TODO | Tarih araligi, kategori ve odeme durumu filtreleri ekleme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
