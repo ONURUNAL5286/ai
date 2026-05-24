@@ -25,7 +25,7 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 | 18 | Product/QA Agent | DONE | Arama ve filtreler calismaya devam etmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2301-tasks.md` |
 | 19 | Product/QA Agent | DONE | Demo veriler korunmali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2301-tasks.md` |
 | 20 | Product/QA Agent | DONE | start.cmd calismaya devam etmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2301-tasks.md` |
-| 21 | QA Agent | IN_PROGRESS | QA smoke test and delivery report | `projects/kobi-personel-izin-ve-vardiya-takip/STATUS.md` |
+| 21 | QA Agent | DONE | QA smoke test and delivery report | `projects/kobi-personel-izin-ve-vardiya-takip/STATUS.md` |
 
 ## Status Legend
 
