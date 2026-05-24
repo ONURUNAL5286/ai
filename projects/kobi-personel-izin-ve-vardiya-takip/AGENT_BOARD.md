@@ -15,9 +15,9 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 | 8 | Frontend/Backend Agent | DONE | Urunlerde kategori, raf ve stok durumuna gore filtreleme yapilmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 9 | Frontend/Backend Agent | DONE | Yeni urun eklenince sayfa yenilense bile kayit kaybolmamali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 10 | Frontend/Backend Agent | DONE | Demo verileri sifirla butonu olmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 11 | Frontend/Backend Agent | IN_PROGRESS | Futuristic koyu tema ve cam efektli kartlar uygulanmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 12 | Frontend/Backend Agent | TODO | Mobil ekranda kartlar ve tablolar tasma yapmadan calismali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 13 | Product/QA Agent | TODO | Mevcut proje klasoru guncellenmeli, yeni proje acilmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2258-tasks.md` |
+| 11 | Frontend/Backend Agent | DONE | Futuristic koyu tema ve cam efektli kartlar uygulanmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 12 | Frontend/Backend Agent | DONE | Mobil ekranda kartlar ve tablolar tasma yapmadan calismali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 13 | Product/QA Agent | DONE | Mevcut proje klasoru guncellenmeli, yeni proje acilmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2258-tasks.md` |
 | 14 | Product/QA Agent | TODO | Eski personel/izin/vardiya ekrani kalmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2258-tasks.md` |
 | 15 | Product/QA Agent | TODO | public/index.html gercek akilli depo operasyon paneli olmali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2258-tasks.md` |
 | 16 | Product/QA Agent | TODO | Sadece DONE listesi yazan ekran kabul edilmez | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2258-tasks.md` |
