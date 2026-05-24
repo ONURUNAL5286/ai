@@ -27,7 +27,7 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 | 20 | Product/QA Agent | DONE | Demo veriler ilk acilista dolu gelmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2258-tasks.md` |
 | 21 | Product/QA Agent | DONE | start.cmd calismaya devam etmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2258-tasks.md` |
 | 22 | Product/QA Agent | DONE | README ve STATUS.md guncellenmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2258-tasks.md` |
-| 23 | QA Agent | IN_PROGRESS | QA smoke test and delivery report | `projects/kobi-personel-izin-ve-vardiya-takip/STATUS.md` |
+| 23 | QA Agent | DONE | QA smoke test and delivery report | `projects/kobi-personel-izin-ve-vardiya-takip/STATUS.md` |
 
 ## Status Legend
 
