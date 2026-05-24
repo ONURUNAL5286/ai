@@ -22,8 +22,8 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 | 15 | Product/QA Agent | DONE | Modern ama sade kurumsal tasarim olmali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2125-tasks.md` |
 | 16 | Product/QA Agent | DONE | Mobil gorunum bozulmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2125-tasks.md` |
 | 17 | Product/QA Agent | DONE | Demo veriler korunmali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2125-tasks.md` |
-| 18 | Product/QA Agent | IN_PROGRESS | start.cmd calismaya devam etmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2125-tasks.md` |
-| 19 | QA Agent | TODO | QA smoke test and delivery report | `projects/kobi-personel-izin-ve-vardiya-takip/STATUS.md` |
+| 18 | Product/QA Agent | DONE | start.cmd calismaya devam etmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2125-tasks.md` |
+| 19 | QA Agent | DONE | QA smoke test and delivery report | `projects/kobi-personel-izin-ve-vardiya-takip/STATUS.md` |
 
 ## Status Legend
 
