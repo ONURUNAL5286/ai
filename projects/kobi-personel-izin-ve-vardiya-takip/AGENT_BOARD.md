@@ -5,9 +5,9 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 
 | # | Agent | Status | Task | Output |
 |---|---|---|---|---|
-| 1 | Frontend/Backend Agent | IN_PROGRESS | Is emirleri localStorage kullanilarak tarayicida kalici tutulmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 2 | Frontend/Backend Agent | TODO | Teknisyen kayitlari localStorage kullanilarak tarayicida kalici tutulmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 3 | Frontend/Backend Agent | TODO | Yeni is emri eklendiginde sayfa yenilense bile kayit kaybolmamali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 1 | Frontend/Backend Agent | DONE | Is emirleri localStorage kullanilarak tarayicida kalici tutulmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 2 | Frontend/Backend Agent | DONE | Teknisyen kayitlari localStorage kullanilarak tarayicida kalici tutulmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 3 | Frontend/Backend Agent | IN_PROGRESS | Yeni is emri eklendiginde sayfa yenilense bile kayit kaybolmamali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 4 | Frontend/Backend Agent | TODO | Yeni teknisyen ekleme formu olmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 5 | Frontend/Backend Agent | TODO | Is emri durum guncelleme alani olmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 6 | Frontend/Backend Agent | TODO | Teknisyen atama degistirme alani olmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
