@@ -1,14 +1,14 @@
-# KOBI Personel Izin ve Vardiya Takip - Akilli Depo Operasyon Paneli
+# KOBI Akilli Depo Operasyon Paneli - Rustic Tema Guncellemesi
 
 Bu klasor AI Agent Office tarafindan bu projeye ozel olusturuldu. Farkli proje sprintleri farkli `projects/<proje-adi>` klasorlerinde tutulur.
 
 ## Goal
 
-Mevcut projeyi tamamen degistirerek KOBI depolari icin stok hareketi, raf konumu, sevkiyat hazirligi ve kritik stok uyarilarini yoneten akilli depo operasyon paneline cevirmek.
+Mevcut akilli depo operasyon panelinin islevlerini koruyarak arayuzu tamamen rustic, sicak, dokulu ve el isi hissi veren bir operasyon paneline donusturmek.
 
 ## Target User
 
-Depo sorumlulari, operasyon yoneticileri, KOBI sahipleri
+Depo sorumlulari, saha operasyon ekipleri, KOBI sahipleri
 
 ## Run
 
@@ -33,7 +33,7 @@ npm.cmd start
 Sunucu bos portu otomatik secer. Terminalde su satiri ara:
 
 ~~~text
-KOBI Personel Izin ve Vardiya Takip - Akilli Depo Operasyon Paneli running at http://localhost:<port>
+KOBI Akilli Depo Operasyon Paneli - Rustic Tema Guncellemesi running at http://localhost:<port>
 ~~~
 
 Sonra tarayicida terminalde yazan URL'yi ac.
