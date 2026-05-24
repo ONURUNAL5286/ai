@@ -8,9 +8,9 @@ Project folder: `projects/kobi-gider-ve-nakit-akisi-paneli`
 | 1 | Frontend/Backend Agent | DONE | Aylik gelir, aylik gider, net nakit, geciken borc ve bekleyen tahsilat metrikleri | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
 | 2 | Frontend/Backend Agent | DONE | Gelir ve gider kaydi ekleme formu | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
 | 3 | Frontend/Backend Agent | DONE | Fatura vade tarihi, odendi bilgisi ve gecikme durumunu takip etme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
-| 4 | Frontend/Backend Agent | TODO | Geciken odemeleri kirmizi uyariyla gosterme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
-| 5 | Frontend/Backend Agent | TODO | 7 gun icinde vadesi gelen odemeleri sari uyariyla gosterme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
-| 6 | Frontend/Backend Agent | TODO | Kategori bazli gider dagilimi raporu | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 4 | Frontend/Backend Agent | DONE | Geciken odemeleri kirmizi uyariyla gosterme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 5 | Frontend/Backend Agent | DONE | 7 gun icinde vadesi gelen odemeleri sari uyariyla gosterme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 6 | Frontend/Backend Agent | IN_PROGRESS | Kategori bazli gider dagilimi raporu | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
 | 7 | Frontend/Backend Agent | TODO | Aylik gelir-gider trend grafigi | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
 | 8 | Frontend/Backend Agent | TODO | 30 gunluk nakit akisi tahmini tablosu | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
 | 9 | Frontend/Backend Agent | TODO | En riskli 5 nakit cikisi listesi | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
