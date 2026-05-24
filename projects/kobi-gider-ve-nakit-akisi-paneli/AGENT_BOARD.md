@@ -5,7 +5,7 @@ Project folder: `projects/kobi-gider-ve-nakit-akisi-paneli`
 
 | # | Agent | Status | Task | Output |
 |---|---|---|---|---|
-| 1 | Frontend/Backend Agent | TODO | Aylik gelir, aylik gider, net nakit, geciken borc ve bekleyen tahsilat metrikleri | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 1 | Frontend/Backend Agent | IN_PROGRESS | Aylik gelir, aylik gider, net nakit, geciken borc ve bekleyen tahsilat metrikleri | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
 | 2 | Frontend/Backend Agent | TODO | Gelir ve gider kaydi ekleme formu | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
 | 3 | Frontend/Backend Agent | TODO | Fatura vade tarihi, odendi bilgisi ve gecikme durumunu takip etme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
 | 4 | Frontend/Backend Agent | TODO | Geciken odemeleri kirmizi uyariyla gosterme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
