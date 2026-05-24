@@ -89,6 +89,37 @@ async function getGitHubFile({ token, repo, path }) {
   return payload;
 }
 
+export async function listGitHubDirectory({ token, repo, path }) {
+  let response;
+  try {
+    response = await fetchWithRetry(
+      `https://api.github.com/repos/${repo}/contents/${encodeURIComponent(path).replaceAll("%2F", "/")}`,
+      {
+        headers: baseHeaders(token),
+      },
+    );
+  } catch (error) {
+    throw new Error(`GitHub directory read failed for ${path}: ${error.message}`);
+  }
+
+  if (response.status === 404) {
+    return [];
+  }
+
+  const payload = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    const message = payload.message ?? response.statusText;
+    throw new Error(`GitHub directory could not be read: ${response.status} ${message}`);
+  }
+
+  if (!Array.isArray(payload)) {
+    return [];
+  }
+
+  return payload;
+}
+
 export async function upsertGitHubFile({ token, repo, path, content, message }) {
   let existingFile;
   try {

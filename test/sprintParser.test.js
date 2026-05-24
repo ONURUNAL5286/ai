@@ -107,3 +107,17 @@ Ana ozellikler:
   assert.ok(files.some((file) => file.path === "projects/kobi-teklif-takip/start.cmd"));
   assert.ok(files.some((file) => file.path === "projects/kobi-teklif-takip/start.ps1"));
 });
+
+test("parses existing project target", () => {
+  const { sprint } = parseSprintMessage(`SPRINT BASLAT
+Proje adi: KOBI Teklif Takip Guncelleme
+Mevcut proje: kobi-teklif-ve-tahsilat-takip
+Hedef: Var olan teklif projesine raporlama eklemek
+Ana ozellikler:
+1. Rapor ekrani`);
+
+  const context = createProjectContext(sprint, new Date("2026-05-22T20:00:00Z"));
+
+  assert.equal(sprint.existingProject, "kobi-teklif-ve-tahsilat-takip");
+  assert.equal(context.projectPath, "projects/kobi-teklif-ve-tahsilat-takip");
+});

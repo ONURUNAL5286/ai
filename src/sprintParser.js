@@ -1,6 +1,9 @@
 const FIELD_ALIASES = new Map([
   ["proje adi", "projectName"],
   ["proje adı", "projectName"],
+  ["mevcut proje", "existingProject"],
+  ["proje slug", "projectSlug"],
+  ["project slug", "projectSlug"],
   ["hedef", "goal"],
   ["kullanici tipi", "userType"],
   ["kullanıcı tipi", "userType"],
@@ -43,6 +46,8 @@ function cleanListLine(line) {
 function emptySprint() {
   return {
     projectName: "",
+    existingProject: "",
+    projectSlug: "",
     goal: "",
     userType: "",
     features: [],

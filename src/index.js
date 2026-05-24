@@ -11,6 +11,7 @@ import {
   sprintToTaskIssues,
   taskSummaryComment,
 } from "./sprintParser.js";
+import { resolveProjectSlug } from "./projectResolver.js";
 import { TelegramBot } from "./telegram.js";
 
 const HELP = `AI Agent Office hazir.
@@ -19,6 +20,7 @@ Sprint baslatmak icin su formatta mesaj gonder:
 
 SPRINT BASLAT
 Proje adi: KOBI Teklif Takip
+Mevcut proje: kobi-teklif-ve-tahsilat-takip
 Hedef: Teklifleri hazirlayip takip eden web uygulamasi.
 Kullanici tipi: KOBI sahipleri
 Ana ozellikler:
@@ -70,13 +72,24 @@ async function handleMessage(bot, message) {
   }
 
   const { sprint, warnings } = parseSprintMessage(text);
-  const context = createProjectContext(sprint);
+  const resolvedProject = config.dryRun
+    ? {
+        projectSlug:
+          sprint.projectSlug || sprint.existingProject || sprint.projectName,
+        matchType: "dry-run",
+      }
+    : await resolveProjectSlug({
+        token: config.githubToken,
+        repo: config.githubRepo,
+        sprint,
+      });
+  const context = createProjectContext(sprint, new Date(), resolvedProject.projectSlug);
   const issue = sprintToIssue(sprint, warnings, context);
 
   if (config.dryRun) {
     await bot.sendMessage(
       chatId,
-      `DRY_RUN aktif. GitHub'a yazilmadi.\n\nProje: ${context.projectPath}\nBaslik: ${issue.title}\nTask sayisi: ${sprint.features.length + sprint.mustHaves.length + 1}\nUyari sayisi: ${warnings.length}`,
+      `DRY_RUN aktif. GitHub'a yazilmadi.\n\nProje: ${context.projectPath}\nEslesme: ${resolvedProject.matchType}\nBaslik: ${issue.title}\nTask sayisi: ${sprint.features.length + sprint.mustHaves.length + 1}\nUyari sayisi: ${warnings.length}`,
     );
     return;
   }
@@ -86,7 +99,10 @@ async function handleMessage(bot, message) {
     token: config.githubToken,
     repo: config.githubRepo,
     files: projectFiles,
-    message: `Create project workspace for ${sprint.projectName}`,
+    message:
+      resolvedProject.matchType === "new"
+        ? `Create project workspace for ${sprint.projectName}`
+        : `Update project workspace for ${sprint.projectName}`,
   });
 
   const parentIssue = await createGitHubIssue({
@@ -120,7 +136,7 @@ async function handleMessage(bot, message) {
 
   await bot.sendMessage(
     chatId,
-    `Sprint ayri proje olarak olusturuldu.\n\nProje klasoru:\n${context.projectPath}\n\nCalistirma:\ngit pull\ncd ${context.projectPath}\nstart.cmd\n\nTarayici:\nTerminalde yazan localhost adresini ac.\n\nAna sprint:\n${parentIssue.html_url}\n\nTasklar:\n${taskLinks}`,
+    `Sprint islendi.\n\nProje klasoru:\n${context.projectPath}\nEslesme: ${resolvedProject.matchType}\n\nCalistirma:\ngit pull\ncd ${context.projectPath}\nstart.cmd\n\nTarayici:\nTerminalde yazan localhost adresini ac.\n\nAna sprint:\n${parentIssue.html_url}\n\nTasklar:\n${taskLinks}`,
   );
 }
 

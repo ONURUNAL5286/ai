@@ -84,6 +84,20 @@ Bot basarili calisirsa:
 
 Farkli `Proje adi` ile gelen sprintler farkli `projects/<proje-adi>/` klasorlerine yazilir. Ayni proje adi ile gelen sprintler ayni proje klasoru altinda yeni `sprints/` ve `tasks/` dosyalari olarak tutulur.
 
+Var olan bir projeyi guncellemek icin sprint mesajina bunu ekle:
+
+```text
+Mevcut proje: kobi-teklif-ve-tahsilat-takip
+```
+
+veya:
+
+```text
+Proje slug: kobi-teklif-ve-tahsilat-takip
+```
+
+Bu alan varsa bot yeni proje acmaz, verilen `projects/<slug>/` klasorunu gunceller. Alan yoksa repo icindeki mevcut proje adlariyla yakin eslesme arar.
+
 Test amacli GitHub issue acmadan denemek icin:
 
 ```text

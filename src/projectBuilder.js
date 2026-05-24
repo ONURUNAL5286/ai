@@ -1,4 +1,4 @@
-function slugify(value) {
+export function slugify(value) {
   return value
     .toLocaleLowerCase("tr-TR")
     .normalize("NFD")
@@ -25,8 +25,10 @@ function checklist(items) {
   return items.length > 0 ? items.map((item) => `- [ ] ${item}`).join("\n") : "- [ ] Belirtilmedi";
 }
 
-export function createProjectContext(sprint, now = new Date()) {
-  const projectSlug = slugify(sprint.projectName);
+export function createProjectContext(sprint, now = new Date(), projectSlugOverride = "") {
+  const projectSlug = slugify(
+    projectSlugOverride || sprint.projectSlug || sprint.existingProject || sprint.projectName,
+  );
   const sprintId = `sprint-${now.toISOString().replace(/[-:]/g, "").slice(0, 13)}`;
   const projectPath = `projects/${projectSlug}`;
 
