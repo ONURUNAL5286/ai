@@ -33,7 +33,29 @@ Gerekenler:
 - GitHub token
 - GitHub repository: `ONURUNAL5286/ai`
 
-Kurulum:
+Tek komutla calistirma:
+
+```powershell
+.\office.cmd
+```
+
+Bu komut sunlari ayni terminalde baslatir:
+
+- Dashboard
+- Telegram sprint botu
+- `projects/` altindaki calistirilabilir proje onizlemeleri
+
+Terminalde su formatta log gorursun:
+
+```text
+[dashboard] AI Agent Office Dashboard running at http://localhost:4100
+[bot] AI Agent Office bot started for ONURUNAL5286/ai
+[project:kobi-teklif-ve-tahsilat-takip] ... running at http://localhost:3000
+```
+
+Kapatmak icin ayni terminalde `Ctrl+C` kullan.
+
+Ilk kurulum:
 
 ```bash
 cp .env.example .env
@@ -60,7 +82,7 @@ Calismadan once token ve GitHub ayarlarini kontrol etmek icin:
 npm.cmd run doctor
 ```
 
-Ana arayuz panelini acmak icin:
+Sadece ana arayuz panelini acmak icin:
 
 ```powershell
 .\dashboard.cmd
