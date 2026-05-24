@@ -1,6 +1,6 @@
 import { existsSync } from "node:fs";
-import { readdir, readFile, writeFile } from "node:fs/promises";
-import { join } from "node:path";
+import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
 
 const root = process.cwd();
 const projectsRoot = join(root, "projects");
@@ -61,6 +61,12 @@ function parseBoard(markdown) {
 
 function boardLine(task, status) {
   return `| ${task.index} | ${task.agent} | ${status} | ${task.task} | \`${task.output}\` |`;
+}
+
+function relativeOutput(projectName, output = "") {
+  const normalized = output.replaceAll("\\", "/").replace(/^`|`$/g, "");
+  const projectPrefix = `projects/${projectName}/`;
+  return normalized.startsWith(projectPrefix) ? normalized.slice(projectPrefix.length) : normalized;
 }
 
 async function writeBoard(projectPath, parsed, task, status) {
@@ -280,18 +286,20 @@ async function performTask(projectPath, projectName, parsed, task) {
   const readme = await readText(join(projectPath, "README.md"));
   const title = projectTitle(readme, projectName);
   const futureTasks = parsed.tasks.map((item) => (item.index === task.index ? { ...item, status: "DONE" } : item));
+  const output = relativeOutput(projectName, task.output);
 
-  if (task.output === "public/index.html") {
+  if (output === "public/index.html") {
     const html = projectName.includes("kobi-teklif")
       ? kobiAppHtml(title, futureTasks)
       : genericAppHtml(title, futureTasks);
     await writeFile(join(projectPath, "public", "index.html"), html, "utf8");
-  } else if (task.output === "README.md") {
+  } else if (output === "README.md") {
     await updateReadme(projectPath, title, task);
-  } else if (task.output === "STATUS.md") {
+  } else if (output === "STATUS.md") {
     await updateStatus(projectPath, futureTasks);
-  } else if (task.output.endsWith(".md")) {
-    const target = join(projectPath, task.output);
+  } else if (output.endsWith(".md")) {
+    const target = join(projectPath, output);
+    await mkdir(dirname(target), { recursive: true });
     const current = await readText(target);
     await writeFile(target, `${current.trim()}\n\n- [x] ${task.task}\n`, "utf8");
   }
@@ -316,13 +324,15 @@ async function processOneTask() {
 
     const board = await readText(boardPath);
     const parsed = parseBoard(board);
-    const nextTask = parsed.tasks.find((task) => task.status === "TODO");
+    const nextTask = parsed.tasks.find((task) => task.status === "IN_PROGRESS") ?? parsed.tasks.find((task) => task.status === "TODO");
     if (!nextTask) {
       continue;
     }
 
     console.log(`${entry.name}: ${nextTask.agent} basladi -> ${nextTask.task}`);
-    await writeBoard(projectPath, parsed, nextTask, "IN_PROGRESS");
+    if (nextTask.status !== "IN_PROGRESS") {
+      await writeBoard(projectPath, parsed, nextTask, "IN_PROGRESS");
+    }
     await sleep(delayMs);
 
     const refreshed = parseBoard(await readText(boardPath));
