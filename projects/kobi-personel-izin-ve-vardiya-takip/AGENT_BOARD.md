@@ -28,9 +28,9 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 | 21 | Product/QA Agent | DONE | Futuristic UI belirgin sekilde gorunmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
 | 22 | Product/QA Agent | DONE | Harici npm paketi eklenmemeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
 | 23 | Product/QA Agent | DONE | Harici CSS framework kullanilmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
-| 24 | Product/QA Agent | IN_PROGRESS | start.cmd calismaya devam etmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
-| 25 | Product/QA Agent | TODO | README ve STATUS.md guncellenmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
-| 26 | QA Agent | TODO | QA smoke test and delivery report | `projects/kobi-personel-izin-ve-vardiya-takip/STATUS.md` |
+| 24 | Product/QA Agent | DONE | start.cmd calismaya devam etmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
+| 25 | Product/QA Agent | DONE | README ve STATUS.md guncellenmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
+| 26 | QA Agent | DONE | QA smoke test and delivery report | `projects/kobi-personel-izin-ve-vardiya-takip/STATUS.md` |
 
 ## Status Legend
 
