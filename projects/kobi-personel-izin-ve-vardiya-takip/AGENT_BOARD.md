@@ -11,9 +11,9 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 | 4 | Frontend/Backend Agent | DONE | Kritik seviyenin altindaki urunler neon uyari kartlariyla gosterilmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 5 | Frontend/Backend Agent | DONE | Bugun hazirlanacak sevkiyatlar operasyon akisi olarak listelenmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 6 | Frontend/Backend Agent | DONE | Sevkiyat durumlari Hazirlaniyor, Paketlendi, Kargoya Verildi, Iptal olarak guncellenebilmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 7 | Frontend/Backend Agent | TODO | Ana panelde toplam urun, kritik stok, bugunku sevkiyat ve bekleyen paket metrikleri gorunmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 8 | Frontend/Backend Agent | TODO | Urunlerde kategori, raf ve stok durumuna gore filtreleme yapilmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 9 | Frontend/Backend Agent | TODO | Yeni urun eklenince sayfa yenilense bile kayit kaybolmamali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 7 | Frontend/Backend Agent | DONE | Ana panelde toplam urun, kritik stok, bugunku sevkiyat ve bekleyen paket metrikleri gorunmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 8 | Frontend/Backend Agent | DONE | Urunlerde kategori, raf ve stok durumuna gore filtreleme yapilmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 9 | Frontend/Backend Agent | IN_PROGRESS | Yeni urun eklenince sayfa yenilense bile kayit kaybolmamali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 10 | Frontend/Backend Agent | TODO | Demo verileri sifirla butonu olmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 11 | Frontend/Backend Agent | TODO | Futuristic koyu tema ve cam efektli kartlar uygulanmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 12 | Frontend/Backend Agent | TODO | Mobil ekranda kartlar ve tablolar tasma yapmadan calismali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
