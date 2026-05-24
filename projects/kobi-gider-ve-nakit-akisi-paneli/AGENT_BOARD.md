@@ -18,7 +18,7 @@ Project folder: `projects/kobi-gider-ve-nakit-akisi-paneli`
 | 11 | Product/QA Agent | DONE | README icinde yeni raporlama ozellikleri anlatilmali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2035-tasks.md` |
 | 12 | Product/QA Agent | DONE | STATUS.md icinde manuel test checklisti guncellenmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2035-tasks.md` |
 | 13 | Product/QA Agent | DONE | Calisan start.cmd korunmali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2035-tasks.md` |
-| 14 | QA Agent | IN_PROGRESS | QA smoke test and delivery report | `projects/kobi-gider-ve-nakit-akisi-paneli/STATUS.md` |
+| 14 | QA Agent | DONE | QA smoke test and delivery report | `projects/kobi-gider-ve-nakit-akisi-paneli/STATUS.md` |
 
 ## Status Legend
 
