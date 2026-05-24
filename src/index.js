@@ -1,4 +1,6 @@
 import { config, validateConfig } from "./config.js";
+import { mkdir, writeFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
 import {
   createGitHubIssue,
   createGitHubIssueComment,
@@ -36,6 +38,14 @@ Teslim kriteri:
 - GitHub PR
 Sure: 5 gun
 Butce limiti: Dusuk`;
+
+async function writeProjectFilesLocally(files) {
+  for (const file of files) {
+    const target = join(process.cwd(), file.path);
+    await mkdir(dirname(target), { recursive: true });
+    await writeFile(target, file.content, "utf8");
+  }
+}
 
 function isAllowed(chatId) {
   if (config.allowedChatIds.size === 0) {
@@ -97,6 +107,8 @@ async function handleMessage(bot, message) {
 
   const agentTasks = buildAgentTasks(sprint, context);
   const projectFiles = buildProjectFiles(sprint, context, agentTasks);
+  await writeProjectFilesLocally(projectFiles);
+
   await upsertGitHubFiles({
     token: config.githubToken,
     repo: config.githubRepo,

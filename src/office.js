@@ -6,6 +6,7 @@ import { join } from "node:path";
 const root = process.cwd();
 const projectsRoot = join(root, "projects");
 const children = new Set();
+const startedProjects = new Set();
 
 function log(name, message) {
   for (const line of String(message).split(/\r?\n/)) {
@@ -76,13 +77,22 @@ async function main() {
     console.log("[bot] .env bulunamadi, Telegram bot baslatilmadi.");
   }
 
-  if ((process.env.OFFICE_START_PROJECTS ?? "true").toLowerCase() !== "false") {
+  async function startKnownProjects() {
+    if ((process.env.OFFICE_START_PROJECTS ?? "true").toLowerCase() === "false") {
+      return;
+    }
+
     const projects = await findProjects();
-    projects.forEach((project, index) => {
+    projects.forEach((project) => {
+      if (startedProjects.has(project.path)) {
+        return;
+      }
+
+      startedProjects.add(project.path);
       startProcess(`project:${project.name}`, "node", ["server.js"], {
         cwd: project.path,
         env: {
-          PORT: String(3000 + index),
+          PORT: String(3000 + startedProjects.size - 1),
         },
       });
     });
@@ -91,6 +101,9 @@ async function main() {
       console.log("[projects] Calistirilabilir proje bulunamadi.");
     }
   }
+
+  await startKnownProjects();
+  setInterval(startKnownProjects, Number(process.env.OFFICE_PROJECT_SCAN_MS || 3000));
 
   console.log("Hazir. Dashboard adresini terminaldeki [dashboard] satirindan ac.");
   console.log("Kapatmak icin bu terminalde Ctrl+C kullan.");

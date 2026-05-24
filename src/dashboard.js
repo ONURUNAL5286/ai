@@ -494,7 +494,7 @@ function renderPage(projects) {
 
       setInterval(() => {
         window.location.reload();
-      }, 3000);
+      }, 1000);
     </script>
   </body>
 </html>`;

@@ -27,18 +27,20 @@ function similarityScore(left, right) {
   return matches / Math.max(leftTokens.size, rightTokens.size);
 }
 
-export async function resolveProjectSlug({ token, repo, sprint }) {
-  const explicitSlug = slugify(sprint.projectSlug || sprint.existingProject);
-  if (explicitSlug) {
+export async function resolveProjectSlug({ token, repo, sprint, projectDirs: knownProjectDirs = null }) {
+  const explicitProject = sprint.projectSlug || sprint.existingProject;
+  if (explicitProject?.trim()) {
     return {
-      projectSlug: explicitSlug,
+      projectSlug: slugify(explicitProject),
       matchType: "explicit",
     };
   }
 
   const desiredSlug = slugify(sprint.projectName);
-  const projects = await listGitHubDirectory({ token, repo, path: "projects" });
-  const projectDirs = projects.filter((item) => item.type === "dir").map((item) => item.name);
+  const projects = knownProjectDirs
+    ? []
+    : await listGitHubDirectory({ token, repo, path: "projects" });
+  const projectDirs = knownProjectDirs ?? projects.filter((item) => item.type === "dir").map((item) => item.name);
 
   if (projectDirs.includes(desiredSlug)) {
     return {
