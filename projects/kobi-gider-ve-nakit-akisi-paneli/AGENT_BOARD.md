@@ -1,24 +1,31 @@
-# Agent Board - KOBI Gider ve Nakit Akisi Paneli - Gelismis Raporlama
+# Agent Board - KOBI Gider ve Nakit Akisi Paneli - Finans Operasyon Guncellemesi
 
-Sprint: `sprint-20260524T2035`
+Sprint: `sprint-20260524T2049`
 Project folder: `projects/kobi-gider-ve-nakit-akisi-paneli`
 
 | # | Agent | Status | Task | Output |
 |---|---|---|---|---|
-| 1 | Frontend/Backend Agent | DONE | Aylik gelir-gider trend grafigi ekleme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
-| 2 | Frontend/Backend Agent | DONE | Kategori bazli gider dagilimi raporu olusturma | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
-| 3 | Frontend/Backend Agent | DONE | 30 gunluk nakit akisi tahmini paneli ekleme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
-| 4 | Frontend/Backend Agent | DONE | Geciken faturalar icin onceliklendirilmis takip listesi olusturma | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
-| 5 | Frontend/Backend Agent | DONE | Gelir, gider ve fatura kayitlarini CSV olarak disari aktarma | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
-| 6 | Frontend/Backend Agent | DONE | Tarih araligi, kategori ve odeme durumu filtreleri ekleme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
-| 7 | Frontend/Backend Agent | DONE | Ana dashboard uzerinde en riskli 5 nakit cikisini gosterme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
-| 8 | Product/QA Agent | DONE | Mevcut proje klasoru guncellenmeli, yeni proje acilmamali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2035-tasks.md` |
-| 9 | Product/QA Agent | DONE | Demo finans verileri yeni raporlari gosterecek sekilde zenginlestirilmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2035-tasks.md` |
-| 10 | Product/QA Agent | DONE | Mobil ekranda grafikler ve tablolar tasma yapmamali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2035-tasks.md` |
-| 11 | Product/QA Agent | DONE | README icinde yeni raporlama ozellikleri anlatilmali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2035-tasks.md` |
-| 12 | Product/QA Agent | DONE | STATUS.md icinde manuel test checklisti guncellenmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2035-tasks.md` |
-| 13 | Product/QA Agent | DONE | Calisan start.cmd korunmali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2035-tasks.md` |
-| 14 | QA Agent | DONE | QA smoke test and delivery report | `projects/kobi-gider-ve-nakit-akisi-paneli/STATUS.md` |
+| 1 | Frontend/Backend Agent | TODO | Aylik gelir, aylik gider, net nakit, geciken borc ve bekleyen tahsilat metrikleri | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 2 | Frontend/Backend Agent | TODO | Gelir ve gider kaydi ekleme formu | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 3 | Frontend/Backend Agent | TODO | Fatura vade tarihi, odendi bilgisi ve gecikme durumunu takip etme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 4 | Frontend/Backend Agent | TODO | Geciken odemeleri kirmizi uyariyla gosterme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 5 | Frontend/Backend Agent | TODO | 7 gun icinde vadesi gelen odemeleri sari uyariyla gosterme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 6 | Frontend/Backend Agent | TODO | Kategori bazli gider dagilimi raporu | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 7 | Frontend/Backend Agent | TODO | Aylik gelir-gider trend grafigi | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 8 | Frontend/Backend Agent | TODO | 30 gunluk nakit akisi tahmini tablosu | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 9 | Frontend/Backend Agent | TODO | En riskli 5 nakit cikisi listesi | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 10 | Frontend/Backend Agent | TODO | Arama, kategori, tarih araligi ve odeme durumu filtreleri | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 11 | Frontend/Backend Agent | TODO | Filtrelenmis kayitlari CSV olarak disari aktarma | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 12 | Frontend/Backend Agent | TODO | Yeni kayit eklenince metrik, tablo ve raporlarin aninda guncellenmesi | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
+| 13 | Product/QA Agent | TODO | Mevcut proje klasoru guncellenmeli, yeni proje acilmamali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
+| 14 | Product/QA Agent | TODO | public/index.html gercek uygulama ekranina donusmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
+| 15 | Product/QA Agent | TODO | Sadece task listesi yazan basit ekran kabul edilmez | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
+| 16 | Product/QA Agent | TODO | Demo finans verileri ilk acilista dolu gelmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
+| 17 | Product/QA Agent | TODO | Mobil gorunum bozulmamali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
+| 18 | Product/QA Agent | TODO | start.cmd calismaya devam etmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
+| 19 | Product/QA Agent | TODO | README yeni ozelliklerle guncellenmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
+| 20 | Product/QA Agent | TODO | STATUS.md teslim ve test ozeti icermeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
+| 21 | QA Agent | TODO | QA smoke test and delivery report | `projects/kobi-gider-ve-nakit-akisi-paneli/STATUS.md` |
 
 ## Status Legend
 
