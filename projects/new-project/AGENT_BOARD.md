@@ -5,7 +5,7 @@ Project folder: `projects/new-project`
 
 | # | Agent | Status | Task | Output |
 |---|---|---|---|---|
-| 1 | Frontend/Backend Agent | TODO | Musteri kaydi ve iletisim bilgileri | `projects/new-project/public/index.html` |
+| 1 | Frontend/Backend Agent | IN_PROGRESS | Musteri kaydi ve iletisim bilgileri | `projects/new-project/public/index.html` |
 | 2 | Frontend/Backend Agent | TODO | Takvim uzerinden randevu olusturma | `projects/new-project/public/index.html` |
 | 3 | Frontend/Backend Agent | TODO | Randevu durumlarini Bekliyor, Geldi, Iptal, Ertelendi olarak takip etme | `projects/new-project/public/index.html` |
 | 4 | Frontend/Backend Agent | TODO | Bugunku randevular ve geciken takipler paneli | `projects/new-project/public/index.html` |
