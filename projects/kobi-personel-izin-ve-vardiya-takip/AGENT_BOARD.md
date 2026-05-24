@@ -5,8 +5,8 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 
 | # | Agent | Status | Task | Output |
 |---|---|---|---|---|
-| 1 | Frontend/Backend Agent | TODO | Mevcut stok, sevkiyat, kritik stok ve localStorage ozellikleri korunmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 2 | Frontend/Backend Agent | TODO | Futuristic koyu tema tamamen kaldirilmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 1 | Frontend/Backend Agent | DONE | Mevcut stok, sevkiyat, kritik stok ve localStorage ozellikleri korunmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 2 | Frontend/Backend Agent | IN_PROGRESS | Futuristic koyu tema tamamen kaldirilmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 3 | Frontend/Backend Agent | TODO | Rustic sicak renk paleti uygulanmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 4 | Frontend/Backend Agent | TODO | Ahşap, kraft kagit, etiket ve depo defteri hissi veren CSS tasarimi eklenmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 5 | Frontend/Backend Agent | TODO | Metrik kartlari ahsap/kagit kart hissinde yeniden tasarlanmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
