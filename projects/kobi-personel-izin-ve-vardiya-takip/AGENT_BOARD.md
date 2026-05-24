@@ -6,10 +6,10 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 | # | Agent | Status | Task | Output |
 |---|---|---|---|---|
 | 1 | Frontend/Backend Agent | DONE | Mevcut stok, sevkiyat, kritik stok ve localStorage ozellikleri korunmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 2 | Frontend/Backend Agent | IN_PROGRESS | Futuristic koyu tema tamamen kaldirilmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 3 | Frontend/Backend Agent | TODO | Rustic sicak renk paleti uygulanmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 4 | Frontend/Backend Agent | TODO | Ahşap, kraft kagit, etiket ve depo defteri hissi veren CSS tasarimi eklenmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 5 | Frontend/Backend Agent | TODO | Metrik kartlari ahsap/kagit kart hissinde yeniden tasarlanmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 2 | Frontend/Backend Agent | DONE | Futuristic koyu tema tamamen kaldirilmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 3 | Frontend/Backend Agent | DONE | Rustic sicak renk paleti uygulanmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 4 | Frontend/Backend Agent | DONE | Ahşap, kraft kagit, etiket ve depo defteri hissi veren CSS tasarimi eklenmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 5 | Frontend/Backend Agent | IN_PROGRESS | Metrik kartlari ahsap/kagit kart hissinde yeniden tasarlanmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 6 | Frontend/Backend Agent | TODO | Kritik stok uyarilari kirmizi neon yerine damga/etiket benzeri uyarilar olarak gosterilmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 7 | Frontend/Backend Agent | TODO | Form alanlari depo kayit defteri gibi sade ve okunabilir olmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 8 | Frontend/Backend Agent | TODO | Tablo satirlari sevkiyat fişi veya depo listesi hissi vermeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
