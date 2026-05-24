@@ -13,9 +13,9 @@ Project folder: `projects/kobi-gider-ve-nakit-akisi-paneli`
 | 6 | Product/QA Agent | DONE | Demo finans verileri | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2032-tasks.md` |
 | 7 | Product/QA Agent | DONE | Mobil uyumlu sade dashboard | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2032-tasks.md` |
 | 8 | Product/QA Agent | DONE | Calisan start.cmd | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2032-tasks.md` |
-| 9 | Product/QA Agent | TODO | README calistirma adimlari | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2032-tasks.md` |
-| 10 | Product/QA Agent | TODO | Smoke test checklisti | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2032-tasks.md` |
-| 11 | QA Agent | TODO | QA smoke test and delivery report | `projects/kobi-gider-ve-nakit-akisi-paneli/STATUS.md` |
+| 9 | Product/QA Agent | DONE | README calistirma adimlari | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2032-tasks.md` |
+| 10 | Product/QA Agent | DONE | Smoke test checklisti | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2032-tasks.md` |
+| 11 | QA Agent | IN_PROGRESS | QA smoke test and delivery report | `projects/kobi-gider-ve-nakit-akisi-paneli/STATUS.md` |
 
 ## Status Legend
 
