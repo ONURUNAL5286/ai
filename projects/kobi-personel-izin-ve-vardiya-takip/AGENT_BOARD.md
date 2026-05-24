@@ -11,9 +11,9 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 | 4 | Frontend/Backend Agent | DONE | Personel ve izin talebi ekleme formunun iki kolonlu, temiz ve okunabilir hale getirilmesi | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 5 | Frontend/Backend Agent | DONE | Arama ve filtre alanlarinin ayri bir kontrol paneli olarak tasarlanmasi | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 6 | Frontend/Backend Agent | DONE | Haftalik vardiya planinin gunlere ayrilmis kartlar halinde gosterilmesi | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 7 | Frontend/Backend Agent | IN_PROGRESS | Bos vardiya ve cakisan izin uyarilarinin dikkat cekici ama sade uyari kartlari olarak gosterilmesi | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 8 | Frontend/Backend Agent | TODO | Izin talepleri tablosunda durum etiketlerinin Onaylandi, Bekliyor, Reddedildi renkleriyle gosterilmesi | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 9 | Frontend/Backend Agent | TODO | Bugun izinli personeller icin ozet liste kartlari | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 7 | Frontend/Backend Agent | DONE | Bos vardiya ve cakisan izin uyarilarinin dikkat cekici ama sade uyari kartlari olarak gosterilmesi | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 8 | Frontend/Backend Agent | DONE | Izin talepleri tablosunda durum etiketlerinin Onaylandi, Bekliyor, Reddedildi renkleriyle gosterilmesi | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 9 | Frontend/Backend Agent | IN_PROGRESS | Bugun izinli personeller icin ozet liste kartlari | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 10 | Frontend/Backend Agent | TODO | Mobil ekranda tum kartlarin tek sutuna dusmesi ve tablo alanlarinin yatay kaydirilmasi | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 11 | Product/QA Agent | TODO | Mevcut proje klasoru guncellenmeli, yeni proje acilmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2125-tasks.md` |
 | 12 | Product/QA Agent | TODO | public/index.html gercek uygulama ekranini korumali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2125-tasks.md` |
