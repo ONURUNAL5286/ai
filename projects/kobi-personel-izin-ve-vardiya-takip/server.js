@@ -44,7 +44,7 @@ function listen(port) {
   });
 
   server.listen(port, () => {
-    console.log(`KOBI Servis Operasyon Merkezi - Futuristic UI ve Kalici Kayit running at http://localhost:${port}`);
+    console.log(`KOBI Personel Izin ve Vardiya Takip - Akilli Depo Operasyon Paneli running at http://localhost:${port}`);
   });
 }
 
