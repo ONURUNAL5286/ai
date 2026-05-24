@@ -3,178 +3,107 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>KOBI Personel Izin ve Vardiya Takip - Modern UI Guncellemesi</title>
+    <title>KOBI Personel Izin ve Vardiya Takip - Servis Operasyon Merkezi</title>
     <style>
-      :root { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #17202a; background: #f4f6f8; }
-      body { margin: 0; }
-      header { background: #182333; color: #fff; padding: 24px; }
-      header h1 { margin: 0 0 6px; font-size: 28px; }
-      header p { margin: 0; color: #c8d2de; }
-      main { max-width: 1240px; margin: 0 auto; padding: 20px; }
-      .metrics, .grid, .split { display: grid; gap: 12px; }
-      .metrics { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); margin-bottom: 16px; }
-      .grid { grid-template-columns: 1fr 1fr; }
-      .split { grid-template-columns: 1.15fr .85fr; margin-top: 12px; }
-      section, .metric { background: #fff; border: 1px solid #dbe2ea; border-radius: 8px; padding: 16px; }
-      .metric strong { display: block; font-size: 25px; }
-      .metric span, th, small { color: #667487; font-size: 13px; }
-      h2 { margin: 0 0 12px; font-size: 18px; }
-      label { display: grid; gap: 5px; margin-bottom: 10px; font-size: 13px; color: #526071; }
-      input, select { border: 1px solid #cad3dd; border-radius: 6px; padding: 9px 10px; font: inherit; }
-      button { border: 0; border-radius: 6px; background: #176b52; color: #fff; padding: 10px 13px; font-weight: 700; cursor: pointer; }
-      table { width: 100%; border-collapse: collapse; }
-      th, td { border-top: 1px solid #e5eaf0; padding: 10px; text-align: left; vertical-align: top; }
-      .pill { display: inline-block; border-radius: 999px; padding: 4px 9px; font-size: 12px; font-weight: 700; background: #eef2f6; color: #314155; }
-      .approved { background: #dff5e8; color: #146c3b; }
-      .pending { background: #fff0d9; color: #875400; }
-      .rejected, .alert { background: #fff1e8; color: #9b3414; }
-      .shift-grid { display: grid; grid-template-columns: repeat(5, minmax(110px, 1fr)); gap: 8px; overflow-x: auto; }
-      .day { min-width: 110px; border: 1px solid #dbe2ea; border-radius: 8px; padding: 10px; background: #fbfcfd; }
-      .day strong { display: block; margin-bottom: 8px; }
-      .slot { border-radius: 6px; background: #eef6f3; padding: 7px; margin: 6px 0; font-size: 13px; }
-      .slot.empty { background: #fff1e8; color: #9b3414; }
-      .warnings { display: grid; gap: 8px; }
-      .warnings article { border: 1px solid #ead8cc; background: #fff8f3; border-radius: 8px; padding: 10px; }
-      .features { margin-top: 12px; }
-      .features ul { columns: 2; padding-left: 20px; }
-      @media (max-width: 820px) { .grid, .split { grid-template-columns: 1fr; } .features ul { columns: 1; } table { font-size: 14px; } }
+      :root {
+        color-scheme: light;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #f6f7f9;
+        color: #17202a;
+      }
+      body {
+        margin: 0;
+      }
+      main {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+      header {
+        border-bottom: 1px solid #d9dee7;
+        padding-bottom: 24px;
+      }
+      h1 {
+        margin: 0 0 12px;
+        font-size: 36px;
+        line-height: 1.1;
+      }
+      h2 {
+        margin: 0 0 12px;
+        font-size: 20px;
+      }
+      p {
+        max-width: 760px;
+        line-height: 1.6;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 16px;
+        margin-top: 24px;
+      }
+      section {
+        background: #ffffff;
+        border: 1px solid #d9dee7;
+        border-radius: 8px;
+        padding: 20px;
+      }
+      li {
+        margin: 8px 0;
+      }
+      code {
+        background: #eef1f5;
+        border-radius: 4px;
+        padding: 2px 6px;
+      }
     </style>
   </head>
   <body>
-    <header>
-      <h1>KOBI Personel Izin ve Vardiya Takip - Modern UI Guncellemesi</h1>
-      <p>Personel, izin talepleri, vardiya planlari ve operasyon uyarilarini tek panelde yoneten calisan demo.</p>
-    </header>
     <main>
-      <div class="metrics">
-        <div class="metric"><strong id="totalStaff">0</strong><span>Toplam personel</span></div>
-        <div class="metric"><strong id="pendingLeaves">0</strong><span>Bekleyen izin</span></div>
-        <div class="metric"><strong id="todayOff">0</strong><span>Bugun izinli</span></div>
-        <div class="metric"><strong id="emptyShifts">0</strong><span>Bos vardiya</span></div>
-      </div>
+      <header>
+        <h1>KOBI Personel Izin ve Vardiya Takip - Servis Operasyon Merkezi</h1>
+        <p>Mevcut personel izin/vardiya panelini tamamen degistirerek teknik servis ekiplerinin saha is emirlerini, musteri ziyaretlerini, teknisyen uygunlugunu ve servis durumlarini yonettigi bir operasyon merkezine cevirmek.</p>
+      </header>
       <div class="grid">
         <section>
-          <h2>Personel ve Izin Talebi</h2>
-          <label>Personel <input id="nameInput" value="Ece Kaya" /></label>
-          <label>Departman <select id="departmentInput"><option>Satis</option><option>Operasyon</option><option>Depo</option><option>Destek</option></select></label>
-          <label>Rol <input id="roleInput" value="Satis Temsilcisi" /></label>
-          <label>Iletisim <input id="contactInput" value="ece@firma.test" /></label>
-          <label>Izin durumu <select id="leaveStatusInput"><option>Bekliyor</option><option>Onaylandi</option><option>Reddedildi</option></select></label>
-          <button id="addStaff">Personel / Izin Ekle</button>
+          <h2>Hedef Kullanici</h2>
+          <p>Teknik servis firmalari, bakim-onarim ekipleri, saha operasyon yoneticileri, KOBI sahipleri</p>
         </section>
         <section>
-          <h2>Arama ve Filtre</h2>
-          <label>Arama <input id="search" placeholder="Personel, departman veya rol ara" /></label>
-          <label>Departman <select id="departmentFilter"><option value="">Tum departmanlar</option><option>Satis</option><option>Operasyon</option><option>Depo</option><option>Destek</option></select></label>
-          <label>Izin durumu <select id="leaveFilter"><option value="">Tum izin durumlari</option><option>Bekliyor</option><option>Onaylandi</option><option>Reddedildi</option></select></label>
+          <h2>Ana Ozellikler</h2>
+          <ul>
+            <li>Is emri olusturma formu: musteri, adres, servis tipi, oncelik, teknisyen, planlanan tarih ve aciklama alanlari</li>
+<li>Is emri durumlarini Yeni, Atandi, Yolda, Tamamlandi, Iptal olarak takip etme</li>
+<li>Teknisyen listesini uzmanlik, musaitlik ve aktif is sayisiyla gosterme</li>
+<li>Bugunku servis ziyaretlerini zaman sirali operasyon akisi olarak gosterme</li>
+<li>Acil oncelikli is emirlerini dikkat cekici uyari kartlariyla gosterme</li>
+<li>Geciken servisleri kirmizi durum etiketiyle ayirmak</li>
+<li>Ana panelde toplam is emri, bugunku ziyaret, acil is, geciken servis ve musait teknisyen metrikleri</li>
+<li>Is emirlerinde musteri, servis tipi, durum ve oncelige gore arama/filtreleme</li>
+<li>Teknisyen atama degistirildiginde tablo ve metriklerin aninda guncellenmesi</li>
+<li>Demo verilerle ilk acilista gercek bir saha operasyon senaryosu gostermek</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Olmazsa Olmazlar</h2>
+          <ul>
+            <li>Mevcut proje klasoru guncellenmeli, yeni proje acilmamali</li>
+<li>public/index.html tamamen yeni servis operasyon merkezi ekranina donusmeli</li>
+<li>Eski personel izin/vardiya ekrani kalmamali</li>
+<li>Sadece DONE listesi yazan ekran kabul edilmez</li>
+<li>Modern ve kullanisli CSS tasarimi olmali</li>
+<li>Demo is emirleri, teknisyenler ve bugunku ziyaretler dolu gelmeli</li>
+<li>Arama ve filtreler calismali</li>
+<li>Yeni is emri ekleme calismali</li>
+<li>Mobil gorunum bozulmamali</li>
+<li>start.cmd calismaya devam etmeli</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Teslim</h2>
+          <p>Bu proje AI Agent Office tarafindan <code>sprint-20260524T2130</code> sprintinden olusturuldu.</p>
         </section>
       </div>
-      <div class="split">
-        <section>
-          <h2>Haftalik Vardiya Plani</h2>
-          <div id="shiftGrid" class="shift-grid"></div>
-        </section>
-        <section>
-          <h2>Operasyon Uyarilari</h2>
-          <div id="warnings" class="warnings"></div>
-        </section>
-      </div>
-      <div class="split">
-        <section>
-          <h2>Izin Talepleri ve Personel Listesi</h2>
-          <table>
-            <thead><tr><th>Personel</th><th>Departman</th><th>Rol</th><th>Iletisim</th><th>Izin</th></tr></thead>
-            <tbody id="staffRows"></tbody>
-          </table>
-        </section>
-        <section>
-          <h2>Bugun Izinli Personel</h2>
-          <div id="todayOffList" class="warnings"></div>
-        </section>
-      </div>
-      <section class="features">
-        <h2>Tamamlanan Sprint Maddeleri</h2>
-        <ul><li>Ust bolumde koyu renkli sade operasyon header alani</li><li>Toplam personel, bekleyen izin, bugun izinli ve bos vardiya metrikleri icin modern kart tasarimi</li><li>Metrik kartlarinda belirgin ikon benzeri semboller ve renkli durum vurgulari</li><li>Personel ve izin talebi ekleme formunun iki kolonlu, temiz ve okunabilir hale getirilmesi</li><li>Arama ve filtre alanlarinin ayri bir kontrol paneli olarak tasarlanmasi</li><li>Haftalik vardiya planinin gunlere ayrilmis kartlar halinde gosterilmesi</li><li>Bos vardiya ve cakisan izin uyarilarinin dikkat cekici ama sade uyari kartlari olarak gosterilmesi</li><li>Izin talepleri tablosunda durum etiketlerinin Onaylandi, Bekliyor, Reddedildi renkleriyle gosterilmesi</li><li>Bugun izinli personeller icin ozet liste kartlari</li><li>Mobil ekranda tum kartlarin tek sutuna dusmesi ve tablo alanlarinin yatay kaydirilmasi</li><li>Mevcut proje klasoru guncellenmeli, yeni proje acilmamali</li><li>public/index.html gercek uygulama ekranini korumali</li><li>Sadece DONE listesi yazan ekran kabul edilmez</li><li>CSS belirgin sekilde iyilestirilmeli</li><li>Modern ama sade kurumsal tasarim olmali</li><li>Mobil gorunum bozulmamali</li><li>Demo veriler korunmali</li><li>start.cmd calismaya devam etmeli</li><li>QA smoke test and delivery report</li></ul>
-      </section>
     </main>
-    <script>
-      const staff = [
-        { name: "Ayse Demir", department: "Satis", role: "Satis Uzmani", contact: "ayse@firma.test", leave: "Onaylandi", offToday: true },
-        { name: "Mert Yilmaz", department: "Operasyon", role: "Operasyon Sorumlusu", contact: "mert@firma.test", leave: "Bekliyor", offToday: false },
-        { name: "Selin Arslan", department: "Depo", role: "Depo Gorevlisi", contact: "selin@firma.test", leave: "Reddedildi", offToday: false },
-        { name: "Can Aydin", department: "Destek", role: "Musteri Destek", contact: "can@firma.test", leave: "Onaylandi", offToday: true },
-        { name: "Ece Kaya", department: "Satis", role: "Satis Temsilcisi", contact: "ece@firma.test", leave: "Bekliyor", offToday: false }
-      ];
-      const shifts = [
-        { day: "Pazartesi", people: ["Ayse Demir", "Mert Yilmaz"] },
-        { day: "Sali", people: ["Selin Arslan"] },
-        { day: "Carsamba", people: [] },
-        { day: "Persembe", people: ["Can Aydin", "Ece Kaya"] },
-        { day: "Cuma", people: ["Mert Yilmaz"] }
-      ];
-      const byId = (id) => document.getElementById(id);
-      function filteredStaff() {
-        const q = byId("search").value.toLowerCase();
-        const department = byId("departmentFilter").value;
-        const leave = byId("leaveFilter").value;
-        return staff.filter((person) =>
-          (!q || person.name.toLowerCase().includes(q) || person.department.toLowerCase().includes(q) || person.role.toLowerCase().includes(q))
-          && (!department || person.department === department)
-          && (!leave || person.leave === leave)
-        );
-      }
-      function leaveClass(value) {
-        if (value === "Onaylandi") return "approved";
-        if (value === "Reddedildi") return "rejected";
-        return "pending";
-      }
-      function renderMetrics() {
-        byId("totalStaff").textContent = staff.length;
-        byId("pendingLeaves").textContent = staff.filter((p) => p.leave === "Bekliyor").length;
-        byId("todayOff").textContent = staff.filter((p) => p.offToday).length;
-        byId("emptyShifts").textContent = shifts.filter((shift) => shift.people.length === 0).length;
-      }
-      function renderStaffRows() {
-        byId("staffRows").innerHTML = filteredStaff().map((person) =>
-          "<tr><td>" + person.name + "</td><td>" + person.department + "</td><td>" + person.role + "</td><td>" + person.contact + "</td><td><span class='pill " + leaveClass(person.leave) + "'>" + person.leave + "</span></td></tr>"
-        ).join("");
-      }
-      function renderShifts() {
-        byId("shiftGrid").innerHTML = shifts.map((shift) =>
-          "<div class='day'><strong>" + shift.day + "</strong>" + (shift.people.length ? shift.people.map((person) => "<div class='slot'>" + person + "</div>").join("") : "<div class='slot empty'>Bos vardiya</div>") + "</div>"
-        ).join("");
-      }
-      function renderWarnings() {
-        const empty = shifts.filter((shift) => shift.people.length === 0).map((shift) => ({ title: "Bos vardiya", detail: shift.day + " gunu icin personel atanmadi." }));
-        const conflicts = staff.filter((person) => person.offToday && shifts.some((shift) => shift.people.includes(person.name))).map((person) => ({ title: "Cakisan izin", detail: person.name + " bugun izinli gorunuyor ama vardiyada yer aliyor." }));
-        const warnings = empty.concat(conflicts);
-        byId("warnings").innerHTML = warnings.map((warning) => "<article><strong>" + warning.title + "</strong><br><small>" + warning.detail + "</small></article>").join("") || "<article><strong>Uyari yok</strong><br><small>Vardiya ve izin planlari uyumlu.</small></article>";
-      }
-      function renderTodayOff() {
-        byId("todayOffList").innerHTML = staff.filter((person) => person.offToday).map((person) =>
-          "<article><strong>" + person.name + "</strong><br><small>" + person.department + " · " + person.role + "</small></article>"
-        ).join("") || "<article><strong>Bugun izinli yok</strong></article>";
-      }
-      function render() {
-        renderMetrics();
-        renderStaffRows();
-        renderShifts();
-        renderWarnings();
-        renderTodayOff();
-      }
-      byId("addStaff").addEventListener("click", () => {
-        staff.unshift({
-          name: byId("nameInput").value,
-          department: byId("departmentInput").value,
-          role: byId("roleInput").value,
-          contact: byId("contactInput").value,
-          leave: byId("leaveStatusInput").value,
-          offToday: byId("leaveStatusInput").value === "Onaylandi"
-        });
-        render();
-      });
-      ["search", "departmentFilter", "leaveFilter"].forEach((id) => byId(id).addEventListener("input", render));
-      render();
-    </script>
   </body>
 </html>
