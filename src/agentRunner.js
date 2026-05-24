@@ -8,6 +8,7 @@ const delayMs = Number(process.env.AGENT_RUNNER_DELAY_MS || 2500);
 const scanMs = Number(process.env.AGENT_RUNNER_SCAN_MS || 10000);
 const runOnce = (process.env.AGENT_RUNNER_ONCE || "false").toLowerCase() === "true";
 const rebuildDone = (process.env.AGENT_RUNNER_REBUILD_DONE || "false").toLowerCase() === "true";
+const rebuildProject = process.env.AGENT_RUNNER_REBUILD_PROJECT || "";
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -466,8 +467,197 @@ function financeAppHtml(title, tasks) {
 `;
 }
 
+function hrAppHtml(title, tasks) {
+  const completedItems = tasks.map((task) => task.task);
+  return `<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>${escapeHtml(title)}</title>
+    <style>
+      :root { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #17202a; background: #f4f6f8; }
+      body { margin: 0; }
+      header { background: #182333; color: #fff; padding: 24px; }
+      header h1 { margin: 0 0 6px; font-size: 28px; }
+      header p { margin: 0; color: #c8d2de; }
+      main { max-width: 1240px; margin: 0 auto; padding: 20px; }
+      .metrics, .grid, .split { display: grid; gap: 12px; }
+      .metrics { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); margin-bottom: 16px; }
+      .grid { grid-template-columns: 1fr 1fr; }
+      .split { grid-template-columns: 1.15fr .85fr; margin-top: 12px; }
+      section, .metric { background: #fff; border: 1px solid #dbe2ea; border-radius: 8px; padding: 16px; }
+      .metric strong { display: block; font-size: 25px; }
+      .metric span, th, small { color: #667487; font-size: 13px; }
+      h2 { margin: 0 0 12px; font-size: 18px; }
+      label { display: grid; gap: 5px; margin-bottom: 10px; font-size: 13px; color: #526071; }
+      input, select { border: 1px solid #cad3dd; border-radius: 6px; padding: 9px 10px; font: inherit; }
+      button { border: 0; border-radius: 6px; background: #176b52; color: #fff; padding: 10px 13px; font-weight: 700; cursor: pointer; }
+      table { width: 100%; border-collapse: collapse; }
+      th, td { border-top: 1px solid #e5eaf0; padding: 10px; text-align: left; vertical-align: top; }
+      .pill { display: inline-block; border-radius: 999px; padding: 4px 9px; font-size: 12px; font-weight: 700; background: #eef2f6; color: #314155; }
+      .approved { background: #dff5e8; color: #146c3b; }
+      .pending { background: #fff0d9; color: #875400; }
+      .rejected, .alert { background: #fff1e8; color: #9b3414; }
+      .shift-grid { display: grid; grid-template-columns: repeat(5, minmax(110px, 1fr)); gap: 8px; overflow-x: auto; }
+      .day { min-width: 110px; border: 1px solid #dbe2ea; border-radius: 8px; padding: 10px; background: #fbfcfd; }
+      .day strong { display: block; margin-bottom: 8px; }
+      .slot { border-radius: 6px; background: #eef6f3; padding: 7px; margin: 6px 0; font-size: 13px; }
+      .slot.empty { background: #fff1e8; color: #9b3414; }
+      .warnings { display: grid; gap: 8px; }
+      .warnings article { border: 1px solid #ead8cc; background: #fff8f3; border-radius: 8px; padding: 10px; }
+      .features { margin-top: 12px; }
+      .features ul { columns: 2; padding-left: 20px; }
+      @media (max-width: 820px) { .grid, .split { grid-template-columns: 1fr; } .features ul { columns: 1; } table { font-size: 14px; } }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>${escapeHtml(title)}</h1>
+      <p>Personel, izin talepleri, vardiya planlari ve operasyon uyarilarini tek panelde yoneten calisan demo.</p>
+    </header>
+    <main>
+      <div class="metrics">
+        <div class="metric"><strong id="totalStaff">0</strong><span>Toplam personel</span></div>
+        <div class="metric"><strong id="pendingLeaves">0</strong><span>Bekleyen izin</span></div>
+        <div class="metric"><strong id="todayOff">0</strong><span>Bugun izinli</span></div>
+        <div class="metric"><strong id="emptyShifts">0</strong><span>Bos vardiya</span></div>
+      </div>
+      <div class="grid">
+        <section>
+          <h2>Personel ve Izin Talebi</h2>
+          <label>Personel <input id="nameInput" value="Ece Kaya" /></label>
+          <label>Departman <select id="departmentInput"><option>Satis</option><option>Operasyon</option><option>Depo</option><option>Destek</option></select></label>
+          <label>Rol <input id="roleInput" value="Satis Temsilcisi" /></label>
+          <label>Iletisim <input id="contactInput" value="ece@firma.test" /></label>
+          <label>Izin durumu <select id="leaveStatusInput"><option>Bekliyor</option><option>Onaylandi</option><option>Reddedildi</option></select></label>
+          <button id="addStaff">Personel / Izin Ekle</button>
+        </section>
+        <section>
+          <h2>Arama ve Filtre</h2>
+          <label>Arama <input id="search" placeholder="Personel, departman veya rol ara" /></label>
+          <label>Departman <select id="departmentFilter"><option value="">Tum departmanlar</option><option>Satis</option><option>Operasyon</option><option>Depo</option><option>Destek</option></select></label>
+          <label>Izin durumu <select id="leaveFilter"><option value="">Tum izin durumlari</option><option>Bekliyor</option><option>Onaylandi</option><option>Reddedildi</option></select></label>
+        </section>
+      </div>
+      <div class="split">
+        <section>
+          <h2>Haftalik Vardiya Plani</h2>
+          <div id="shiftGrid" class="shift-grid"></div>
+        </section>
+        <section>
+          <h2>Operasyon Uyarilari</h2>
+          <div id="warnings" class="warnings"></div>
+        </section>
+      </div>
+      <div class="split">
+        <section>
+          <h2>Izin Talepleri ve Personel Listesi</h2>
+          <table>
+            <thead><tr><th>Personel</th><th>Departman</th><th>Rol</th><th>Iletisim</th><th>Izin</th></tr></thead>
+            <tbody id="staffRows"></tbody>
+          </table>
+        </section>
+        <section>
+          <h2>Bugun Izinli Personel</h2>
+          <div id="todayOffList" class="warnings"></div>
+        </section>
+      </div>
+      <section class="features">
+        <h2>Tamamlanan Sprint Maddeleri</h2>
+        <ul>${completedItems.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+      </section>
+    </main>
+    <script>
+      const staff = [
+        { name: "Ayse Demir", department: "Satis", role: "Satis Uzmani", contact: "ayse@firma.test", leave: "Onaylandi", offToday: true },
+        { name: "Mert Yilmaz", department: "Operasyon", role: "Operasyon Sorumlusu", contact: "mert@firma.test", leave: "Bekliyor", offToday: false },
+        { name: "Selin Arslan", department: "Depo", role: "Depo Gorevlisi", contact: "selin@firma.test", leave: "Reddedildi", offToday: false },
+        { name: "Can Aydin", department: "Destek", role: "Musteri Destek", contact: "can@firma.test", leave: "Onaylandi", offToday: true },
+        { name: "Ece Kaya", department: "Satis", role: "Satis Temsilcisi", contact: "ece@firma.test", leave: "Bekliyor", offToday: false }
+      ];
+      const shifts = [
+        { day: "Pazartesi", people: ["Ayse Demir", "Mert Yilmaz"] },
+        { day: "Sali", people: ["Selin Arslan"] },
+        { day: "Carsamba", people: [] },
+        { day: "Persembe", people: ["Can Aydin", "Ece Kaya"] },
+        { day: "Cuma", people: ["Mert Yilmaz"] }
+      ];
+      const byId = (id) => document.getElementById(id);
+      function filteredStaff() {
+        const q = byId("search").value.toLowerCase();
+        const department = byId("departmentFilter").value;
+        const leave = byId("leaveFilter").value;
+        return staff.filter((person) =>
+          (!q || person.name.toLowerCase().includes(q) || person.department.toLowerCase().includes(q) || person.role.toLowerCase().includes(q))
+          && (!department || person.department === department)
+          && (!leave || person.leave === leave)
+        );
+      }
+      function leaveClass(value) {
+        if (value === "Onaylandi") return "approved";
+        if (value === "Reddedildi") return "rejected";
+        return "pending";
+      }
+      function renderMetrics() {
+        byId("totalStaff").textContent = staff.length;
+        byId("pendingLeaves").textContent = staff.filter((p) => p.leave === "Bekliyor").length;
+        byId("todayOff").textContent = staff.filter((p) => p.offToday).length;
+        byId("emptyShifts").textContent = shifts.filter((shift) => shift.people.length === 0).length;
+      }
+      function renderStaffRows() {
+        byId("staffRows").innerHTML = filteredStaff().map((person) =>
+          "<tr><td>" + person.name + "</td><td>" + person.department + "</td><td>" + person.role + "</td><td>" + person.contact + "</td><td><span class='pill " + leaveClass(person.leave) + "'>" + person.leave + "</span></td></tr>"
+        ).join("");
+      }
+      function renderShifts() {
+        byId("shiftGrid").innerHTML = shifts.map((shift) =>
+          "<div class='day'><strong>" + shift.day + "</strong>" + (shift.people.length ? shift.people.map((person) => "<div class='slot'>" + person + "</div>").join("") : "<div class='slot empty'>Bos vardiya</div>") + "</div>"
+        ).join("");
+      }
+      function renderWarnings() {
+        const empty = shifts.filter((shift) => shift.people.length === 0).map((shift) => ({ title: "Bos vardiya", detail: shift.day + " gunu icin personel atanmadi." }));
+        const conflicts = staff.filter((person) => person.offToday && shifts.some((shift) => shift.people.includes(person.name))).map((person) => ({ title: "Cakisan izin", detail: person.name + " bugun izinli gorunuyor ama vardiyada yer aliyor." }));
+        const warnings = empty.concat(conflicts);
+        byId("warnings").innerHTML = warnings.map((warning) => "<article><strong>" + warning.title + "</strong><br><small>" + warning.detail + "</small></article>").join("") || "<article><strong>Uyari yok</strong><br><small>Vardiya ve izin planlari uyumlu.</small></article>";
+      }
+      function renderTodayOff() {
+        byId("todayOffList").innerHTML = staff.filter((person) => person.offToday).map((person) =>
+          "<article><strong>" + person.name + "</strong><br><small>" + person.department + " · " + person.role + "</small></article>"
+        ).join("") || "<article><strong>Bugun izinli yok</strong></article>";
+      }
+      function render() {
+        renderMetrics();
+        renderStaffRows();
+        renderShifts();
+        renderWarnings();
+        renderTodayOff();
+      }
+      byId("addStaff").addEventListener("click", () => {
+        staff.unshift({
+          name: byId("nameInput").value,
+          department: byId("departmentInput").value,
+          role: byId("roleInput").value,
+          contact: byId("contactInput").value,
+          leave: byId("leaveStatusInput").value,
+          offToday: byId("leaveStatusInput").value === "Onaylandi"
+        });
+        render();
+      });
+      ["search", "departmentFilter", "leaveFilter"].forEach((id) => byId(id).addEventListener("input", render));
+      render();
+    </script>
+  </body>
+</html>
+`;
+}
+
 function appHtmlForProject(projectName, title, tasks) {
   const searchText = `${projectName} ${title} ${tasks.map((task) => task.task).join(" ")}`.toLocaleLowerCase("tr-TR");
+  if (searchText.includes("personel") || searchText.includes("vardiya") || searchText.includes("izin")) {
+    return hrAppHtml(title, tasks);
+  }
+
   if (searchText.includes("gider") || searchText.includes("nakit") || searchText.includes("fatura")) {
     return financeAppHtml(title, tasks);
   }
@@ -545,6 +735,10 @@ async function processOneTask() {
   }
 
   for (const entry of entries.filter((item) => item.isDirectory())) {
+    if (rebuildProject && entry.name !== rebuildProject) {
+      continue;
+    }
+
     const projectPath = join(projectsRoot, entry.name);
     const boardPath = join(projectPath, "AGENT_BOARD.md");
     if (!existsSync(boardPath)) {
