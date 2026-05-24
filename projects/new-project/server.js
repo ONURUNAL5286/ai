@@ -44,7 +44,7 @@ function listen(port) {
   });
 
   server.listen(port, () => {
-    console.log(`Randevu ve Musteri Hatirlatma running at http://localhost:${port}`);
+    console.log(`KOBI Gider ve Nakit Akisi Paneli running at http://localhost:${port}`);
   });
 }
 
