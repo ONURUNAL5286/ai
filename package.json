@@ -9,6 +9,7 @@
     "doctor": "node src/doctor.js",
     "agent": "node src/agentRunner.js",
     "office": "node src/office.js",
+    "preview": "node src/preview.js",
     "sync": "node src/repoSync.js",
     "start": "node src/index.js",
     "test": "node --test"

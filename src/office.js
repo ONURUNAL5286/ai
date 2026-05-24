@@ -1,12 +1,9 @@
 import { spawn } from "node:child_process";
 import { existsSync } from "node:fs";
-import { readdir } from "node:fs/promises";
 import { join } from "node:path";
 
 const root = process.cwd();
-const projectsRoot = join(root, "projects");
 const children = new Set();
-const startedProjects = new Set();
 
 function log(name, message) {
   for (const line of String(message).split(/\r?\n/)) {
@@ -40,26 +37,9 @@ function startProcess(name, command, args, options = {}) {
   return child;
 }
 
-async function findProjects() {
-  let entries = [];
-  try {
-    entries = await readdir(projectsRoot, { withFileTypes: true });
-  } catch {
-    return [];
-  }
-
-  return entries
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => ({
-      name: entry.name,
-      path: join(projectsRoot, entry.name),
-    }))
-    .filter((project) => existsSync(join(project.path, "server.js")));
-}
-
 async function main() {
   console.log("AI Agent Office starting...");
-  console.log("Tek komut modu: dashboard + Telegram bot + proje onizlemeleri");
+  console.log("Tek komut modu: dashboard + Telegram bot + tek proje onizleme");
 
   startProcess("dashboard", "node", ["src/dashboard.js"], {
     env: {
@@ -71,41 +51,20 @@ async function main() {
 
   startProcess("agent-runner", "node", ["src/agentRunner.js"]);
 
+  startProcess("preview", "node", ["src/preview.js"], {
+    env: {
+      PREVIEW_PORT: process.env.PREVIEW_PORT ?? "3000",
+    },
+  });
+
   if (existsSync(join(root, ".env"))) {
     startProcess("bot", "node", ["src/index.js"]);
   } else {
     console.log("[bot] .env bulunamadi, Telegram bot baslatilmadi.");
   }
 
-  async function startKnownProjects() {
-    if ((process.env.OFFICE_START_PROJECTS ?? "true").toLowerCase() === "false") {
-      return;
-    }
-
-    const projects = await findProjects();
-    projects.forEach((project) => {
-      if (startedProjects.has(project.path)) {
-        return;
-      }
-
-      startedProjects.add(project.path);
-      startProcess(`project:${project.name}`, "node", ["server.js"], {
-        cwd: project.path,
-        env: {
-          PORT: String(3000 + startedProjects.size - 1),
-        },
-      });
-    });
-
-    if (projects.length === 0) {
-      console.log("[projects] Calistirilabilir proje bulunamadi.");
-    }
-  }
-
-  await startKnownProjects();
-  setInterval(startKnownProjects, Number(process.env.OFFICE_PROJECT_SCAN_MS || 3000));
-
   console.log("Hazir. Dashboard adresini terminaldeki [dashboard] satirindan ac.");
+  console.log("Tek proje onizleme adresini terminaldeki [preview] satirindan ac.");
   console.log("Kapatmak icin bu terminalde Ctrl+C kullan.");
 }
 

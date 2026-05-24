@@ -147,6 +147,7 @@ function renderProjectCard(project) {
     </div>
     <div class="run">
       <code>cd ${escapeHtml(project.path)} && ${escapeHtml(project.runCommand)}</code>
+      <a href="http://localhost:3000/project/${escapeHtml(project.slug)}/">Tek preview ekraninda ac</a>
     </div>
     <p class="verified">${escapeHtml(project.verified)}</p>
     <details>
