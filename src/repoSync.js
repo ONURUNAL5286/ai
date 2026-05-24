@@ -20,6 +20,39 @@ async function isClean() {
   return status.length === 0;
 }
 
+async function statusEntries() {
+  const { stdout } = await execFileAsync("git", ["status", "--porcelain"], {
+    windowsHide: true,
+    maxBuffer: 1024 * 1024,
+  });
+  return stdout
+    .split(/\r?\n/)
+    .filter((line) => line.trim())
+    .map((line) => line.slice(3).trim().replace(/^"|"$/g, "").replaceAll("\\", "/"));
+}
+
+function isProjectOutput(path) {
+  return path.startsWith("projects/");
+}
+
+async function saveProjectOutputIfNeeded() {
+  const entries = await statusEntries();
+  if (entries.length === 0) {
+    return true;
+  }
+
+  if (!entries.every(isProjectOutput)) {
+    console.log(`Kod degisikligi var, otomatik sync bekliyor: ${entries.join(", ")}`);
+    return false;
+  }
+
+  await git(["add", "projects"]);
+  const message = `Auto save agent project output ${new Date().toISOString().slice(0, 19)}`;
+  const output = await git(["commit", "-m", message]);
+  console.log(output || "Agent proje ciktilari kaydedildi.");
+  return true;
+}
+
 async function syncOnce() {
   if (syncing) {
     return;
@@ -27,18 +60,20 @@ async function syncOnce() {
 
   syncing = true;
   try {
-    if (!(await isClean())) {
-      console.log("Local degisiklik var, git pull atlandi.");
+    if (!(await saveProjectOutputIfNeeded())) {
       return;
     }
 
-    const output = await git(["pull", "--ff-only"]);
+    const output = await git(["pull", "--rebase", "--strategy-option=ours"]);
     if (output.includes("Already up to date")) {
       console.log("Repo guncel.");
-      return;
+    } else {
+      console.log(output || "Repo senkronize edildi.");
     }
 
-    console.log(output || "Repo senkronize edildi.");
+    if (await isClean()) {
+      await git(["push"]);
+    }
   } catch (error) {
     console.log(`Repo sync hatasi: ${error.message}`);
   } finally {
