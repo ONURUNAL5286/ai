@@ -12,9 +12,9 @@ Project folder: `projects/new-project`
 | 5 | Frontend/Backend Agent | DONE | Musteri notlari ve gecmis randevu listesi | `projects/new-project/public/index.html` |
 | 6 | Product/QA Agent | DONE | Mobil uyumlu arayuz | `projects/new-project/tasks/sprint-20260524T2003-tasks.md` |
 | 7 | Product/QA Agent | DONE | Demo randevu verileri | `projects/new-project/tasks/sprint-20260524T2003-tasks.md` |
-| 8 | Product/QA Agent | IN_PROGRESS | Arama ve durum filtresi | `projects/new-project/tasks/sprint-20260524T2003-tasks.md` |
-| 9 | Product/QA Agent | TODO | Calisan start.cmd | `projects/new-project/tasks/sprint-20260524T2003-tasks.md` |
-| 10 | Product/QA Agent | TODO | STATUS.md icinde test sonucu | `projects/new-project/tasks/sprint-20260524T2003-tasks.md` |
+| 8 | Product/QA Agent | DONE | Arama ve durum filtresi | `projects/new-project/tasks/sprint-20260524T2003-tasks.md` |
+| 9 | Product/QA Agent | DONE | Calisan start.cmd | `projects/new-project/tasks/sprint-20260524T2003-tasks.md` |
+| 10 | Product/QA Agent | IN_PROGRESS | STATUS.md icinde test sonucu | `projects/new-project/tasks/sprint-20260524T2003-tasks.md` |
 | 11 | QA Agent | TODO | QA smoke test and delivery report | `projects/new-project/STATUS.md` |
 
 ## Status Legend
