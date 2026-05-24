@@ -17,9 +17,9 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 | 10 | Frontend/Backend Agent | DONE | Neon vurgulu metrik kartlari eklenmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 11 | Frontend/Backend Agent | DONE | Cam efekti benzeri panel tasarimi uygulanmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 12 | Frontend/Backend Agent | DONE | Durum etiketleri renkli ve belirgin olmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 13 | Frontend/Backend Agent | TODO | Acil ve geciken is emirleri icin parlak uyari vurgulari olmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 14 | Frontend/Backend Agent | TODO | Arama ve filtreler localStorage verisi uzerinden calismali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 15 | Frontend/Backend Agent | TODO | Mobil ekranda futuristic tasarim bozulmadan tek sutuna dusmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 13 | Frontend/Backend Agent | DONE | Acil ve geciken is emirleri icin parlak uyari vurgulari olmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 14 | Frontend/Backend Agent | DONE | Arama ve filtreler localStorage verisi uzerinden calismali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 15 | Frontend/Backend Agent | IN_PROGRESS | Mobil ekranda futuristic tasarim bozulmadan tek sutuna dusmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 16 | Product/QA Agent | TODO | Mevcut proje klasoru guncellenmeli, yeni proje acilmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
 | 17 | Product/QA Agent | TODO | public/index.html gercek uygulama ekranini korumali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
 | 18 | Product/QA Agent | TODO | Sadece DONE listesi yazan ekran kabul edilmez | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
