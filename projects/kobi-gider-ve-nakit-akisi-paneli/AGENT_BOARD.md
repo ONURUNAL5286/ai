@@ -10,9 +10,9 @@ Project folder: `projects/kobi-gider-ve-nakit-akisi-paneli`
 | 3 | Frontend/Backend Agent | DONE | Geciken odemeleri uyarili gosterme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
 | 4 | Frontend/Backend Agent | DONE | Aylik gelir, gider, net nakit ve geciken borc metrikleri | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
 | 5 | Frontend/Backend Agent | DONE | Kategoriye gore filtreleme ve arama | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
-| 6 | Product/QA Agent | IN_PROGRESS | Demo finans verileri | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2032-tasks.md` |
-| 7 | Product/QA Agent | TODO | Mobil uyumlu sade dashboard | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2032-tasks.md` |
-| 8 | Product/QA Agent | TODO | Calisan start.cmd | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2032-tasks.md` |
+| 6 | Product/QA Agent | DONE | Demo finans verileri | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2032-tasks.md` |
+| 7 | Product/QA Agent | DONE | Mobil uyumlu sade dashboard | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2032-tasks.md` |
+| 8 | Product/QA Agent | DONE | Calisan start.cmd | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2032-tasks.md` |
 | 9 | Product/QA Agent | TODO | README calistirma adimlari | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2032-tasks.md` |
 | 10 | Product/QA Agent | TODO | Smoke test checklisti | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2032-tasks.md` |
 | 11 | QA Agent | TODO | QA smoke test and delivery report | `projects/kobi-gider-ve-nakit-akisi-paneli/STATUS.md` |
