@@ -1,14 +1,14 @@
-# KOBI Servis Operasyon Merkezi - Futuristic UI ve Kalici Kayit
+# KOBI Personel Izin ve Vardiya Takip - Akilli Depo Operasyon Paneli
 
 Bu klasor AI Agent Office tarafindan bu projeye ozel olusturuldu. Farkli proje sprintleri farkli `projects/<proje-adi>` klasorlerinde tutulur.
 
 ## Goal
 
-Mevcut servis operasyon paneline tarayici icinde kalici veri saklama ve daha modern, futuristic, demo etkisi yuksek bir arayuz tasarimi eklemek.
+Mevcut projeyi tamamen degistirerek KOBI depolari icin stok hareketi, raf konumu, sevkiyat hazirligi ve kritik stok uyarilarini yoneten akilli depo operasyon paneline cevirmek.
 
 ## Target User
 
-Teknik servis firmalari, saha operasyon yoneticileri, KOBI sahipleri
+Depo sorumlulari, operasyon yoneticileri, KOBI sahipleri
 
 ## Run
 
@@ -33,7 +33,7 @@ npm.cmd start
 Sunucu bos portu otomatik secer. Terminalde su satiri ara:
 
 ~~~text
-KOBI Servis Operasyon Merkezi - Futuristic UI ve Kalici Kayit running at http://localhost:<port>
+KOBI Personel Izin ve Vardiya Takip - Akilli Depo Operasyon Paneli running at http://localhost:<port>
 ~~~
 
 Sonra tarayicida terminalde yazan URL'yi ac.
