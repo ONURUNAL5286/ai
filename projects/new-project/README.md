@@ -1,14 +1,14 @@
-# Randevu ve Musteri Hatirlatma
+# KOBI Gider ve Nakit Akisi Paneli
 
 Bu klasor AI Agent Office tarafindan bu projeye ozel olusturuldu. Farkli proje sprintleri farkli `projects/<proje-adi>` klasorlerinde tutulur.
 
 ## Goal
 
-Hizmet veren isletmelerin randevu, musteri notu ve hatirlatma surecini yonettigi web uygulamasi.
+Kucuk isletmelerin gelir, gider, fatura ve nakit akisini takip ettigi basit finans paneli.
 
 ## Target User
 
-Klinikler, kuaforler, danismanlar, servis firmalari
+KOBI sahipleri, muhasebe oncesi takip yapan ekipler
 
 ## Run
 
@@ -33,7 +33,7 @@ npm.cmd start
 Sunucu bos portu otomatik secer. Terminalde su satiri ara:
 
 ~~~text
-Randevu ve Musteri Hatirlatma running at http://localhost:<port>
+KOBI Gider ve Nakit Akisi Paneli running at http://localhost:<port>
 ~~~
 
 Sonra tarayicida terminalde yazan URL'yi ac.
