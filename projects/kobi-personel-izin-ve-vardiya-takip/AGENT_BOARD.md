@@ -5,8 +5,8 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 
 | # | Agent | Status | Task | Output |
 |---|---|---|---|---|
-| 1 | Frontend/Backend Agent | TODO | Ust bolumde koyu renkli sade operasyon header alani | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 2 | Frontend/Backend Agent | TODO | Toplam personel, bekleyen izin, bugun izinli ve bos vardiya metrikleri icin modern kart tasarimi | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 1 | Frontend/Backend Agent | DONE | Ust bolumde koyu renkli sade operasyon header alani | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 2 | Frontend/Backend Agent | IN_PROGRESS | Toplam personel, bekleyen izin, bugun izinli ve bos vardiya metrikleri icin modern kart tasarimi | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 3 | Frontend/Backend Agent | TODO | Metrik kartlarinda belirgin ikon benzeri semboller ve renkli durum vurgulari | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 4 | Frontend/Backend Agent | TODO | Personel ve izin talebi ekleme formunun iki kolonlu, temiz ve okunabilir hale getirilmesi | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 5 | Frontend/Backend Agent | TODO | Arama ve filtre alanlarinin ayri bir kontrol paneli olarak tasarlanmasi | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
