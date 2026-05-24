@@ -18,8 +18,8 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 | 11 | Product/QA Agent | DONE | Vardiya ve izin listelerinde arama ve filtreleme | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2104-tasks.md` |
 | 12 | Product/QA Agent | DONE | Calisan start.cmd | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2104-tasks.md` |
 | 13 | Product/QA Agent | DONE | README icinde kurulum ve calistirma adimlari | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2104-tasks.md` |
-| 14 | Product/QA Agent | TODO | STATUS.md icinde smoke test checklisti | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2104-tasks.md` |
-| 15 | QA Agent | TODO | QA smoke test and delivery report | `projects/kobi-personel-izin-ve-vardiya-takip/STATUS.md` |
+| 14 | Product/QA Agent | DONE | STATUS.md icinde smoke test checklisti | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2104-tasks.md` |
+| 15 | QA Agent | DONE | QA smoke test and delivery report | `projects/kobi-personel-izin-ve-vardiya-takip/STATUS.md` |
 
 ## Status Legend
 

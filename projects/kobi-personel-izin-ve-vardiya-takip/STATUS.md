@@ -1,10 +1,10 @@
 # Status
 
-- Overall status: IN_PROGRESS
+- Overall status: DONE
 - Run command: start.cmd
 - Verified: Agent runner updated project files locally.
 
 ## Progress
 
-- DONE: 13
+- DONE: 15
 - TOTAL: 15
