@@ -20,9 +20,9 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 | 13 | Product/QA Agent | DONE | Eski personel izin/vardiya ekrani kalmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2130-tasks.md` |
 | 14 | Product/QA Agent | DONE | Sadece DONE listesi yazan ekran kabul edilmez | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2130-tasks.md` |
 | 15 | Product/QA Agent | DONE | Modern ve kullanisli CSS tasarimi olmali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2130-tasks.md` |
-| 16 | Product/QA Agent | IN_PROGRESS | Demo is emirleri, teknisyenler ve bugunku ziyaretler dolu gelmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2130-tasks.md` |
-| 17 | Product/QA Agent | TODO | Arama ve filtreler calismali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2130-tasks.md` |
-| 18 | Product/QA Agent | TODO | Yeni is emri ekleme calismali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2130-tasks.md` |
+| 16 | Product/QA Agent | DONE | Demo is emirleri, teknisyenler ve bugunku ziyaretler dolu gelmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2130-tasks.md` |
+| 17 | Product/QA Agent | DONE | Arama ve filtreler calismali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2130-tasks.md` |
+| 18 | Product/QA Agent | IN_PROGRESS | Yeni is emri ekleme calismali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2130-tasks.md` |
 | 19 | Product/QA Agent | TODO | Mobil gorunum bozulmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2130-tasks.md` |
 | 20 | Product/QA Agent | TODO | start.cmd calismaya devam etmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2130-tasks.md` |
 | 21 | QA Agent | TODO | QA smoke test and delivery report | `projects/kobi-personel-izin-ve-vardiya-takip/STATUS.md` |
