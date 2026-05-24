@@ -1,31 +1,36 @@
-# Agent Board - KOBI Personel Izin ve Vardiya Takip - Servis Operasyon Merkezi
+# Agent Board - KOBI Servis Operasyon Merkezi - Futuristic UI ve Kalici Kayit
 
-Sprint: `sprint-20260524T2130`
+Sprint: `sprint-20260524T2204`
 Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 
 | # | Agent | Status | Task | Output |
 |---|---|---|---|---|
-| 1 | Frontend/Backend Agent | DONE | Is emri olusturma formu: musteri, adres, servis tipi, oncelik, teknisyen, planlanan tarih ve aciklama alanlari | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 2 | Frontend/Backend Agent | DONE | Is emri durumlarini Yeni, Atandi, Yolda, Tamamlandi, Iptal olarak takip etme | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 3 | Frontend/Backend Agent | DONE | Teknisyen listesini uzmanlik, musaitlik ve aktif is sayisiyla gosterme | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 4 | Frontend/Backend Agent | DONE | Bugunku servis ziyaretlerini zaman sirali operasyon akisi olarak gosterme | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 5 | Frontend/Backend Agent | DONE | Acil oncelikli is emirlerini dikkat cekici uyari kartlariyla gosterme | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 6 | Frontend/Backend Agent | DONE | Geciken servisleri kirmizi durum etiketiyle ayirmak | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 7 | Frontend/Backend Agent | DONE | Ana panelde toplam is emri, bugunku ziyaret, acil is, geciken servis ve musait teknisyen metrikleri | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 8 | Frontend/Backend Agent | DONE | Is emirlerinde musteri, servis tipi, durum ve oncelige gore arama/filtreleme | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 9 | Frontend/Backend Agent | DONE | Teknisyen atama degistirildiginde tablo ve metriklerin aninda guncellenmesi | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 10 | Frontend/Backend Agent | DONE | Demo verilerle ilk acilista gercek bir saha operasyon senaryosu gostermek | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 11 | Product/QA Agent | DONE | Mevcut proje klasoru guncellenmeli, yeni proje acilmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2130-tasks.md` |
-| 12 | Product/QA Agent | DONE | public/index.html tamamen yeni servis operasyon merkezi ekranina donusmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2130-tasks.md` |
-| 13 | Product/QA Agent | DONE | Eski personel izin/vardiya ekrani kalmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2130-tasks.md` |
-| 14 | Product/QA Agent | DONE | Sadece DONE listesi yazan ekran kabul edilmez | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2130-tasks.md` |
-| 15 | Product/QA Agent | DONE | Modern ve kullanisli CSS tasarimi olmali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2130-tasks.md` |
-| 16 | Product/QA Agent | DONE | Demo is emirleri, teknisyenler ve bugunku ziyaretler dolu gelmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2130-tasks.md` |
-| 17 | Product/QA Agent | DONE | Arama ve filtreler calismali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2130-tasks.md` |
-| 18 | Product/QA Agent | DONE | Yeni is emri ekleme calismali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2130-tasks.md` |
-| 19 | Product/QA Agent | DONE | Mobil gorunum bozulmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2130-tasks.md` |
-| 20 | Product/QA Agent | DONE | start.cmd calismaya devam etmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2130-tasks.md` |
-| 21 | QA Agent | DONE | QA smoke test and delivery report | `projects/kobi-personel-izin-ve-vardiya-takip/STATUS.md` |
+| 1 | Frontend/Backend Agent | TODO | Is emirleri localStorage kullanilarak tarayicida kalici tutulmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 2 | Frontend/Backend Agent | TODO | Teknisyen kayitlari localStorage kullanilarak tarayicida kalici tutulmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 3 | Frontend/Backend Agent | TODO | Yeni is emri eklendiginde sayfa yenilense bile kayit kaybolmamali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 4 | Frontend/Backend Agent | TODO | Yeni teknisyen ekleme formu olmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 5 | Frontend/Backend Agent | TODO | Is emri durum guncelleme alani olmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 6 | Frontend/Backend Agent | TODO | Teknisyen atama degistirme alani olmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 7 | Frontend/Backend Agent | TODO | Demo verileri ilk acilista localStorage bos ise otomatik yuklenmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 8 | Frontend/Backend Agent | TODO | Demo verileri sifirla butonu olmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 9 | Frontend/Backend Agent | TODO | Futuristic koyu tema uygulanmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 10 | Frontend/Backend Agent | TODO | Neon vurgulu metrik kartlari eklenmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 11 | Frontend/Backend Agent | TODO | Cam efekti benzeri panel tasarimi uygulanmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 12 | Frontend/Backend Agent | TODO | Durum etiketleri renkli ve belirgin olmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 13 | Frontend/Backend Agent | TODO | Acil ve geciken is emirleri icin parlak uyari vurgulari olmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 14 | Frontend/Backend Agent | TODO | Arama ve filtreler localStorage verisi uzerinden calismali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 15 | Frontend/Backend Agent | TODO | Mobil ekranda futuristic tasarim bozulmadan tek sutuna dusmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 16 | Product/QA Agent | TODO | Mevcut proje klasoru guncellenmeli, yeni proje acilmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
+| 17 | Product/QA Agent | TODO | public/index.html gercek uygulama ekranini korumali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
+| 18 | Product/QA Agent | TODO | Sadece DONE listesi yazan ekran kabul edilmez | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
+| 19 | Product/QA Agent | TODO | Kayitlar sayfa yenilendikten sonra kaybolmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
+| 20 | Product/QA Agent | TODO | localStorage kullanimi kodda net gorunmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
+| 21 | Product/QA Agent | TODO | Futuristic UI belirgin sekilde gorunmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
+| 22 | Product/QA Agent | TODO | Harici npm paketi eklenmemeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
+| 23 | Product/QA Agent | TODO | Harici CSS framework kullanilmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
+| 24 | Product/QA Agent | TODO | start.cmd calismaya devam etmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
+| 25 | Product/QA Agent | TODO | README ve STATUS.md guncellenmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2204-tasks.md` |
+| 26 | QA Agent | TODO | QA smoke test and delivery report | `projects/kobi-personel-izin-ve-vardiya-takip/STATUS.md` |
 
 ## Status Legend
 
