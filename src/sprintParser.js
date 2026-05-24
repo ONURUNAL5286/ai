@@ -251,60 +251,72 @@ Task number: ${index}
 }
 
 export function sprintToTaskIssues(sprint, parentIssue, context) {
+  return buildAgentTasks(sprint, context).map((task) => ({
+    title: taskTitle(sprint.projectName, task.index, task.item, task.agent),
+    body: taskBody({
+      sprint,
+      parentIssue,
+      item: task.item,
+      role: task.agent,
+      index: task.index,
+      context,
+    }),
+    labels: [],
+    agentTask: task,
+  }));
+}
+
+export function buildAgentTasks(sprint, context) {
   const tasks = [];
   let index = 1;
 
   for (const feature of sprint.features) {
     tasks.push({
-      title: taskTitle(sprint.projectName, index, feature, "Frontend/Backend"),
-      body: taskBody({
-        sprint,
-        parentIssue,
-        item: feature,
-        role: "Frontend/Backend",
-        index,
-        context,
-      }),
-      labels: [],
+      id: `${context.sprintId}-task-${String(index).padStart(2, "0")}`,
+      index,
+      item: feature,
+      agent: "Frontend/Backend Agent",
+      status: "TODO",
+      output: `${context.projectPath}/public/index.html`,
     });
     index += 1;
   }
 
   for (const mustHave of sprint.mustHaves) {
     tasks.push({
-      title: taskTitle(sprint.projectName, index, mustHave, "Product/QA"),
-      body: taskBody({
-        sprint,
-        parentIssue,
-        item: mustHave,
-        role: "Product/QA",
-        index,
-        context,
-      }),
-      labels: [],
+      id: `${context.sprintId}-task-${String(index).padStart(2, "0")}`,
+      index,
+      item: mustHave,
+      agent: "Product/QA Agent",
+      status: "TODO",
+      output: context.taskPath,
     });
     index += 1;
   }
 
   tasks.push({
-    title: taskTitle(sprint.projectName, index, "QA smoke test and delivery report", "QA"),
-    body: taskBody({
-      sprint,
-      parentIssue,
-      item: "QA smoke test and delivery report",
-      role: "QA",
-      index,
-      context,
-    }),
-    labels: [],
+    id: `${context.sprintId}-task-${String(index).padStart(2, "0")}`,
+    index,
+    item: "QA smoke test and delivery report",
+    agent: "QA Agent",
+    status: "TODO",
+    output: `${context.projectPath}/STATUS.md`,
   });
 
   return tasks;
 }
 
 export function taskSummaryComment(parentIssue, taskIssues, context) {
-  const taskList = taskIssues
-    .map((issue) => `- [ ] #${issue.number} ${issue.title}`)
+  const taskRows = taskIssues
+    .map((issue) => {
+      const task = issue.agentTask ?? {
+        index: "-",
+        agent: "Unknown",
+        item: issue.title,
+        output: "-",
+      };
+      return `| ${task.index} | ${task.agent} | TODO | ${task.item} | #${issue.number} | \`${task.output}\` |`;
+    })
     .join("\n");
 
   return `# Project Task Breakdown
@@ -315,7 +327,9 @@ Project folder: \`${context.projectPath}\`
 Sprint file: \`${context.sprintPath}\`
 Task checklist: \`${context.taskPath}\`
 
-${taskList}
+| # | Agent | Status | Task | Issue | Output |
+|---|---|---|---|---|---|
+${taskRows}
 
 ## Workflow
 

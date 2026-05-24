@@ -44,5 +44,7 @@ Sonra tarayicida terminalde yazan URL'yi ac.
 - server.js: Basit statik dosya sunucusu.
 - start.cmd: Windows icin tek komutla baslatma.
 - start.ps1: PowerShell icin tek komutla baslatma.
+- AGENT_BOARD.md: Hangi agent hangi maddeyi yapiyor panosu.
+- STATUS.md: Sprint durum ozeti.
 - sprints/: Bu projeye ait sprint planlari.
 - tasks/: Bu projeye ait agent task listeleri.

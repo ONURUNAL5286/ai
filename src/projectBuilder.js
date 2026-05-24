@@ -25,6 +25,15 @@ function checklist(items) {
   return items.length > 0 ? items.map((item) => `- [ ] ${item}`).join("\n") : "- [ ] Belirtilmedi";
 }
 
+function agentRows(tasks) {
+  return tasks
+    .map(
+      (task) =>
+        `| ${task.index} | ${task.agent} | ${task.status} | ${task.item} | \`${task.output}\` |`,
+    )
+    .join("\n");
+}
+
 export function createProjectContext(sprint, now = new Date(), projectSlugOverride = "") {
   const projectSlug = slugify(
     projectSlugOverride || sprint.projectSlug || sprint.existingProject || sprint.projectName,
@@ -41,7 +50,7 @@ export function createProjectContext(sprint, now = new Date(), projectSlugOverri
   };
 }
 
-export function buildProjectFiles(sprint, context) {
+export function buildProjectFiles(sprint, context, tasks = []) {
   const featureCards = sprint.features
     .map((feature) => `<li>${escapeHtml(feature)}</li>`)
     .join("\n");
@@ -100,6 +109,8 @@ Sonra tarayicida terminalde yazan URL'yi ac.
 - server.js: Basit statik dosya sunucusu.
 - start.cmd: Windows icin tek komutla baslatma.
 - start.ps1: PowerShell icin tek komutla baslatma.
+- AGENT_BOARD.md: Hangi agent hangi maddeyi yapiyor panosu.
+- STATUS.md: Sprint durum ozeti.
 - sprints/: Bu projeye ait sprint planlari.
 - tasks/: Bu projeye ait agent task listeleri.
 `,
@@ -344,6 +355,51 @@ ${checklist(sprint.mustHaves)}
 - [ ] Demo calistirma notunu ekle
 - [ ] GitHub issue/PR linklerini guncelle
 - [ ] Sprint raporunu hazirla
+`,
+    },
+    {
+      path: `${context.projectPath}/AGENT_BOARD.md`,
+      content: `# Agent Board - ${sprint.projectName}
+
+Sprint: \`${context.sprintId}\`
+Project folder: \`${context.projectPath}\`
+
+| # | Agent | Status | Task | Output |
+|---|---|---|---|---|
+${tasks.length > 0 ? agentRows(tasks) : "| - | - | TODO | Tasklar olusturulmadi | - |"}
+
+## Status Legend
+
+- TODO: Agent henuz baslamadi.
+- IN_PROGRESS: Agent calisiyor.
+- REVIEW: Kontrol bekliyor.
+- DONE: Tamamlandi ve kontrol edildi.
+`,
+    },
+    {
+      path: `${context.projectPath}/STATUS.md`,
+      content: `# Sprint Status - ${sprint.projectName}
+
+Sprint: \`${context.sprintId}\`
+
+## Current State
+
+- Overall status: TODO
+- Generated project folder: \`${context.projectPath}\`
+- Run command: \`start.cmd\`
+- Browser: Terminalde yazan localhost adresi
+
+## Agent Progress
+
+| Agent | TODO | IN_PROGRESS | REVIEW | DONE |
+|---|---:|---:|---:|---:|
+| Frontend/Backend Agent | ${tasks.filter((task) => task.agent === "Frontend/Backend Agent").length} | 0 | 0 | 0 |
+| Product/QA Agent | ${tasks.filter((task) => task.agent === "Product/QA Agent").length} | 0 | 0 | 0 |
+| QA Agent | ${tasks.filter((task) => task.agent === "QA Agent").length} | 0 | 0 | 0 |
+
+## Next Action
+
+Agent task issue'lari sirayla uygulanmali, her task tamamlandiginda bu dosyada status DONE olarak guncellenmeli.
 `,
     },
   ];

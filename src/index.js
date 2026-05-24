@@ -6,6 +6,7 @@ import {
 } from "./github.js";
 import { buildProjectFiles, createProjectContext } from "./projectBuilder.js";
 import {
+  buildAgentTasks,
   parseSprintMessage,
   sprintToIssue,
   sprintToTaskIssues,
@@ -94,7 +95,8 @@ async function handleMessage(bot, message) {
     return;
   }
 
-  const projectFiles = buildProjectFiles(sprint, context);
+  const agentTasks = buildAgentTasks(sprint, context);
+  const projectFiles = buildProjectFiles(sprint, context, agentTasks);
   await upsertGitHubFiles({
     token: config.githubToken,
     repo: config.githubRepo,

@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
+  buildAgentTasks,
   parseSprintMessage,
   sprintToIssue,
   sprintToTaskIssues,
@@ -62,8 +63,8 @@ Olmazsa olmazlar:
   const tasks = sprintToTaskIssues(sprint, parentIssue, context);
 
   assert.equal(tasks.length, 4);
-  assert.match(tasks[0].title, /\[CRM\] 01 Frontend\/Backend: Listeleme/);
-  assert.match(tasks[2].title, /\[CRM\] 03 Product\/QA: Mobil uyum/);
+  assert.match(tasks[0].title, /\[CRM\] 01 Frontend\/Backend Agent: Listeleme/);
+  assert.match(tasks[2].title, /\[CRM\] 03 Product\/QA Agent: Mobil uyum/);
   assert.match(tasks[3].title, /QA smoke test and delivery report/);
   assert.match(tasks[0].body, /Parent sprint: #10/);
   assert.match(tasks[0].body, /projects\/crm/);
@@ -98,7 +99,8 @@ Ana ozellikler:
 1. Musteri kaydi`);
 
   const context = createProjectContext(sprint, new Date("2026-05-22T20:00:00Z"));
-  const files = buildProjectFiles(sprint, context);
+  const tasks = buildAgentTasks(sprint, context);
+  const files = buildProjectFiles(sprint, context, tasks);
 
   assert.equal(context.projectSlug, "kobi-teklif-takip");
   assert.equal(context.projectPath, "projects/kobi-teklif-takip");
@@ -106,6 +108,9 @@ Ana ozellikler:
   assert.ok(files.some((file) => file.path === "projects/kobi-teklif-takip/package.json"));
   assert.ok(files.some((file) => file.path === "projects/kobi-teklif-takip/start.cmd"));
   assert.ok(files.some((file) => file.path === "projects/kobi-teklif-takip/start.ps1"));
+  assert.ok(files.some((file) => file.path === "projects/kobi-teklif-takip/AGENT_BOARD.md"));
+  assert.ok(files.some((file) => file.path === "projects/kobi-teklif-takip/STATUS.md"));
+  assert.equal(tasks[0].agent, "Frontend/Backend Agent");
 });
 
 test("parses existing project target", () => {
