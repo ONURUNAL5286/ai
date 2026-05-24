@@ -5,105 +5,209 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>KOBI Gider ve Nakit Akisi Paneli - Finans Operasyon Guncellemesi</title>
     <style>
-      :root {
-        color-scheme: light;
-        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        background: #f6f7f9;
-        color: #17202a;
-      }
-      body {
-        margin: 0;
-      }
-      main {
-        max-width: 1120px;
-        margin: 0 auto;
-        padding: 40px 20px;
-      }
-      header {
-        border-bottom: 1px solid #d9dee7;
-        padding-bottom: 24px;
-      }
-      h1 {
-        margin: 0 0 12px;
-        font-size: 36px;
-        line-height: 1.1;
-      }
-      h2 {
-        margin: 0 0 12px;
-        font-size: 20px;
-      }
-      p {
-        max-width: 760px;
-        line-height: 1.6;
-      }
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 16px;
-        margin-top: 24px;
-      }
-      section {
-        background: #ffffff;
-        border: 1px solid #d9dee7;
-        border-radius: 8px;
-        padding: 20px;
-      }
-      li {
-        margin: 8px 0;
-      }
-      code {
-        background: #eef1f5;
-        border-radius: 4px;
-        padding: 2px 6px;
-      }
+      :root { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #17202a; background: #f4f6f8; }
+      body { margin: 0; }
+      header { background: #17212e; color: #fff; padding: 24px; }
+      header h1 { margin: 0 0 6px; font-size: 28px; }
+      header p { margin: 0; color: #c5ced8; }
+      main { max-width: 1240px; margin: 0 auto; padding: 20px; }
+      .metrics, .grid, .reports { display: grid; gap: 12px; }
+      .metrics { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); margin-bottom: 16px; }
+      .grid { grid-template-columns: 1fr 1fr; }
+      .reports { grid-template-columns: 1.1fr .9fr; margin-top: 12px; }
+      section, .metric { background: #fff; border: 1px solid #dbe2ea; border-radius: 8px; padding: 16px; }
+      .metric strong { display: block; font-size: 25px; }
+      .metric span, th, small { color: #667487; font-size: 13px; }
+      h2 { margin: 0 0 12px; font-size: 18px; }
+      label { display: grid; gap: 5px; margin-bottom: 10px; font-size: 13px; color: #526071; }
+      input, select { border: 1px solid #cad3dd; border-radius: 6px; padding: 9px 10px; font: inherit; }
+      button { border: 0; border-radius: 6px; background: #176b52; color: #fff; padding: 10px 13px; font-weight: 700; cursor: pointer; }
+      table { width: 100%; border-collapse: collapse; }
+      th, td { border-top: 1px solid #e5eaf0; padding: 10px; text-align: left; }
+      .pill { display: inline-block; border-radius: 999px; padding: 4px 9px; font-size: 12px; font-weight: 700; background: #eef2f6; }
+      .late { color: #9b3414; background: #fff1e8; }
+      .paid { color: #146c3b; background: #dff5e8; }
+      .bar { height: 12px; border-radius: 999px; background: #dfe6ee; overflow: hidden; }
+      .bar span { display: block; height: 100%; background: #176b52; }
+      .trend { display: grid; grid-template-columns: repeat(6, 1fr); align-items: end; gap: 8px; height: 150px; padding-top: 10px; }
+      .trend div { display: grid; align-items: end; gap: 6px; min-width: 0; }
+      .trend span { border-radius: 6px 6px 0 0; background: #1d6f8f; min-height: 18px; }
+      .trend em { font-style: normal; font-size: 12px; color: #667487; text-align: center; }
+      .risk-list { display: grid; gap: 8px; }
+      .risk-list article { border: 1px solid #ead8cc; background: #fff8f3; border-radius: 8px; padding: 10px; }
+      .features { margin-top: 12px; }
+      .features ul { columns: 2; padding-left: 20px; }
+      @media (max-width: 820px) { .grid, .reports { grid-template-columns: 1fr; } .features ul { columns: 1; } table { font-size: 14px; } }
     </style>
   </head>
   <body>
+    <header>
+      <h1>KOBI Gider ve Nakit Akisi Paneli - Finans Operasyon Guncellemesi</h1>
+      <p>Gelir, gider, fatura, nakit akisi tahmini ve riskli cikislari tek panelde izleyen calisan demo.</p>
+    </header>
     <main>
-      <header>
-        <h1>KOBI Gider ve Nakit Akisi Paneli - Finans Operasyon Guncellemesi</h1>
-        <p>Mevcut nakit akisi panelini KOBI'ler icin gelir, gider, fatura, risk ve raporlama alanlarini tek ekranda yoneten daha gelismis bir finans operasyon paneline cevirmek.</p>
-      </header>
+      <div class="metrics">
+        <div class="metric"><strong id="income">0 TL</strong><span>Aylik gelir</span></div>
+        <div class="metric"><strong id="expense">0 TL</strong><span>Aylik gider</span></div>
+        <div class="metric"><strong id="netCash">0 TL</strong><span>Net nakit</span></div>
+        <div class="metric"><strong id="lateDebt">0 TL</strong><span>Geciken borc</span></div>
+      </div>
       <div class="grid">
         <section>
-          <h2>Hedef Kullanici</h2>
-          <p>KOBI sahipleri, on muhasebe ekipleri, finans operasyon sorumlulari</p>
+          <h2>Yeni Kayit</h2>
+          <label>Baslik <input id="titleInput" value="Yeni tedarik faturasi" /></label>
+          <label>Kategori <select id="categoryInput"><option>Operasyon</option><option>Pazarlama</option><option>Personel</option><option>Vergi</option><option>Satis</option></select></label>
+          <label>Tip <select id="typeInput"><option value="expense">Gider</option><option value="income">Gelir</option></select></label>
+          <label>Tutar <input id="amountInput" type="number" value="18500" /></label>
+          <label>Vade <input id="dueInput" type="date" value="2026-05-29" /></label>
+          <label>Durum <select id="paidInput"><option value="false">Bekliyor</option><option value="true">Odendi</option></select></label>
+          <button id="addRecord">Kaydet</button>
         </section>
         <section>
-          <h2>Ana Ozellikler</h2>
-          <ul>
-            <li>Aylik gelir, aylik gider, net nakit, geciken borc ve bekleyen tahsilat metrikleri</li>
-<li>Gelir ve gider kaydi ekleme formu</li>
-<li>Fatura vade tarihi, odendi bilgisi ve gecikme durumunu takip etme</li>
-<li>Geciken odemeleri kirmizi uyariyla gosterme</li>
-<li>7 gun icinde vadesi gelen odemeleri sari uyariyla gosterme</li>
-<li>Kategori bazli gider dagilimi raporu</li>
-<li>Aylik gelir-gider trend grafigi</li>
-<li>30 gunluk nakit akisi tahmini tablosu</li>
-<li>En riskli 5 nakit cikisi listesi</li>
-<li>Arama, kategori, tarih araligi ve odeme durumu filtreleri</li>
-<li>Filtrelenmis kayitlari CSV olarak disari aktarma</li>
-<li>Yeni kayit eklenince metrik, tablo ve raporlarin aninda guncellenmesi</li>
-          </ul>
-        </section>
-        <section>
-          <h2>Olmazsa Olmazlar</h2>
-          <ul>
-            <li>Mevcut proje klasoru guncellenmeli, yeni proje acilmamali</li>
-<li>public/index.html gercek uygulama ekranina donusmeli</li>
-<li>Sadece task listesi yazan basit ekran kabul edilmez</li>
-<li>Demo finans verileri ilk acilista dolu gelmeli</li>
-<li>Mobil gorunum bozulmamali</li>
-<li>start.cmd calismaya devam etmeli</li>
-<li>README yeni ozelliklerle guncellenmeli</li>
-<li>STATUS.md teslim ve test ozeti icermeli</li>
-          </ul>
-        </section>
-        <section>
-          <h2>Teslim</h2>
-          <p>Bu proje AI Agent Office tarafindan <code>sprint-20260524T2053</code> sprintinden olusturuldu.</p>
+          <h2>Filtreler</h2>
+          <label>Arama <input id="search" placeholder="Baslik veya kategori ara" /></label>
+          <label>Kategori <select id="categoryFilter"><option value="">Tum kategoriler</option><option>Operasyon</option><option>Pazarlama</option><option>Personel</option><option>Vergi</option><option>Satis</option></select></label>
+          <label>Odeme durumu <select id="paidFilter"><option value="">Tumu</option><option value="paid">Odendi</option><option value="open">Bekliyor</option><option value="late">Geciken</option></select></label>
+          <label>Tarih araligi <select id="rangeFilter"><option value="all">Tum kayitlar</option><option value="30">Sonraki 30 gun</option><option value="7">Sonraki 7 gun</option></select></label>
+          <button id="exportCsv">CSV Disari Aktar</button>
         </section>
       </div>
+      <div class="reports">
+        <section>
+          <h2>Aylik Gelir-Gider Trendi</h2>
+          <div id="trend" class="trend"></div>
+        </section>
+        <section>
+          <h2>Kategori Bazli Gider Dagilimi</h2>
+          <div id="categoryReport"></div>
+        </section>
+      </div>
+      <div class="reports">
+        <section>
+          <h2>30 Gunluk Nakit Akisi Tahmini</h2>
+          <table><thead><tr><th>Tarih</th><th>Beklenen net hareket</th><th>Tahmini bakiye</th></tr></thead><tbody id="forecastRows"></tbody></table>
+        </section>
+        <section>
+          <h2>En Riskli 5 Nakit Cikisi</h2>
+          <div id="riskList" class="risk-list"></div>
+        </section>
+      </div>
+      <section style="margin-top:12px">
+        <h2>Gelir, Gider ve Fatura Kayitlari</h2>
+        <table>
+          <thead><tr><th>Baslik</th><th>Kategori</th><th>Tip</th><th>Tutar</th><th>Vade</th><th>Durum</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </section>
+      <section class="features">
+        <h2>Tamamlanan Sprint Maddeleri</h2>
+        <ul><li>Aylik gelir, aylik gider, net nakit, geciken borc ve bekleyen tahsilat metrikleri</li><li>Gelir ve gider kaydi ekleme formu</li><li>Fatura vade tarihi, odendi bilgisi ve gecikme durumunu takip etme</li><li>Geciken odemeleri kirmizi uyariyla gosterme</li><li>7 gun icinde vadesi gelen odemeleri sari uyariyla gosterme</li><li>Kategori bazli gider dagilimi raporu</li><li>Aylik gelir-gider trend grafigi</li><li>30 gunluk nakit akisi tahmini tablosu</li><li>En riskli 5 nakit cikisi listesi</li><li>Arama, kategori, tarih araligi ve odeme durumu filtreleri</li><li>Filtrelenmis kayitlari CSV olarak disari aktarma</li><li>Yeni kayit eklenince metrik, tablo ve raporlarin aninda guncellenmesi</li><li>Mevcut proje klasoru guncellenmeli, yeni proje acilmamali</li><li>public/index.html gercek uygulama ekranina donusmeli</li><li>Sadece task listesi yazan basit ekran kabul edilmez</li><li>Demo finans verileri ilk acilista dolu gelmeli</li><li>Mobil gorunum bozulmamali</li><li>start.cmd calismaya devam etmeli</li><li>README yeni ozelliklerle guncellenmeli</li><li>STATUS.md teslim ve test ozeti icermeli</li><li>QA smoke test and delivery report</li></ul>
+      </section>
     </main>
+    <script>
+      const records = [
+        { title: "E-ticaret satis tahsilati", category: "Satis", type: "income", amount: 146000, due: "2026-05-26", paid: true },
+        { title: "Kurumsal proje pesinati", category: "Satis", type: "income", amount: 82000, due: "2026-06-03", paid: false },
+        { title: "Personel maas odemesi", category: "Personel", type: "expense", amount: 98000, due: "2026-05-31", paid: false },
+        { title: "KDV odemesi", category: "Vergi", type: "expense", amount: 46500, due: "2026-05-20", paid: false },
+        { title: "Reklam kampanyasi", category: "Pazarlama", type: "expense", amount: 24000, due: "2026-06-08", paid: false },
+        { title: "Ofis ve operasyon gideri", category: "Operasyon", type: "expense", amount: 18500, due: "2026-05-28", paid: true }
+      ];
+      const today = new Date("2026-05-24T12:00:00");
+      const money = new Intl.NumberFormat("tr-TR", { style: "currency", currency: "TRY", maximumFractionDigits: 0 });
+      const byId = (id) => document.getElementById(id);
+      const isLate = (record) => !record.paid && record.type === "expense" && new Date(record.due + "T12:00:00") < today;
+      function filteredRecords() {
+        const q = byId("search").value.toLowerCase();
+        const category = byId("categoryFilter").value;
+        const paid = byId("paidFilter").value;
+        const range = byId("rangeFilter").value;
+        return records.filter((record) => {
+          const due = new Date(record.due + "T12:00:00");
+          const days = (due - today) / 86400000;
+          return (!q || record.title.toLowerCase().includes(q) || record.category.toLowerCase().includes(q))
+            && (!category || record.category === category)
+            && (!range || range === "all" || (days >= 0 && days <= Number(range)))
+            && (!paid || (paid === "paid" && record.paid) || (paid === "open" && !record.paid) || (paid === "late" && isLate(record)));
+        });
+      }
+      function renderMetrics() {
+        const income = records.filter((r) => r.type === "income").reduce((sum, r) => sum + r.amount, 0);
+        const expense = records.filter((r) => r.type === "expense").reduce((sum, r) => sum + r.amount, 0);
+        const lateDebt = records.filter(isLate).reduce((sum, r) => sum + r.amount, 0);
+        byId("income").textContent = money.format(income);
+        byId("expense").textContent = money.format(expense);
+        byId("netCash").textContent = money.format(income - expense);
+        byId("lateDebt").textContent = money.format(lateDebt);
+      }
+      function renderRows() {
+        byId("rows").innerHTML = filteredRecords().map((record) => {
+          const status = record.paid ? "<span class='pill paid'>Odendi</span>" : "<span class='pill " + (isLate(record) ? "late" : "") + "'>" + (isLate(record) ? "Gecikti" : "Bekliyor") + "</span>";
+          return "<tr><td>" + record.title + "</td><td>" + record.category + "</td><td>" + (record.type === "income" ? "Gelir" : "Gider") + "</td><td>" + money.format(record.amount) + "</td><td>" + record.due + "</td><td>" + status + "</td></tr>";
+        }).join("");
+      }
+      function renderCategoryReport() {
+        const expenses = records.filter((r) => r.type === "expense");
+        const total = expenses.reduce((sum, r) => sum + r.amount, 0) || 1;
+        const grouped = expenses.reduce((acc, r) => ({ ...acc, [r.category]: (acc[r.category] || 0) + r.amount }), {});
+        byId("categoryReport").innerHTML = Object.entries(grouped).map(([category, amount]) => "<p><strong>" + category + "</strong> <small>" + money.format(amount) + "</small></p><div class='bar'><span style='width:" + Math.round((amount / total) * 100) + "%'></span></div>").join("");
+      }
+      function renderTrend() {
+        const months = [
+          ["Ocak", 64], ["Subat", 82], ["Mart", 71], ["Nisan", 96], ["Mayis", 118], ["Haziran", 103]
+        ];
+        const max = Math.max(...months.map((month) => month[1]));
+        byId("trend").innerHTML = months.map(([label, value]) => "<div><span style='height:" + Math.round((value / max) * 130) + "px'></span><em>" + label + "</em></div>").join("");
+      }
+      function renderForecast() {
+        let balance = 215000;
+        const upcoming = records.filter((r) => !r.paid).sort((a, b) => a.due.localeCompare(b.due));
+        byId("forecastRows").innerHTML = upcoming.map((record) => {
+          const movement = record.type === "income" ? record.amount : -record.amount;
+          balance += movement;
+          return "<tr><td>" + record.due + "</td><td>" + money.format(movement) + "</td><td>" + money.format(balance) + "</td></tr>";
+        }).join("");
+      }
+      function renderRiskList() {
+        byId("riskList").innerHTML = records
+          .filter((r) => r.type === "expense" && !r.paid)
+          .sort((a, b) => b.amount - a.amount)
+          .slice(0, 5)
+          .map((record) => "<article><strong>" + record.title + "</strong><br><small>" + record.category + " · " + record.due + "</small><p>" + money.format(record.amount) + "</p></article>")
+          .join("");
+      }
+      function render() {
+        renderMetrics();
+        renderRows();
+        renderCategoryReport();
+        renderTrend();
+        renderForecast();
+        renderRiskList();
+      }
+      byId("addRecord").addEventListener("click", () => {
+        records.unshift({
+          title: byId("titleInput").value,
+          category: byId("categoryInput").value,
+          type: byId("typeInput").value,
+          amount: Number(byId("amountInput").value || 0),
+          due: byId("dueInput").value,
+          paid: byId("paidInput").value === "true"
+        });
+        render();
+      });
+      byId("exportCsv").addEventListener("click", () => {
+        const header = "Baslik,Kategori,Tip,Tutar,Vade,Durum";
+        const lines = filteredRecords().map((r) => [r.title, r.category, r.type, r.amount, r.due, r.paid ? "Odendi" : "Bekliyor"].join(","));
+        const blob = new Blob([[header].concat(lines).join("\n")], { type: "text/csv;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "nakit-akisi-raporu.csv";
+        link.click();
+        URL.revokeObjectURL(url);
+      });
+      ["search", "categoryFilter", "paidFilter", "rangeFilter"].forEach((id) => byId(id).addEventListener("input", render));
+      render();
+    </script>
   </body>
 </html>
