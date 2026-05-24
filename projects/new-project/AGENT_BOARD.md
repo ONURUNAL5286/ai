@@ -7,9 +7,9 @@ Project folder: `projects/new-project`
 |---|---|---|---|---|
 | 1 | Frontend/Backend Agent | DONE | Musteri kaydi ve iletisim bilgileri | `projects/new-project/public/index.html` |
 | 2 | Frontend/Backend Agent | DONE | Takvim uzerinden randevu olusturma | `projects/new-project/public/index.html` |
-| 3 | Frontend/Backend Agent | IN_PROGRESS | Randevu durumlarini Bekliyor, Geldi, Iptal, Ertelendi olarak takip etme | `projects/new-project/public/index.html` |
-| 4 | Frontend/Backend Agent | TODO | Bugunku randevular ve geciken takipler paneli | `projects/new-project/public/index.html` |
-| 5 | Frontend/Backend Agent | TODO | Musteri notlari ve gecmis randevu listesi | `projects/new-project/public/index.html` |
+| 3 | Frontend/Backend Agent | DONE | Randevu durumlarini Bekliyor, Geldi, Iptal, Ertelendi olarak takip etme | `projects/new-project/public/index.html` |
+| 4 | Frontend/Backend Agent | DONE | Bugunku randevular ve geciken takipler paneli | `projects/new-project/public/index.html` |
+| 5 | Frontend/Backend Agent | DONE | Musteri notlari ve gecmis randevu listesi | `projects/new-project/public/index.html` |
 | 6 | Product/QA Agent | TODO | Mobil uyumlu arayuz | `projects/new-project/tasks/sprint-20260524T2003-tasks.md` |
 | 7 | Product/QA Agent | TODO | Demo randevu verileri | `projects/new-project/tasks/sprint-20260524T2003-tasks.md` |
 | 8 | Product/QA Agent | TODO | Arama ve durum filtresi | `projects/new-project/tasks/sprint-20260524T2003-tasks.md` |
