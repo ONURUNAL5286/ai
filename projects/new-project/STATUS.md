@@ -1,22 +1,10 @@
-# Sprint Status - KOBI Gider ve Nakit Akisi Paneli
+# Status
 
-Sprint: `sprint-20260524T2008`
+- Overall status: IN_PROGRESS
+- Run command: start.cmd
+- Verified: Agent runner updated project files locally.
 
-## Current State
+## Progress
 
-- Overall status: TODO
-- Generated project folder: `projects/new-project`
-- Run command: `start.cmd`
-- Browser: Terminalde yazan localhost adresi
-
-## Agent Progress
-
-| Agent | TODO | IN_PROGRESS | REVIEW | DONE |
-|---|---:|---:|---:|---:|
-| Frontend/Backend Agent | 5 | 0 | 0 | 0 |
-| Product/QA Agent | 5 | 0 | 0 | 0 |
-| QA Agent | 1 | 0 | 0 | 0 |
-
-## Next Action
-
-Agent task issue'lari sirayla uygulanmali, her task tamamlandiginda bu dosyada status DONE olarak guncellenmeli.
+- DONE: 6
+- TOTAL: 11
