@@ -17,9 +17,9 @@ Project folder: `projects/kobi-gider-ve-nakit-akisi-paneli`
 | 10 | Frontend/Backend Agent | DONE | Arama, kategori, tarih araligi ve odeme durumu filtreleri | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
 | 11 | Frontend/Backend Agent | DONE | Filtrelenmis kayitlari CSV olarak disari aktarma | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
 | 12 | Frontend/Backend Agent | DONE | Yeni kayit eklenince metrik, tablo ve raporlarin aninda guncellenmesi | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
-| 13 | Product/QA Agent | TODO | Mevcut proje klasoru guncellenmeli, yeni proje acilmamali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
-| 14 | Product/QA Agent | TODO | public/index.html gercek uygulama ekranina donusmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
-| 15 | Product/QA Agent | TODO | Sadece task listesi yazan basit ekran kabul edilmez | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
+| 13 | Product/QA Agent | DONE | Mevcut proje klasoru guncellenmeli, yeni proje acilmamali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
+| 14 | Product/QA Agent | DONE | public/index.html gercek uygulama ekranina donusmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
+| 15 | Product/QA Agent | IN_PROGRESS | Sadece task listesi yazan basit ekran kabul edilmez | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
 | 16 | Product/QA Agent | TODO | Demo finans verileri ilk acilista dolu gelmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
 | 17 | Product/QA Agent | TODO | Mobil gorunum bozulmamali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
 | 18 | Product/QA Agent | TODO | start.cmd calismaya devam etmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2049-tasks.md` |
