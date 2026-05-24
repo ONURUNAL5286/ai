@@ -13,10 +13,10 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 | 6 | Frontend/Backend Agent | DONE | Kritik stok uyarilari kirmizi neon yerine damga/etiket benzeri uyarilar olarak gosterilmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 7 | Frontend/Backend Agent | DONE | Form alanlari depo kayit defteri gibi sade ve okunabilir olmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 8 | Frontend/Backend Agent | DONE | Tablo satirlari sevkiyat fişi veya depo listesi hissi vermeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 9 | Frontend/Backend Agent | IN_PROGRESS | Butonlar rustic etiket/stamp stilinde olmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 10 | Frontend/Backend Agent | TODO | Mobil gorunumda rustic kartlar tek sutuna dusmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 11 | Product/QA Agent | TODO | Mevcut proje klasoru guncellenmeli, yeni proje acilmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2301-tasks.md` |
-| 12 | Product/QA Agent | TODO | public/index.html gercek uygulama ekranini korumali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2301-tasks.md` |
+| 9 | Frontend/Backend Agent | DONE | Butonlar rustic etiket/stamp stilinde olmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 10 | Frontend/Backend Agent | DONE | Mobil gorunumda rustic kartlar tek sutuna dusmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 11 | Product/QA Agent | DONE | Mevcut proje klasoru guncellenmeli, yeni proje acilmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2301-tasks.md` |
+| 12 | Product/QA Agent | IN_PROGRESS | public/index.html gercek uygulama ekranini korumali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2301-tasks.md` |
 | 13 | Product/QA Agent | TODO | Sadece DONE listesi yazan ekran kabul edilmez | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2301-tasks.md` |
 | 14 | Product/QA Agent | TODO | localStorage kalici kayit ozelligi korunmali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2301-tasks.md` |
 | 15 | Product/QA Agent | TODO | Eski futuristic neon tema kalmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2301-tasks.md` |
