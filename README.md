@@ -60,6 +60,26 @@ Calismadan once token ve GitHub ayarlarini kontrol etmek icin:
 npm.cmd run doctor
 ```
 
+Ana arayuz panelini acmak icin:
+
+```powershell
+.\dashboard.cmd
+```
+
+veya:
+
+```powershell
+npm.cmd run dashboard
+```
+
+Panel terminalde yazan adreste acilir. Varsayilan:
+
+```text
+http://localhost:4100
+```
+
+Bu panel `projects/` altindaki projeleri, agent tasklarini, durumlari ve calistirma komutlarini gosterir.
+
 `.env` icine sunlari gir:
 
 ```text
