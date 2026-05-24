@@ -7,6 +7,7 @@
   "scripts": {
     "dashboard": "node src/dashboard.js",
     "doctor": "node src/doctor.js",
+    "agent": "node src/agentRunner.js",
     "office": "node src/office.js",
     "start": "node src/index.js",
     "test": "node --test"

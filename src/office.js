@@ -66,6 +66,8 @@ async function main() {
     },
   });
 
+  startProcess("agent-runner", "node", ["src/agentRunner.js"]);
+
   if (existsSync(join(root, ".env"))) {
     startProcess("bot", "node", ["src/index.js"]);
   } else {

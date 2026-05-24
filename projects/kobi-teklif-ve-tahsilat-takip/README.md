@@ -48,3 +48,9 @@ Sonra tarayicida terminalde yazan URL'yi ac.
 - STATUS.md: Sprint durum ozeti.
 - sprints/: Bu projeye ait sprint planlari.
 - tasks/: Bu projeye ait agent task listeleri.
+
+## Agent Teslim Notlari
+
+- Product/QA Agent: README icinde kurulum ve calistirma adimlari tamamlandi.
+- Calistirma: `start.cmd`
+- Ana ekran: `public/index.html`

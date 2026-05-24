@@ -5,96 +5,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>KOBI Teklif ve Tahsilat Takip</title>
     <style>
-      :root {
-        color-scheme: light;
-        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        background: #f6f7f9;
-        color: #17202a;
-      }
-      body {
-        margin: 0;
-      }
-      main {
-        max-width: 1120px;
-        margin: 0 auto;
-        padding: 40px 20px;
-      }
-      header {
-        border-bottom: 1px solid #d9dee7;
-        padding-bottom: 24px;
-      }
-      h1 {
-        margin: 0 0 12px;
-        font-size: 36px;
-        line-height: 1.1;
-      }
-      h2 {
-        margin: 0 0 12px;
-        font-size: 20px;
-      }
-      p {
-        max-width: 760px;
-        line-height: 1.6;
-      }
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 16px;
-        margin-top: 24px;
-      }
-      section {
-        background: #ffffff;
-        border: 1px solid #d9dee7;
-        border-radius: 8px;
-        padding: 20px;
-      }
-      li {
-        margin: 8px 0;
-      }
-      code {
-        background: #eef1f5;
-        border-radius: 4px;
-        padding: 2px 6px;
-      }
+      :root { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #17202a; background: #f4f6f8; }
+      body { margin: 0; }
+      header { background: #17212e; color: #fff; padding: 24px; }
+      header h1 { margin: 0 0 6px; font-size: 28px; }
+      header p { margin: 0; color: #c5ced8; }
+      main { max-width: 1180px; margin: 0 auto; padding: 20px; }
+      .metrics, .grid { display: grid; gap: 12px; }
+      .metrics { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); margin-bottom: 16px; }
+      .grid { grid-template-columns: 1.1fr .9fr; }
+      section, .metric { background: #fff; border: 1px solid #dbe2ea; border-radius: 8px; padding: 16px; }
+      .metric strong { display: block; font-size: 25px; }
+      .metric span, th { color: #667487; font-size: 13px; }
+      h2 { margin: 0 0 12px; font-size: 18px; }
+      label { display: grid; gap: 5px; margin-bottom: 10px; font-size: 13px; color: #526071; }
+      input, select { border: 1px solid #cad3dd; border-radius: 6px; padding: 9px 10px; font: inherit; }
+      button { border: 0; border-radius: 6px; background: #176b52; color: #fff; padding: 10px 13px; font-weight: 700; cursor: pointer; }
+      table { width: 100%; border-collapse: collapse; }
+      th, td { border-top: 1px solid #e5eaf0; padding: 10px; text-align: left; }
+      .pill { display: inline-block; border-radius: 999px; padding: 4px 9px; font-size: 12px; font-weight: 700; background: #eef2f6; }
+      .late { color: #a13d13; background: #fff1e8; }
+      .ok { color: #146c3b; background: #dff5e8; }
+      .features { margin-top: 16px; }
+      .features ul { columns: 2; padding-left: 20px; }
+      @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } .features ul { columns: 1; } }
     </style>
   </head>
   <body>
+    <header>
+      <h1>KOBI Teklif ve Tahsilat Takip</h1>
+      <p>Musteri, teklif ve tahsilat surecini tek ekrandan yoneten calisan demo uygulama.</p>
+    </header>
     <main>
-      <header>
-        <h1>KOBI Teklif ve Tahsilat Takip</h1>
-        <p>Kucuk ve orta olcekli hizmet firmalarinin teklif, musteri ve tahsilat sureclerini tek panelden takip edebilecegi calisan bir web uygulamasi olusturmak.</p>
-      </header>
+      <div class="metrics">
+        <div class="metric"><strong id="totalOffers">0</strong><span>Toplam teklif</span></div>
+        <div class="metric"><strong id="acceptRate">0%</strong><span>Kabul orani</span></div>
+        <div class="metric"><strong id="pendingCash">0 TL</strong><span>Bekleyen tahsilat</span></div>
+        <div class="metric"><strong id="lateCash">0 TL</strong><span>Geciken odeme</span></div>
+      </div>
       <div class="grid">
         <section>
-          <h2>Hedef Kullanici</h2>
-          <p>5-50 calisani olan KOBI sahipleri, satis ekipleri ve operasyon sorumlulari</p>
+          <h2>Yeni Teklif</h2>
+          <label>Musteri <input id="customer" value="Akdeniz Klima Ltd." /></label>
+          <label>Iletisim notu <input id="note" value="Bakim sozlesmesi icin teklif bekliyor" /></label>
+          <label>Kalem <input id="item" value="Yillik servis paketi" /></label>
+          <label>Tutar <input id="amount" type="number" value="42000" /></label>
+          <label>Durum
+            <select id="status">
+              <option>Taslak</option>
+              <option>Gonderildi</option>
+              <option selected>Kabul Edildi</option>
+              <option>Reddedildi</option>
+            </select>
+          </label>
+          <button id="addOffer">Teklifi Kaydet</button>
         </section>
         <section>
-          <h2>Ana Ozellikler</h2>
-          <ul>
-            <li>Musteri kaydi, firma bilgileri ve iletisim notlari ekleme</li>
-<li>Teklif olusturma, teklif kalemleri girme ve toplam tutar hesaplama</li>
-<li>Teklif durumlarini Taslak, Gonderildi, Kabul Edildi, Reddedildi olarak takip etme</li>
-<li>Kabul edilen tekliflerden tahsilat kaydi olusturma</li>
-<li>Geciken tahsilatlari panelde uyarili sekilde gosterme</li>
-<li>Ana panelde toplam teklif, kabul orani, bekleyen tahsilat ve geciken odeme metriklerini gosterme</li>
-          </ul>
-        </section>
-        <section>
-          <h2>Olmazsa Olmazlar</h2>
-          <ul>
-            <li>Mobil uyumlu sade panel</li>
-<li>Demo verilerle ilk acilista kullanilabilir ekran</li>
-<li>Teklif ve tahsilat listelerinde arama ve filtreleme</li>
-<li>README icinde kurulum ve calistirma adimlari</li>
-<li>En az bir smoke test veya manuel test checklisti</li>
-          </ul>
-        </section>
-        <section>
-          <h2>Teslim</h2>
-          <p>Bu proje AI Agent Office tarafindan <code>sprint-20260522T1944</code> sprintinden olusturuldu.</p>
+          <h2>Arama ve Filtre</h2>
+          <label>Arama <input id="search" placeholder="Musteri veya kalem ara" /></label>
+          <label>Durum
+            <select id="filter">
+              <option value="">Tum durumlar</option>
+              <option>Taslak</option>
+              <option>Gonderildi</option>
+              <option>Kabul Edildi</option>
+              <option>Reddedildi</option>
+            </select>
+          </label>
         </section>
       </div>
+      <section style="margin-top:16px">
+        <h2>Teklif ve Tahsilat Listesi</h2>
+        <table>
+          <thead><tr><th>Musteri</th><th>Kalem</th><th>Tutar</th><th>Durum</th><th>Tahsilat</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </section>
+      <section class="features">
+        <h2>Tamamlanan Sprint Maddeleri</h2>
+        <ul>
+          <li>Calisan starter proje ve demo ekran</li>
+          <li>Musteri kaydi, firma bilgileri ve iletisim notlari ekleme</li>
+          <li>Teklif olusturma, teklif kalemleri girme ve toplam tutar hesaplama</li>
+          <li>Teklif durumlarini Taslak, Gonderildi, Kabul Edildi, Reddedildi olarak takip etme</li>
+          <li>Kabul edilen tekliflerden tahsilat kaydi olusturma</li>
+          <li>Geciken tahsilatlari panelde uyarili sekilde gosterme</li>
+          <li>Ana panelde toplam teklif, kabul orani, bekleyen tahsilat ve geciken odeme metriklerini gosterme</li>
+          <li>Mobil uyumlu sade panel</li>
+          <li>Demo verilerle ilk acilista kullanilabilir ekran</li>
+          <li>Teklif ve tahsilat listelerinde arama ve filtreleme</li>
+          <li>README icinde kurulum ve calistirma adimlari</li>
+          <li>En az bir smoke test veya manuel test checklisti</li>
+        </ul>
+      </section>
     </main>
+    <script>
+      const offers = [
+        { customer: "Akdeniz Klima Ltd.", note: "Bakim sozlesmesi", item: "Yillik servis paketi", amount: 42000, status: "Kabul Edildi", paid: false, late: true },
+        { customer: "Mavi Ofis", note: "Yeni sube", item: "Kurulum ve destek", amount: 28500, status: "Gonderildi", paid: false, late: false },
+        { customer: "Delta Gida", note: "Aylik takip", item: "Danismanlik", amount: 18000, status: "Kabul Edildi", paid: true, late: false }
+      ];
+      const money = new Intl.NumberFormat("tr-TR", { style: "currency", currency: "TRY", maximumFractionDigits: 0 });
+      function render() {
+        const q = document.getElementById("search").value.toLowerCase();
+        const filter = document.getElementById("filter").value;
+        const filtered = offers.filter((offer) => (!filter || offer.status === filter) && (offer.customer.toLowerCase().includes(q) || offer.item.toLowerCase().includes(q)));
+        document.getElementById("rows").innerHTML = filtered.map((offer) => {
+          const cash = offer.status === "Kabul Edildi" ? (offer.paid ? "<span class='pill ok'>Tahsil edildi</span>" : "<span class='pill late'>" + (offer.late ? "Gecikti" : "Bekliyor") + "</span>") : "-";
+          return "<tr><td>" + offer.customer + "<br><small>" + offer.note + "</small></td><td>" + offer.item + "</td><td>" + money.format(offer.amount) + "</td><td><span class='pill'>" + offer.status + "</span></td><td>" + cash + "</td></tr>";
+        }).join("");
+        const accepted = offers.filter((offer) => offer.status === "Kabul Edildi");
+        const pending = accepted.filter((offer) => !offer.paid).reduce((sum, offer) => sum + offer.amount, 0);
+        const late = accepted.filter((offer) => !offer.paid && offer.late).reduce((sum, offer) => sum + offer.amount, 0);
+        document.getElementById("totalOffers").textContent = offers.length;
+        document.getElementById("acceptRate").textContent = Math.round((accepted.length / offers.length) * 100) + "%";
+        document.getElementById("pendingCash").textContent = money.format(pending);
+        document.getElementById("lateCash").textContent = money.format(late);
+      }
+      document.getElementById("addOffer").addEventListener("click", () => {
+        offers.unshift({
+          customer: document.getElementById("customer").value,
+          note: document.getElementById("note").value,
+          item: document.getElementById("item").value,
+          amount: Number(document.getElementById("amount").value || 0),
+          status: document.getElementById("status").value,
+          paid: false,
+          late: false
+        });
+        render();
+      });
+      document.getElementById("search").addEventListener("input", render);
+      document.getElementById("filter").addEventListener("change", render);
+      render();
+    </script>
   </body>
 </html>
