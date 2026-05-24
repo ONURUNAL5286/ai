@@ -13,9 +13,9 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 | 6 | Frontend/Backend Agent | DONE | Eksik vardiya veya cakisan izinleri uyarili gosterme | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 7 | Frontend/Backend Agent | DONE | Departmana, izin durumuna ve personele gore filtreleme | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 8 | Frontend/Backend Agent | DONE | Ana panelde toplam personel, bekleyen izin, bugun izinli ve bos vardiya metrikleri | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 9 | Product/QA Agent | IN_PROGRESS | Mobil uyumlu sade operasyon paneli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2104-tasks.md` |
-| 10 | Product/QA Agent | TODO | Demo personel ve izin verileriyle ilk acilista kullanilabilir ekran | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2104-tasks.md` |
-| 11 | Product/QA Agent | TODO | Vardiya ve izin listelerinde arama ve filtreleme | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2104-tasks.md` |
+| 9 | Product/QA Agent | DONE | Mobil uyumlu sade operasyon paneli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2104-tasks.md` |
+| 10 | Product/QA Agent | DONE | Demo personel ve izin verileriyle ilk acilista kullanilabilir ekran | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2104-tasks.md` |
+| 11 | Product/QA Agent | IN_PROGRESS | Vardiya ve izin listelerinde arama ve filtreleme | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2104-tasks.md` |
 | 12 | Product/QA Agent | TODO | Calisan start.cmd | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2104-tasks.md` |
 | 13 | Product/QA Agent | TODO | README icinde kurulum ve calistirma adimlari | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2104-tasks.md` |
 | 14 | Product/QA Agent | TODO | STATUS.md icinde smoke test checklisti | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2104-tasks.md` |
