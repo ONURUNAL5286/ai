@@ -24,8 +24,8 @@ Project folder: `projects/kobi-gider-ve-nakit-akisi-paneli`
 | 17 | Product/QA Agent | DONE | Mobil gorunum bozulmamali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2053-tasks.md` |
 | 18 | Product/QA Agent | DONE | start.cmd calismaya devam etmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2053-tasks.md` |
 | 19 | Product/QA Agent | DONE | README yeni ozelliklerle guncellenmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2053-tasks.md` |
-| 20 | Product/QA Agent | IN_PROGRESS | STATUS.md teslim ve test ozeti icermeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2053-tasks.md` |
-| 21 | QA Agent | TODO | QA smoke test and delivery report | `projects/kobi-gider-ve-nakit-akisi-paneli/STATUS.md` |
+| 20 | Product/QA Agent | DONE | STATUS.md teslim ve test ozeti icermeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2053-tasks.md` |
+| 21 | QA Agent | DONE | QA smoke test and delivery report | `projects/kobi-gider-ve-nakit-akisi-paneli/STATUS.md` |
 
 ## Status Legend
 
