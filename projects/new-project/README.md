@@ -1,14 +1,14 @@
-# KOBI Stok ve Siparis Takip
+# Randevu ve Musteri Hatirlatma
 
 Bu klasor AI Agent Office tarafindan bu projeye ozel olusturuldu. Farkli proje sprintleri farkli `projects/<proje-adi>` klasorlerinde tutulur.
 
 ## Goal
 
-Kucuk isletmelerin stok, siparis ve kritik stok uyarilarini tek panelden takip ettigi web uygulamasi.
+Hizmet veren isletmelerin randevu, musteri notu ve hatirlatma surecini yonettigi web uygulamasi.
 
 ## Target User
 
-KOBI sahipleri, depo sorumlulari, satis ekipleri
+Klinikler, kuaforler, danismanlar, servis firmalari
 
 ## Run
 
@@ -33,7 +33,7 @@ npm.cmd start
 Sunucu bos portu otomatik secer. Terminalde su satiri ara:
 
 ~~~text
-KOBI Stok ve Siparis Takip running at http://localhost:<port>
+Randevu ve Musteri Hatirlatma running at http://localhost:<port>
 ~~~
 
 Sonra tarayicida terminalde yazan URL'yi ac.
