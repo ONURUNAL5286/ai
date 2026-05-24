@@ -1,14 +1,14 @@
-# KOBI Personel Izin ve Vardiya Takip - Servis Operasyon Merkezi
+# KOBI Servis Operasyon Merkezi - Futuristic UI ve Kalici Kayit
 
 Bu klasor AI Agent Office tarafindan bu projeye ozel olusturuldu. Farkli proje sprintleri farkli `projects/<proje-adi>` klasorlerinde tutulur.
 
 ## Goal
 
-Mevcut personel izin/vardiya panelini tamamen degistirerek teknik servis ekiplerinin saha is emirlerini, musteri ziyaretlerini, teknisyen uygunlugunu ve servis durumlarini yonettigi bir operasyon merkezine cevirmek.
+Mevcut servis operasyon paneline tarayici icinde kalici veri saklama ve daha modern, futuristic, demo etkisi yuksek bir arayuz tasarimi eklemek.
 
 ## Target User
 
-Teknik servis firmalari, bakim-onarim ekipleri, saha operasyon yoneticileri, KOBI sahipleri
+Teknik servis firmalari, saha operasyon yoneticileri, KOBI sahipleri
 
 ## Run
 
@@ -33,7 +33,7 @@ npm.cmd start
 Sunucu bos portu otomatik secer. Terminalde su satiri ara:
 
 ~~~text
-KOBI Personel Izin ve Vardiya Takip - Servis Operasyon Merkezi running at http://localhost:<port>
+KOBI Servis Operasyon Merkezi - Futuristic UI ve Kalici Kayit running at http://localhost:<port>
 ~~~
 
 Sonra tarayicida terminalde yazan URL'yi ac.
