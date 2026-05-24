@@ -14,9 +14,9 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 | 7 | Frontend/Backend Agent | DONE | Demo verileri ilk acilista localStorage bos ise otomatik yuklenmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 8 | Frontend/Backend Agent | DONE | Demo verileri sifirla butonu olmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 9 | Frontend/Backend Agent | DONE | Futuristic koyu tema uygulanmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 10 | Frontend/Backend Agent | IN_PROGRESS | Neon vurgulu metrik kartlari eklenmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 11 | Frontend/Backend Agent | TODO | Cam efekti benzeri panel tasarimi uygulanmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 12 | Frontend/Backend Agent | TODO | Durum etiketleri renkli ve belirgin olmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 10 | Frontend/Backend Agent | DONE | Neon vurgulu metrik kartlari eklenmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 11 | Frontend/Backend Agent | DONE | Cam efekti benzeri panel tasarimi uygulanmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 12 | Frontend/Backend Agent | DONE | Durum etiketleri renkli ve belirgin olmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 13 | Frontend/Backend Agent | TODO | Acil ve geciken is emirleri icin parlak uyari vurgulari olmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 14 | Frontend/Backend Agent | TODO | Arama ve filtreler localStorage verisi uzerinden calismali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 15 | Frontend/Backend Agent | TODO | Mobil ekranda futuristic tasarim bozulmadan tek sutuna dusmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |

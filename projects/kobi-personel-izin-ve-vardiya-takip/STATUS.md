@@ -6,5 +6,5 @@
 
 ## Progress
 
-- DONE: 9
+- DONE: 12
 - TOTAL: 26
