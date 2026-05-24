@@ -106,18 +106,21 @@ http://localhost:3000
       content: `import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 import { extname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const port = Number(process.env.PORT || 3000);
-const root = new URL("./public/", import.meta.url);
+const requestedPort = Number(process.env.PORT || 3000);
+const root = fileURLToPath(new URL("./public/", import.meta.url));
 const contentTypes = new Map([
   [".html", "text/html; charset=utf-8"],
   [".css", "text/css; charset=utf-8"],
   [".js", "text/javascript; charset=utf-8"],
 ]);
 
-createServer(async (request, response) => {
+function createAppServer() {
+  return createServer(async (request, response) => {
   const pathname = request.url === "/" ? "/index.html" : request.url;
-  const filePath = join(root.pathname, pathname);
+  const safePathname = decodeURIComponent(pathname).replace(/^[/\\\\]+/, "");
+  const filePath = join(root, safePathname);
 
   try {
     const content = await readFile(filePath);
@@ -129,9 +132,28 @@ createServer(async (request, response) => {
     response.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
     response.end("Not found");
   }
-}).listen(port, () => {
-  console.log(\`${sprint.projectName} running at http://localhost:\${port}\`);
-});
+  });
+}
+
+function listen(port) {
+  const server = createAppServer();
+
+  server.once("error", (error) => {
+    if (error.code === "EADDRINUSE") {
+      console.log(\`Port \${port} dolu, \${port + 1} deneniyor...\`);
+      listen(port + 1);
+      return;
+    }
+
+    throw error;
+  });
+
+  server.listen(port, () => {
+    console.log(\`${sprint.projectName} running at http://localhost:\${port}\`);
+  });
+}
+
+listen(requestedPort);
 `,
     },
     {
