@@ -493,10 +493,7 @@ function renderPage(projects) {
       }
 
       setInterval(() => {
-        const userIsReadingDetails = details.some((detail) => detail.open);
-        if (!userIsReadingDetails) {
-          window.location.reload();
-        }
+        window.location.reload();
       }, 3000);
     </script>
   </body>
