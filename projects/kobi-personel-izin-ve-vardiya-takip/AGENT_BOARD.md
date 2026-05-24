@@ -6,9 +6,9 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 | # | Agent | Status | Task | Output |
 |---|---|---|---|---|
 | 1 | Frontend/Backend Agent | DONE | Is emri olusturma formu: musteri, adres, servis tipi, oncelik, teknisyen, planlanan tarih ve aciklama alanlari | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 2 | Frontend/Backend Agent | IN_PROGRESS | Is emri durumlarini Yeni, Atandi, Yolda, Tamamlandi, Iptal olarak takip etme | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 3 | Frontend/Backend Agent | TODO | Teknisyen listesini uzmanlik, musaitlik ve aktif is sayisiyla gosterme | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 4 | Frontend/Backend Agent | TODO | Bugunku servis ziyaretlerini zaman sirali operasyon akisi olarak gosterme | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 2 | Frontend/Backend Agent | DONE | Is emri durumlarini Yeni, Atandi, Yolda, Tamamlandi, Iptal olarak takip etme | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 3 | Frontend/Backend Agent | DONE | Teknisyen listesini uzmanlik, musaitlik ve aktif is sayisiyla gosterme | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 4 | Frontend/Backend Agent | IN_PROGRESS | Bugunku servis ziyaretlerini zaman sirali operasyon akisi olarak gosterme | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 5 | Frontend/Backend Agent | TODO | Acil oncelikli is emirlerini dikkat cekici uyari kartlariyla gosterme | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 6 | Frontend/Backend Agent | TODO | Geciken servisleri kirmizi durum etiketiyle ayirmak | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 7 | Frontend/Backend Agent | TODO | Ana panelde toplam is emri, bugunku ziyaret, acil is, geciken servis ve musait teknisyen metrikleri | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
