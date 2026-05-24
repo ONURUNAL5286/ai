@@ -44,7 +44,7 @@ function listen(port) {
   });
 
   server.listen(port, () => {
-    console.log(`KOBI Personel Izin ve Vardiya Takip running at http://localhost:${port}`);
+    console.log(`KOBI Personel Izin ve Vardiya Takip - Modern UI Guncellemesi running at http://localhost:${port}`);
   });
 }
 
