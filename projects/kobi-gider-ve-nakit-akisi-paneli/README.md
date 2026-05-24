@@ -1,14 +1,14 @@
-# KOBI Gider ve Nakit Akisi Paneli
+# KOBI Gider ve Nakit Akisi Paneli - Gelismis Raporlama
 
 Bu klasor AI Agent Office tarafindan bu projeye ozel olusturuldu. Farkli proje sprintleri farkli `projects/<proje-adi>` klasorlerinde tutulur.
 
 ## Goal
 
-Kucuk isletmelerin gelir, gider, fatura ve nakit akisini takip ettigi basit finans paneli.
+Mevcut gelir-gider paneline detayli raporlama, nakit akisi tahmini ve disari aktarma ozellikleri eklemek.
 
 ## Target User
 
-KOBI sahipleri, muhasebe oncesi takip yapan ekipler
+KOBI sahipleri, on muhasebe sorumlulari, finans takibi yapan operasyon ekipleri
 
 ## Run
 
@@ -33,7 +33,7 @@ npm.cmd start
 Sunucu bos portu otomatik secer. Terminalde su satiri ara:
 
 ~~~text
-KOBI Gider ve Nakit Akisi Paneli running at http://localhost:<port>
+KOBI Gider ve Nakit Akisi Paneli - Gelismis Raporlama running at http://localhost:<port>
 ~~~
 
 Sonra tarayicida terminalde yazan URL'yi ac.
