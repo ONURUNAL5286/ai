@@ -33,7 +33,7 @@ function firstHeading(markdown, fallback) {
 function field(markdown, label, fallback = "-") {
   const pattern = new RegExp(`^- ${label}:\\s*(.+)$`, "mi");
   const match = markdown.match(pattern);
-  return match ? match[1].trim() : fallback;
+  return match ? match[1].trim().replace(/^`|`$/g, "") : fallback;
 }
 
 function parseAgentBoard(markdown) {
@@ -123,6 +123,8 @@ function renderProjectCard(project) {
   const inProgress = project.summary.IN_PROGRESS ?? 0;
   const review = project.summary.REVIEW ?? 0;
 
+  const nextTask = project.tasks.find((task) => task.status !== "DONE");
+
   return `<section class="project" id="${escapeHtml(project.slug)}">
     <div class="project-head">
       <div>
@@ -131,19 +133,36 @@ function renderProjectCard(project) {
       </div>
       <span class="badge ${statusClass(project.overallStatus)}">${escapeHtml(project.overallStatus)}</span>
     </div>
+    <div class="next-action">
+      <span>Siradaki is</span>
+      <strong>${escapeHtml(nextTask ? nextTask.task : "Tum maddeler tamamlandi")}</strong>
+      <small>${escapeHtml(nextTask ? nextTask.agent : "QA Agent")}</small>
+    </div>
     <div class="metrics">
-      <div><strong>${project.summary.total}</strong><span>Toplam</span></div>
+      <div><strong>${project.summary.total}</strong><span>Madde</span></div>
       <div><strong>${todo}</strong><span>TODO</span></div>
       <div><strong>${inProgress}</strong><span>Devam</span></div>
       <div><strong>${review}</strong><span>Review</span></div>
       <div><strong>${done}</strong><span>DONE</span></div>
     </div>
     <div class="run">
-      <code>cd ${escapeHtml(project.path)}</code>
-      <code>${escapeHtml(project.runCommand)}</code>
+      <code>cd ${escapeHtml(project.path)} && ${escapeHtml(project.runCommand)}</code>
     </div>
     <p class="verified">${escapeHtml(project.verified)}</p>
-    ${renderTasks(project.tasks)}
+    <details>
+      <summary>Agent gorevlerini goster</summary>
+      ${renderTasks(project.tasks)}
+    </details>
+  </section>`;
+}
+
+function renderSetupCard(project) {
+  return `<section class="setup-card">
+    <div>
+      <strong>${escapeHtml(project.title)}</strong>
+      <span>${escapeHtml(project.path)}</span>
+    </div>
+    <code>AGENT_BOARD.md yok</code>
   </section>`;
 }
 
@@ -181,9 +200,19 @@ function renderTasks(tasks) {
 }
 
 function renderPage(projects) {
-  const totalProjects = projects.length;
-  const totalTasks = projects.reduce((sum, project) => sum + project.summary.total, 0);
-  const doneTasks = projects.reduce((sum, project) => sum + (project.summary.DONE ?? 0), 0);
+  const activeProjects = projects.filter((project) => project.tasks.length > 0);
+  const setupProjects = projects.filter((project) => project.tasks.length === 0);
+  const totalProjects = activeProjects.length;
+  const totalTasks = activeProjects.reduce((sum, project) => sum + project.summary.total, 0);
+  const doneTasks = activeProjects.reduce((sum, project) => sum + (project.summary.DONE ?? 0), 0);
+  const nextTasks = activeProjects
+    .flatMap((project) =>
+      project.tasks
+        .filter((task) => task.status !== "DONE")
+        .slice(0, 2)
+        .map((task) => ({ ...task, projectTitle: project.title })),
+    )
+    .slice(0, 5);
 
   return `<!doctype html>
 <html lang="tr">
@@ -201,7 +230,7 @@ function renderPage(projects) {
         margin: 0;
       }
       header {
-        background: #0f1720;
+        background: #16202b;
         color: #ffffff;
         padding: 28px 32px;
       }
@@ -223,6 +252,35 @@ function renderPage(projects) {
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         gap: 12px;
         margin-bottom: 18px;
+      }
+      .section-title {
+        margin: 22px 0 12px;
+        font-size: 16px;
+        color: #344255;
+      }
+      .next-list {
+        display: grid;
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+      .next-list article,
+      .setup-card {
+        background: #ffffff;
+        border: 1px solid #d9e0e7;
+        border-radius: 8px;
+        padding: 14px 16px;
+      }
+      .next-list article {
+        display: grid;
+        grid-template-columns: 180px 1fr 190px;
+        gap: 14px;
+        align-items: center;
+      }
+      .next-list span,
+      .setup-card span {
+        display: block;
+        color: #687586;
+        font-size: 13px;
       }
       .summary div,
       .project {
@@ -289,6 +347,27 @@ function renderPage(projects) {
       .verified {
         padding: 0 18px;
       }
+      .next-action {
+        padding: 16px 18px;
+        border-bottom: 1px solid #e5e9ee;
+      }
+      .next-action span,
+      .next-action small {
+        display: block;
+        color: #687586;
+      }
+      .next-action strong {
+        display: block;
+        margin: 4px 0;
+      }
+      details {
+        border-top: 1px solid #e5e9ee;
+      }
+      summary {
+        cursor: pointer;
+        padding: 14px 18px;
+        font-weight: 700;
+      }
       .table-wrap {
         overflow-x: auto;
       }
@@ -337,6 +416,17 @@ function renderPage(projects) {
         padding: 18px;
         color: #687586;
       }
+      .setup-list {
+        display: grid;
+        gap: 10px;
+        margin-bottom: 24px;
+      }
+      .setup-card {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+      }
       @media (max-width: 720px) {
         header {
           padding: 22px 18px;
@@ -345,7 +435,9 @@ function renderPage(projects) {
           padding: 14px;
         }
         .project-head,
-        .run {
+        .run,
+        .next-list article,
+        .setup-card {
           display: block;
         }
         .metrics {
@@ -357,15 +449,36 @@ function renderPage(projects) {
   <body>
     <header>
       <h1>AI Agent Office Dashboard</h1>
-      <p>Projeler, agent gorevleri, durumlar ve calistirma komutlari</p>
+      <p>Aktif projeler, siradaki isler ve agent durumlari</p>
     </header>
     <main>
       <section class="summary">
-        <div><strong>${totalProjects}</strong><span>Proje</span></div>
-        <div><strong>${totalTasks}</strong><span>Toplam Task</span></div>
+        <div><strong>${totalProjects}</strong><span>Aktif Proje</span></div>
+        <div><strong>${totalTasks}</strong><span>Toplam Madde</span></div>
         <div><strong>${doneTasks}</strong><span>Tamamlanan</span></div>
       </section>
-      ${projects.map(renderProjectCard).join("") || '<section class="project"><div class="empty">Henuz proje yok.</div></section>'}
+      <h2 class="section-title">Siradaki Isler</h2>
+      <section class="next-list">
+        ${
+          nextTasks
+            .map(
+              (task) => `<article>
+                <div><strong>${escapeHtml(task.projectTitle)}</strong><span>${escapeHtml(task.agent)}</span></div>
+                <div>${escapeHtml(task.task)}</div>
+                <span class="badge ${statusClass(task.status)}">${escapeHtml(task.status)}</span>
+              </article>`,
+            )
+            .join("") || '<article><div><strong>Hazir</strong><span>Yeni task bekleniyor</span></div><div>Tamamlanacak madde yok.</div><span class="badge done">DONE</span></article>'
+        }
+      </section>
+      <h2 class="section-title">Aktif Projeler</h2>
+      ${activeProjects.map(renderProjectCard).join("") || '<section class="project"><div class="empty">Henuz aktif proje yok.</div></section>'}
+      ${
+        setupProjects.length > 0
+          ? `<h2 class="section-title">Kurulum Bekleyen / Eski Projeler</h2>
+            <section class="setup-list">${setupProjects.map(renderSetupCard).join("")}</section>`
+          : ""
+      }
     </main>
   </body>
 </html>`;
