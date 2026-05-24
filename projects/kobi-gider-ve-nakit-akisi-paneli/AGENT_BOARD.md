@@ -12,9 +12,9 @@ Project folder: `projects/kobi-gider-ve-nakit-akisi-paneli`
 | 5 | Frontend/Backend Agent | DONE | Gelir, gider ve fatura kayitlarini CSV olarak disari aktarma | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
 | 6 | Frontend/Backend Agent | DONE | Tarih araligi, kategori ve odeme durumu filtreleri ekleme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
 | 7 | Frontend/Backend Agent | DONE | Ana dashboard uzerinde en riskli 5 nakit cikisini gosterme | `projects/kobi-gider-ve-nakit-akisi-paneli/public/index.html` |
-| 8 | Product/QA Agent | TODO | Mevcut proje klasoru guncellenmeli, yeni proje acilmamali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2035-tasks.md` |
-| 9 | Product/QA Agent | TODO | Demo finans verileri yeni raporlari gosterecek sekilde zenginlestirilmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2035-tasks.md` |
-| 10 | Product/QA Agent | TODO | Mobil ekranda grafikler ve tablolar tasma yapmamali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2035-tasks.md` |
+| 8 | Product/QA Agent | DONE | Mevcut proje klasoru guncellenmeli, yeni proje acilmamali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2035-tasks.md` |
+| 9 | Product/QA Agent | DONE | Demo finans verileri yeni raporlari gosterecek sekilde zenginlestirilmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2035-tasks.md` |
+| 10 | Product/QA Agent | IN_PROGRESS | Mobil ekranda grafikler ve tablolar tasma yapmamali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2035-tasks.md` |
 | 11 | Product/QA Agent | TODO | README icinde yeni raporlama ozellikleri anlatilmali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2035-tasks.md` |
 | 12 | Product/QA Agent | TODO | STATUS.md icinde manuel test checklisti guncellenmeli | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2035-tasks.md` |
 | 13 | Product/QA Agent | TODO | Calisan start.cmd korunmali | `projects/kobi-gider-ve-nakit-akisi-paneli/tasks/sprint-20260524T2035-tasks.md` |
