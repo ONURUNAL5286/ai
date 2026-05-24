@@ -18,9 +18,9 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 | 11 | Product/QA Agent | DONE | Mevcut proje klasoru guncellenmeli, yeni proje acilmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2125-tasks.md` |
 | 12 | Product/QA Agent | DONE | public/index.html gercek uygulama ekranini korumali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2125-tasks.md` |
 | 13 | Product/QA Agent | DONE | Sadece DONE listesi yazan ekran kabul edilmez | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2125-tasks.md` |
-| 14 | Product/QA Agent | IN_PROGRESS | CSS belirgin sekilde iyilestirilmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2125-tasks.md` |
-| 15 | Product/QA Agent | TODO | Modern ama sade kurumsal tasarim olmali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2125-tasks.md` |
-| 16 | Product/QA Agent | TODO | Mobil gorunum bozulmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2125-tasks.md` |
+| 14 | Product/QA Agent | DONE | CSS belirgin sekilde iyilestirilmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2125-tasks.md` |
+| 15 | Product/QA Agent | DONE | Modern ama sade kurumsal tasarim olmali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2125-tasks.md` |
+| 16 | Product/QA Agent | IN_PROGRESS | Mobil gorunum bozulmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2125-tasks.md` |
 | 17 | Product/QA Agent | TODO | Demo veriler korunmali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2125-tasks.md` |
 | 18 | Product/QA Agent | TODO | start.cmd calismaya devam etmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2125-tasks.md` |
 | 19 | QA Agent | TODO | QA smoke test and delivery report | `projects/kobi-personel-izin-ve-vardiya-takip/STATUS.md` |
