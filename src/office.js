@@ -66,6 +66,8 @@ async function main() {
     },
   });
 
+  startProcess("repo-sync", "node", ["src/repoSync.js"]);
+
   startProcess("agent-runner", "node", ["src/agentRunner.js"]);
 
   if (existsSync(join(root, ".env"))) {
