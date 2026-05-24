@@ -44,7 +44,7 @@ function listen(port) {
   });
 
   server.listen(port, () => {
-    console.log(`KOBI Personel Izin ve Vardiya Takip - Akilli Depo Operasyon Paneli running at http://localhost:${port}`);
+    console.log(`KOBI Akilli Depo Operasyon Paneli - Rustic Tema Guncellemesi running at http://localhost:${port}`);
   });
 }
 
