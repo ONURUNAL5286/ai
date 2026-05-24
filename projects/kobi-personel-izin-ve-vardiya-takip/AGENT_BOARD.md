@@ -8,9 +8,9 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 | 1 | Frontend/Backend Agent | DONE | Urun kayitlari localStorage ile kalici tutulmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 2 | Frontend/Backend Agent | DONE | Stok giris ve stok cikis hareketleri eklenebilmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 3 | Frontend/Backend Agent | DONE | Raf konumu, barkod, kategori ve kritik stok seviyesi takip edilmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 4 | Frontend/Backend Agent | IN_PROGRESS | Kritik seviyenin altindaki urunler neon uyari kartlariyla gosterilmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 5 | Frontend/Backend Agent | TODO | Bugun hazirlanacak sevkiyatlar operasyon akisi olarak listelenmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
-| 6 | Frontend/Backend Agent | TODO | Sevkiyat durumlari Hazirlaniyor, Paketlendi, Kargoya Verildi, Iptal olarak guncellenebilmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 4 | Frontend/Backend Agent | DONE | Kritik seviyenin altindaki urunler neon uyari kartlariyla gosterilmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 5 | Frontend/Backend Agent | DONE | Bugun hazirlanacak sevkiyatlar operasyon akisi olarak listelenmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
+| 6 | Frontend/Backend Agent | DONE | Sevkiyat durumlari Hazirlaniyor, Paketlendi, Kargoya Verildi, Iptal olarak guncellenebilmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 7 | Frontend/Backend Agent | TODO | Ana panelde toplam urun, kritik stok, bugunku sevkiyat ve bekleyen paket metrikleri gorunmeli | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 8 | Frontend/Backend Agent | TODO | Urunlerde kategori, raf ve stok durumuna gore filtreleme yapilmali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
 | 9 | Frontend/Backend Agent | TODO | Yeni urun eklenince sayfa yenilense bile kayit kaybolmamali | `projects/kobi-personel-izin-ve-vardiya-takip/public/index.html` |
