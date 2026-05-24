@@ -1,6 +1,6 @@
-# Sprint Status - KOBI Stok ve Siparis Takip
+# Sprint Status - Randevu ve Musteri Hatirlatma
 
-Sprint: `sprint-20260524T1916`
+Sprint: `sprint-20260524T1919`
 
 ## Current State
 
