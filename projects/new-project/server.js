@@ -44,7 +44,7 @@ function listen(port) {
   });
 
   server.listen(port, () => {
-    console.log(`KOBI Stok ve Siparis Takip running at http://localhost:${port}`);
+    console.log(`Randevu ve Musteri Hatirlatma running at http://localhost:${port}`);
   });
 }
 
