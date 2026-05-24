@@ -20,9 +20,9 @@ Project folder: `projects/kobi-personel-izin-ve-vardiya-takip`
 | 13 | Product/QA Agent | DONE | Mevcut proje klasoru guncellenmeli, yeni proje acilmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2258-tasks.md` |
 | 14 | Product/QA Agent | DONE | Eski personel/izin/vardiya ekrani kalmamali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2258-tasks.md` |
 | 15 | Product/QA Agent | DONE | public/index.html gercek akilli depo operasyon paneli olmali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2258-tasks.md` |
-| 16 | Product/QA Agent | IN_PROGRESS | Sadece DONE listesi yazan ekran kabul edilmez | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2258-tasks.md` |
-| 17 | Product/QA Agent | TODO | localStorage kullanimi kodda net gorunmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2258-tasks.md` |
-| 18 | Product/QA Agent | TODO | Futuristic UI belirgin sekilde uygulanmali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2258-tasks.md` |
+| 16 | Product/QA Agent | DONE | Sadece DONE listesi yazan ekran kabul edilmez | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2258-tasks.md` |
+| 17 | Product/QA Agent | DONE | localStorage kullanimi kodda net gorunmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2258-tasks.md` |
+| 18 | Product/QA Agent | IN_PROGRESS | Futuristic UI belirgin sekilde uygulanmali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2258-tasks.md` |
 | 19 | Product/QA Agent | TODO | Arama ve filtreler calismali | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2258-tasks.md` |
 | 20 | Product/QA Agent | TODO | Demo veriler ilk acilista dolu gelmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2258-tasks.md` |
 | 21 | Product/QA Agent | TODO | start.cmd calismaya devam etmeli | `projects/kobi-personel-izin-ve-vardiya-takip/tasks/sprint-20260524T2258-tasks.md` |
