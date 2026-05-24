@@ -5,8 +5,8 @@ Project folder: `projects/new-project`
 
 | # | Agent | Status | Task | Output |
 |---|---|---|---|---|
-| 1 | Frontend/Backend Agent | TODO | Gelir ve gider kaydi ekleme | `projects/new-project/public/index.html` |
-| 2 | Frontend/Backend Agent | TODO | Fatura vade tarihi ve odendi bilgisi takip etme | `projects/new-project/public/index.html` |
+| 1 | Frontend/Backend Agent | DONE | Gelir ve gider kaydi ekleme | `projects/new-project/public/index.html` |
+| 2 | Frontend/Backend Agent | DONE | Fatura vade tarihi ve odendi bilgisi takip etme | `projects/new-project/public/index.html` |
 | 3 | Frontend/Backend Agent | TODO | Geciken odemeleri uyarili gosterme | `projects/new-project/public/index.html` |
 | 4 | Frontend/Backend Agent | TODO | Aylik gelir, gider, net nakit ve geciken borc metrikleri | `projects/new-project/public/index.html` |
 | 5 | Frontend/Backend Agent | TODO | Kategoriye gore filtreleme ve arama | `projects/new-project/public/index.html` |
