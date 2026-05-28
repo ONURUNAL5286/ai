@@ -186,31 +186,24 @@ function renderTasks(tasks) {
     return `<div class="empty">Bu proje icin henuz AGENT_BOARD.md yok.</div>`;
   }
 
-  return `<div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Agent</th>
-          <th>Status</th>
-          <th>Madde</th>
-          <th>Output</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${tasks
-          .map(
-            (task) => `<tr>
-              <td>${escapeHtml(task.index)}</td>
-              <td>${escapeHtml(task.agent)}</td>
-              <td><span class="badge ${statusClass(task.status)}">${escapeHtml(task.status)}</span></td>
-              <td>${escapeHtml(task.task)}</td>
-              <td><code>${escapeHtml(task.output)}</code></td>
-            </tr>`,
-          )
-          .join("")}
-      </tbody>
-    </table>
+  return `<div class="task-panel">
+    ${tasks
+      .map(
+        (task) => `<article class="task-row">
+          <div class="task-number">${escapeHtml(task.index)}</div>
+          <div class="task-main">
+            <div class="task-topline">
+              <strong>${escapeHtml(task.task)}</strong>
+              <span class="badge ${statusClass(task.status)}">${escapeHtml(task.status)}</span>
+            </div>
+            <div class="task-meta">
+              <span>${escapeHtml(task.agent)}</span>
+              <code>${escapeHtml(task.output)}</code>
+            </div>
+          </div>
+        </article>`,
+      )
+      .join("")}
   </div>`;
 }
 
@@ -733,6 +726,64 @@ function renderPage(projects) {
         padding: 14px 18px;
         font-weight: 700;
       }
+      .task-panel {
+        display: grid;
+        gap: 8px;
+        max-height: 430px;
+        overflow: auto;
+        padding: 0 18px 18px;
+        scrollbar-color: #b8c4d2 #eef2f6;
+      }
+      .task-row {
+        display: grid;
+        grid-template-columns: 42px 1fr;
+        gap: 12px;
+        align-items: start;
+        border: 1px solid #e1e7ee;
+        border-radius: 8px;
+        padding: 11px;
+        background: #fbfcfd;
+      }
+      .task-number {
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        color: #425065;
+        background: #edf2f7;
+        font-weight: 800;
+        font-size: 13px;
+      }
+      .task-main {
+        min-width: 0;
+      }
+      .task-topline {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        align-items: start;
+      }
+      .task-topline strong {
+        color: #202b38;
+        font-size: 14px;
+        line-height: 1.35;
+      }
+      .task-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+        margin-top: 8px;
+        color: #687586;
+        font-size: 12px;
+      }
+      .task-meta code {
+        max-width: min(520px, 100%);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
       .table-wrap {
         overflow-x: auto;
       }
@@ -840,6 +891,17 @@ function renderPage(projects) {
         .activity article code {
           grid-column: auto;
         }
+        .task-panel {
+          max-height: 360px;
+          padding: 0 12px 14px;
+        }
+        .task-row {
+          grid-template-columns: 34px 1fr;
+          padding: 9px;
+        }
+        .task-topline {
+          grid-template-columns: 1fr;
+        }
         .office {
           grid-template-columns: 1fr;
         }
@@ -924,7 +986,8 @@ function renderPage(projects) {
 
       for (const detail of details) {
         const project = detail.closest(".project");
-        const key = "agent-board-open:" + (project ? project.id : "");
+        const label = detail.querySelector("summary")?.textContent?.trim() || "details";
+        const key = "agent-detail-open:" + (project ? project.id : "") + ":" + label;
         detail.open = localStorage.getItem(key) === "true";
         detail.addEventListener("toggle", () => {
           localStorage.setItem(key, detail.open ? "true" : "false");
