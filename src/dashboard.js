@@ -240,6 +240,130 @@ function renderActivity(activity) {
   </div>`;
 }
 
+function agentColor(agent) {
+  if (agent.includes("Frontend")) return "cyan";
+  if (agent.includes("Product")) return "amber";
+  if (agent.includes("QA")) return "green";
+  if (agent.includes("Repo")) return "violet";
+  return "blue";
+}
+
+function phaseText(phase = "") {
+  const labels = {
+    PLAN: "Plan yapiyor",
+    IMPLEMENT: "Kod yaziyor",
+    VERIFY: "Test ediyor",
+    DONE: "Tamamladi",
+    TODO: "Siradaki isi bekliyor",
+    IN_PROGRESS: "Calisiyor",
+  };
+
+  return labels[phase] || phase || "Hazir";
+}
+
+function latestAgentStates(projects) {
+  const byAgent = new Map();
+
+  for (const project of projects) {
+    for (const item of [...project.activity].reverse()) {
+      const agent = item.agent || "Agent";
+      const previous = byAgent.get(agent);
+      if (!previous || String(item.at || "") > String(previous.at || "")) {
+        byAgent.set(agent, {
+          agent,
+          projectTitle: project.title,
+          phase: item.phase || "TODO",
+          status: phaseText(item.phase),
+          message: item.message || "Yeni is bekleniyor.",
+          files: item.files || [],
+          at: item.at || "",
+        });
+      }
+    }
+
+    const activeTask = project.tasks.find((task) => task.status === "IN_PROGRESS");
+    if (activeTask) {
+      byAgent.set(activeTask.agent, {
+        agent: activeTask.agent,
+        projectTitle: project.title,
+        phase: "IN_PROGRESS",
+        status: "Calisiyor",
+        message: activeTask.task,
+        files: [activeTask.output],
+        at: new Date().toISOString(),
+      });
+    }
+  }
+
+  const expectedAgents = [
+    "Product/QA Agent",
+    "Frontend/Backend Agent",
+    "QA Agent",
+    "Repo Sync Agent",
+  ];
+
+  for (const agent of expectedAgents) {
+    if (!byAgent.has(agent)) {
+      const nextProject = projects.find((project) => project.tasks.some((task) => task.status !== "DONE"));
+      const nextTask = nextProject?.tasks.find((task) => task.agent === agent && task.status !== "DONE")
+        ?? nextProject?.tasks.find((task) => task.status !== "DONE");
+
+      byAgent.set(agent, {
+        agent,
+        projectTitle: nextProject?.title || "AI Agent Office",
+        phase: nextTask ? nextTask.status : "TODO",
+        status: nextTask ? phaseText(nextTask.status) : "Yeni sprint bekliyor",
+        message: nextTask?.task || "Yeni sprint gelince otomatik is bolumu yapilacak.",
+        files: nextTask ? [nextTask.output] : [],
+        at: "",
+      });
+    }
+  }
+
+  return expectedAgents.map((agent) => byAgent.get(agent));
+}
+
+function renderAgentOffice(projects) {
+  const agents = latestAgentStates(projects);
+
+  return `<section class="office">
+    <div class="office-copy">
+      <span>Canli 3D Agent Office</span>
+      <h2>Agentlarin o an yaptigi isler</h2>
+      <p>Her masa bir agenti temsil eder. Ustteki balonda agentin su anki fazi, proje adi ve dokundugu dosyalar gorunur.</p>
+    </div>
+    <div class="office-stage" aria-label="Canli 3D agent office">
+      <div class="office-scene">
+        <div class="office-floor"></div>
+        ${agents
+          .map(
+            (state, index) => `<article class="agent-desk desk-${index + 1} tone-${agentColor(state.agent)}">
+              <div class="agent-bubble">
+                <strong>${escapeHtml(state.status)}</strong>
+                <span>${escapeHtml(state.projectTitle)}</span>
+                <p>${escapeHtml(state.message)}</p>
+                ${
+                  state.files.length
+                    ? `<code>${escapeHtml(state.files.slice(0, 2).join(", "))}</code>`
+                    : ""
+                }
+              </div>
+              <div class="desk-top">
+                <span class="screen"></span>
+                <span class="keyboard"></span>
+              </div>
+              <div class="agent-avatar">
+                <span>${escapeHtml(state.agent.split(/[ /]/).filter(Boolean).map((word) => word[0]).slice(0, 2).join(""))}</span>
+              </div>
+              <div class="agent-name">${escapeHtml(state.agent)}</div>
+            </article>`,
+          )
+          .join("")}
+      </div>
+    </div>
+  </section>`;
+}
+
 function renderPage(projects) {
   const activeProjects = projects.filter((project) => project.tasks.length > 0);
   const setupProjects = projects.filter((project) => project.tasks.length === 0);
@@ -299,6 +423,206 @@ function renderPage(projects) {
         font-size: 16px;
         color: #344255;
       }
+      .office {
+        display: grid;
+        grid-template-columns: minmax(240px, 330px) 1fr;
+        gap: 18px;
+        align-items: stretch;
+        margin: 0 0 18px;
+        background: #101923;
+        border: 1px solid #243345;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .office-copy {
+        padding: 22px;
+        color: #ffffff;
+        background: linear-gradient(180deg, #172434, #101923);
+      }
+      .office-copy span {
+        display: inline-block;
+        margin-bottom: 10px;
+        color: #7dd3fc;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+      }
+      .office-copy h2 {
+        margin: 0 0 10px;
+        color: #ffffff;
+        font-size: 24px;
+      }
+      .office-copy p {
+        margin: 0;
+        color: #b9c6d4;
+        line-height: 1.55;
+      }
+      .office-stage {
+        min-height: 430px;
+        padding: 22px;
+        perspective: 1100px;
+        background:
+          linear-gradient(90deg, rgba(125, 211, 252, .08) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(125, 211, 252, .08) 1px, transparent 1px),
+          radial-gradient(circle at 30% 18%, rgba(34, 211, 238, .22), transparent 26%),
+          linear-gradient(145deg, #101923, #172434 62%, #0f1721);
+        background-size: 44px 44px, 44px 44px, auto, auto;
+      }
+      .office-scene {
+        position: relative;
+        min-height: 386px;
+        transform-style: preserve-3d;
+      }
+      .office-floor {
+        position: absolute;
+        left: 8%;
+        right: 8%;
+        bottom: 18px;
+        height: 230px;
+        border: 1px solid rgba(148, 163, 184, .32);
+        border-radius: 8px;
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, .1) 25%, transparent 25%) 0 0 / 36px 36px,
+          linear-gradient(315deg, rgba(255, 255, 255, .08) 25%, transparent 25%) 0 0 / 36px 36px,
+          linear-gradient(145deg, rgba(30, 41, 59, .96), rgba(15, 23, 42, .96));
+        box-shadow: 0 28px 70px rgba(0, 0, 0, .38);
+        transform: rotateX(62deg) rotateZ(-32deg) translateZ(-55px);
+        transform-origin: center bottom;
+      }
+      .agent-desk {
+        position: absolute;
+        width: min(240px, 31vw);
+        min-width: 188px;
+        transform-style: preserve-3d;
+      }
+      .desk-1 { left: 6%; top: 124px; }
+      .desk-2 { left: 34%; top: 52px; }
+      .desk-3 { left: 58%; top: 156px; }
+      .desk-4 { right: 3%; top: 40px; }
+      .agent-bubble {
+        position: absolute;
+        left: 50%;
+        bottom: 116px;
+        z-index: 3;
+        width: 230px;
+        max-width: calc(100vw - 72px);
+        padding: 11px 12px;
+        border: 1px solid rgba(255, 255, 255, .18);
+        border-radius: 8px;
+        color: #ffffff;
+        background: rgba(15, 23, 42, .92);
+        box-shadow: 0 16px 38px rgba(0, 0, 0, .28);
+        transform: translateX(-50%) translateZ(90px);
+        backdrop-filter: blur(10px);
+      }
+      .agent-bubble::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -8px;
+        width: 14px;
+        height: 14px;
+        background: rgba(15, 23, 42, .92);
+        border-right: 1px solid rgba(255, 255, 255, .18);
+        border-bottom: 1px solid rgba(255, 255, 255, .18);
+        transform: translateX(-50%) rotate(45deg);
+      }
+      .agent-bubble strong,
+      .agent-bubble span,
+      .agent-bubble p {
+        display: block;
+      }
+      .agent-bubble strong {
+        color: #e0f2fe;
+        font-size: 13px;
+      }
+      .agent-bubble span {
+        margin-top: 3px;
+        color: #93c5fd;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .agent-bubble p {
+        margin: 6px 0 0;
+        color: #d8e2ef;
+        font-size: 12px;
+        line-height: 1.35;
+      }
+      .agent-bubble code {
+        display: inline-block;
+        max-width: 100%;
+        margin-top: 7px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #c4b5fd;
+        background: rgba(255, 255, 255, .09);
+      }
+      .desk-top {
+        position: relative;
+        width: 142px;
+        height: 78px;
+        margin: 110px auto 0;
+        border: 1px solid rgba(255, 255, 255, .22);
+        border-radius: 8px;
+        background: linear-gradient(145deg, #334155, #172033);
+        box-shadow: 0 16px 0 #0b111c, 0 26px 34px rgba(0, 0, 0, .32);
+        transform: rotateX(55deg) rotateZ(-24deg);
+      }
+      .screen {
+        position: absolute;
+        left: 38px;
+        top: -34px;
+        width: 64px;
+        height: 42px;
+        border: 3px solid #0f172a;
+        border-radius: 6px;
+        background: linear-gradient(160deg, rgba(255,255,255,.85), rgba(125,211,252,.42));
+        box-shadow: 0 0 18px rgba(125, 211, 252, .5);
+      }
+      .keyboard {
+        position: absolute;
+        left: 42px;
+        bottom: 17px;
+        width: 58px;
+        height: 18px;
+        border-radius: 5px;
+        background: rgba(226, 232, 240, .72);
+      }
+      .agent-avatar {
+        position: absolute;
+        left: 50%;
+        top: 70px;
+        z-index: 2;
+        display: grid;
+        place-items: center;
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(255, 255, 255, .75);
+        border-radius: 50%;
+        color: #06111f;
+        font-weight: 900;
+        transform: translateX(-50%);
+        box-shadow: 0 0 24px rgba(125, 211, 252, .34);
+      }
+      .agent-name {
+        margin-top: 12px;
+        color: #d9e6f5;
+        font-size: 12px;
+        font-weight: 800;
+        text-align: center;
+      }
+      .tone-cyan .agent-avatar { background: #67e8f9; }
+      .tone-amber .agent-avatar { background: #facc15; }
+      .tone-green .agent-avatar { background: #86efac; }
+      .tone-violet .agent-avatar { background: #c4b5fd; }
+      .tone-blue .agent-avatar { background: #93c5fd; }
+      .tone-cyan .agent-bubble { border-color: rgba(103, 232, 249, .38); }
+      .tone-amber .agent-bubble { border-color: rgba(250, 204, 21, .38); }
+      .tone-green .agent-bubble { border-color: rgba(134, 239, 172, .38); }
+      .tone-violet .agent-bubble { border-color: rgba(196, 181, 253, .38); }
+      .tone-blue .agent-bubble { border-color: rgba(147, 197, 253, .38); }
       .next-list {
         display: grid;
         gap: 10px;
@@ -516,6 +840,47 @@ function renderPage(projects) {
         .activity article code {
           grid-column: auto;
         }
+        .office {
+          grid-template-columns: 1fr;
+        }
+        .office-stage {
+          min-height: 760px;
+          padding: 16px;
+        }
+        .office-floor {
+          display: none;
+        }
+        .agent-desk {
+          position: relative;
+          left: auto;
+          right: auto;
+          top: auto;
+          width: 100%;
+          min-width: 0;
+          height: 166px;
+          margin-bottom: 18px;
+        }
+        .agent-bubble {
+          left: 0;
+          bottom: 62px;
+          width: auto;
+          transform: none;
+        }
+        .desk-top {
+          margin: 98px 26px 0 auto;
+        }
+        .agent-avatar {
+          left: 32px;
+          top: 108px;
+          transform: none;
+        }
+        .agent-name {
+          position: absolute;
+          left: 88px;
+          top: 118px;
+          margin: 0;
+          text-align: left;
+        }
       }
     </style>
   </head>
@@ -530,6 +895,7 @@ function renderPage(projects) {
         <div><strong>${totalTasks}</strong><span>Toplam Madde</span></div>
         <div><strong>${doneTasks}</strong><span>Tamamlanan</span></div>
       </section>
+      ${renderAgentOffice(activeProjects)}
       <h2 class="section-title">Siradaki Isler</h2>
       <section class="next-list">
         ${
