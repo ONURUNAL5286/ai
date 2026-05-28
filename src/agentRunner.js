@@ -30,6 +30,14 @@ async function readText(path) {
   }
 }
 
+async function readJson(path, fallback) {
+  try {
+    return JSON.parse(await readFile(path, "utf8"));
+  } catch {
+    return fallback;
+  }
+}
+
 function parseBoard(markdown) {
   const lines = markdown.split(/\r?\n/);
   const tasks = [];
@@ -74,6 +82,33 @@ function relativeOutput(projectName, output = "") {
 async function writeBoard(projectPath, parsed, task, status) {
   parsed.lines[task.lineIndex] = boardLine(task, status);
   await writeFile(join(projectPath, "AGENT_BOARD.md"), `${parsed.lines.join("\n").trim()}\n`, "utf8");
+}
+
+async function recordActivity(projectPath, event) {
+  const activityPath = join(projectPath, "AGENT_ACTIVITY.json");
+  const worklogPath = join(projectPath, "AGENT_WORKLOG.md");
+  const events = await readJson(activityPath, []);
+  const entry = {
+    at: new Date().toISOString(),
+    ...event,
+  };
+
+  events.push(entry);
+  await writeFile(activityPath, `${JSON.stringify(events.slice(-200), null, 2)}\n`, "utf8");
+
+  const worklog = await readText(worklogPath);
+  const files = entry.files?.length ? `\n  - Files: ${entry.files.join(", ")}` : "";
+  const line = `\n- ${entry.at} | ${entry.agent} | ${entry.phase} | Task ${entry.taskIndex}: ${entry.message}${files}\n`;
+  await writeFile(worklogPath, `${worklog || "# Agent Worklog\n"}${line}`, "utf8");
+}
+
+function taskFiles(projectName, task) {
+  const output = relativeOutput(projectName, task.output);
+  const files = new Set(["AGENT_BOARD.md", "STATUS.md"]);
+  if (output) {
+    files.add(output);
+  }
+  return [...files];
 }
 
 function projectTitle(readme, fallback) {
@@ -1321,7 +1356,21 @@ async function processOneTask() {
     if (!nextTask && rebuildDone && parsed.tasks.every((task) => task.status === "DONE")) {
       const readme = await readText(join(projectPath, "README.md"));
       const title = projectTitle(readme, entry.name);
+      await recordActivity(projectPath, {
+        taskIndex: "REBUILD",
+        agent: "Frontend/Backend Agent",
+        phase: "IMPLEMENT",
+        message: "Tamamlanmis sprint maddelerinden uygulama ekrani yeniden olusturuluyor.",
+        files: ["public/index.html", "AGENT_ACTIVITY.json", "AGENT_WORKLOG.md"],
+      });
       await writeFile(join(projectPath, "public", "index.html"), appHtmlForProject(entry.name, title, parsed.tasks), "utf8");
+      await recordActivity(projectPath, {
+        taskIndex: "REBUILD",
+        agent: "QA Agent",
+        phase: "VERIFY",
+        message: "Yeniden olusturulan uygulama ekrani ve teslim dosyalari kontrol edildi.",
+        files: ["public/index.html"],
+      });
       console.log(`${entry.name}: tamamlanmis proje ekrani yeniden olusturuldu.`);
       return true;
     }
@@ -1331,9 +1380,26 @@ async function processOneTask() {
     }
 
     console.log(`${entry.name}: ${nextTask.agent} basladi -> ${nextTask.task}`);
+    await recordActivity(projectPath, {
+      taskIndex: nextTask.index,
+      agent: nextTask.agent,
+      phase: "PLAN",
+      message: `${nextTask.task} maddesi icin kapsam, hedef dosyalar ve kabul kriterleri analiz edildi.`,
+      files: taskFiles(entry.name, nextTask),
+    });
+
     if (nextTask.status !== "IN_PROGRESS") {
       await writeBoard(projectPath, parsed, nextTask, "IN_PROGRESS");
     }
+
+    await recordActivity(projectPath, {
+      taskIndex: nextTask.index,
+      agent: nextTask.agent,
+      phase: "IMPLEMENT",
+      message: `${nextTask.output} uzerinde uygulama degisikligi hazirlaniyor.`,
+      files: taskFiles(entry.name, nextTask),
+    });
+
     await sleep(delayMs);
 
     const refreshed = parseBoard(await readText(boardPath));
@@ -1343,7 +1409,23 @@ async function processOneTask() {
     }
 
     await performTask(projectPath, entry.name, refreshed, activeTask);
+    await recordActivity(projectPath, {
+      taskIndex: activeTask.index,
+      agent: activeTask.agent,
+      phase: "VERIFY",
+      message: "Dosya guncellendi, durum ozeti yenilendi ve teslim kontrolu yapildi.",
+      files: taskFiles(entry.name, activeTask),
+    });
+
     await writeBoard(projectPath, refreshed, activeTask, "DONE");
+    await recordActivity(projectPath, {
+      taskIndex: activeTask.index,
+      agent: activeTask.agent,
+      phase: "DONE",
+      message: `${activeTask.task} tamamlandi ve board DONE durumuna alindi.`,
+      files: taskFiles(entry.name, activeTask),
+    });
+
     console.log(`${entry.name}: ${activeTask.agent} tamamlandi -> ${activeTask.task}`);
     return true;
   }

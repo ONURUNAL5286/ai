@@ -22,6 +22,14 @@ async function readText(path) {
   }
 }
 
+async function readJson(path, fallback) {
+  try {
+    return JSON.parse(await readFile(path, "utf8"));
+  } catch {
+    return fallback;
+  }
+}
+
 function firstHeading(markdown, fallback) {
   const heading = markdown
     .split(/\r?\n/)
@@ -99,6 +107,7 @@ async function loadProjects() {
     const readme = await readText(join(projectPath, "README.md"));
     const status = await readText(join(projectPath, "STATUS.md"));
     const board = await readText(join(projectPath, "AGENT_BOARD.md"));
+    const activity = await readJson(join(projectPath, "AGENT_ACTIVITY.json"), []);
     const tasks = parseAgentBoard(board);
     const summary = summarizeTasks(tasks);
 
@@ -110,6 +119,7 @@ async function loadProjects() {
       runCommand: field(status, "Run command", "start.cmd"),
       verified: field(status, "Verified", "Not verified"),
       tasks,
+      activity: activity.slice(-30).reverse(),
       summary,
     });
   }
@@ -154,6 +164,10 @@ function renderProjectCard(project) {
       <summary>Agent gorevlerini goster</summary>
       ${renderTasks(project.tasks)}
     </details>
+    <details>
+      <summary>Canli agent calisma gunlugu</summary>
+      ${renderActivity(project.activity)}
+    </details>
   </section>`;
 }
 
@@ -197,6 +211,32 @@ function renderTasks(tasks) {
           .join("")}
       </tbody>
     </table>
+  </div>`;
+}
+
+function renderActivity(activity) {
+  if (!activity || activity.length === 0) {
+    return `<div class="empty">Bu proje icin henuz agent calisma gunlugu yok.</div>`;
+  }
+
+  return `<div class="activity">
+    ${activity
+      .map(
+        (item) => `<article>
+          <div>
+            <strong>${escapeHtml(item.agent || "Agent")}</strong>
+            <span>${escapeHtml(item.at || "")}</span>
+          </div>
+          <span class="badge ${statusClass(item.phase || "TODO")}">${escapeHtml(item.phase || "-")}</span>
+          <p>${escapeHtml(item.message || "")}</p>
+          ${
+            item.files?.length
+              ? `<code>${escapeHtml(item.files.join(", "))}</code>`
+              : ""
+          }
+        </article>`,
+      )
+      .join("")}
   </div>`;
 }
 
@@ -372,6 +412,32 @@ function renderPage(projects) {
       .table-wrap {
         overflow-x: auto;
       }
+      .activity {
+        display: grid;
+        gap: 10px;
+        padding: 0 18px 18px;
+      }
+      .activity article {
+        display: grid;
+        grid-template-columns: minmax(180px, 240px) 110px 1fr;
+        gap: 12px;
+        align-items: start;
+        border-top: 1px solid #e5e9ee;
+        padding-top: 12px;
+      }
+      .activity article div span {
+        display: block;
+        color: #687586;
+        font-size: 12px;
+      }
+      .activity article p {
+        margin: 0;
+        color: #2f3b4a;
+      }
+      .activity article code {
+        grid-column: 3;
+        justify-self: start;
+      }
       table {
         width: 100%;
         border-collapse: collapse;
@@ -443,6 +509,12 @@ function renderPage(projects) {
         }
         .metrics {
           grid-template-columns: repeat(2, minmax(80px, 1fr));
+        }
+        .activity article {
+          grid-template-columns: 1fr;
+        }
+        .activity article code {
+          grid-column: auto;
         }
       }
     </style>
