@@ -27,3 +27,17 @@ test("generic fallback creates an operational app, not a DONE-only list", () => 
   assert.match(html, /addRecord/);
   assert.doesNotMatch(html, /<span class="done">DONE<\/span>/);
 });
+
+test("prioritizes warehouse rustic sprint over previous service/futuristic app", () => {
+  const html = appHtmlForProject("kobi-personel-izin-ve-vardiya-takip", "KOBI Akilli Depo Operasyon Paneli - Rustic Tema", [
+    { task: "Mevcut stok, sevkiyat, kritik stok ve localStorage ozellikleri korunmali" },
+    { task: "Rustic sicak renk paleti uygulanmali" },
+    { task: "Futuristic koyu tema tamamen kaldirilmali" },
+  ]);
+
+  assert.match(html, /Depo Kayit Defteri/);
+  assert.match(html, /Kritik Stok Damgalari/);
+  assert.match(html, /ai-office-rustic-products/);
+  assert.doesNotMatch(html, /Futuristic saha servis operasyon merkezi/);
+  assert.doesNotMatch(html, /Yeni Is Emri/);
+});

@@ -990,8 +990,230 @@ function serviceOpsAppHtml(title, tasks) {
 `;
 }
 
+function warehouseRusticAppHtml(title, tasks) {
+  const completedItems = tasks.map((task) => task.task);
+  return `<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>${escapeHtml(title)}</title>
+    <style>
+      :root { color-scheme: light; font-family: Georgia, "Times New Roman", serif; background: #efe3cf; color: #2f2418; }
+      * { box-sizing: border-box; }
+      body { margin: 0; min-height: 100vh; background: linear-gradient(135deg, #ead7b7, #f8efdf 46%, #d9b989); }
+      body:before { content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .18; background-image: linear-gradient(90deg, rgba(92,54,26,.18) 1px, transparent 1px), linear-gradient(rgba(92,54,26,.12) 1px, transparent 1px); background-size: 36px 36px; }
+      header { position: relative; padding: 26px 24px; background: #5a3720; color: #fff7e7; border-bottom: 8px solid #9b6a38; box-shadow: 0 12px 30px rgba(60, 34, 13, .28); }
+      header h1 { margin: 0 0 8px; font-size: 30px; letter-spacing: 0; }
+      header p { margin: 0; color: #f0d9b3; font-family: Inter, system-ui, sans-serif; }
+      main { position: relative; max-width: 1280px; margin: 0 auto; padding: 20px; }
+      .toolbar, section, .metric { background: #fff3dc; border: 2px solid #8f6234; border-radius: 8px; box-shadow: 0 10px 0 rgba(97, 58, 25, .12), inset 0 0 0 1px rgba(255,255,255,.42); }
+      .toolbar { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding: 14px 16px; margin-bottom: 14px; }
+      .toolbar code { background: #ead0a8; color: #563418; padding: 4px 7px; border-radius: 5px; }
+      button { border: 2px solid #5f3518; border-radius: 6px; padding: 10px 13px; color: #321f10; background: #d99a45; font-weight: 900; cursor: pointer; text-transform: uppercase; letter-spacing: .02em; box-shadow: 0 4px 0 #73451e; }
+      button.secondary { background: #f2d19a; }
+      .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-bottom: 14px; }
+      .metric { padding: 16px; background: #f8e8c9; }
+      .metric strong { display: block; font-size: 28px; color: #4f2d15; }
+      .metric span, th, small { color: #71502f; font-family: Inter, system-ui, sans-serif; font-size: 13px; }
+      .grid, .split { display: grid; gap: 12px; }
+      .grid { grid-template-columns: 1fr 1fr; }
+      .split { grid-template-columns: 1.1fr .9fr; margin-top: 12px; }
+      section { padding: 16px; }
+      h2 { margin: 0 0 12px; font-size: 19px; color: #3d2512; }
+      label { display: grid; gap: 5px; margin-bottom: 10px; color: #6a4b2b; font-family: Inter, system-ui, sans-serif; font-size: 13px; }
+      input, select { width: 100%; border: 2px solid #b9874d; border-radius: 6px; padding: 10px; color: #2f2418; background: #fffaf0; font: inherit; font-family: Inter, system-ui, sans-serif; }
+      table { width: 100%; border-collapse: collapse; font-family: Inter, system-ui, sans-serif; }
+      th, td { border-top: 1px dashed #b9874d; padding: 10px; text-align: left; vertical-align: top; }
+      th { color: #6a4b2b; font-size: 13px; }
+      .table-wrap { overflow-x: auto; }
+      .tag { display: inline-block; border: 2px solid #7a431c; border-radius: 5px; padding: 3px 8px; font-size: 12px; font-weight: 900; background: #f1d49c; color: #4a2c16; transform: rotate(-1deg); }
+      .critical { color: #7f1d1d; background: #f6c7a9; border-color: #9b2f1b; }
+      .packed { color: #14532d; background: #cae8bd; border-color: #49773a; }
+      .route { color: #5b3d07; background: #f8dda0; border-color: #966c24; }
+      .cards { display: grid; gap: 9px; }
+      article { border: 2px solid #9b6a38; border-radius: 8px; padding: 11px; background: #f8e8c9; box-shadow: inset 0 0 0 1px rgba(255,255,255,.4); }
+      article strong { display: block; margin-bottom: 5px; }
+      .stamp { border: 3px solid #8e2d1a; color: #8e2d1a; display: inline-block; padding: 5px 9px; font-weight: 900; text-transform: uppercase; transform: rotate(-3deg); background: rgba(255,255,255,.25); }
+      .features { margin-top: 12px; }
+      .features ul { columns: 2; padding-left: 20px; color: #5c3f22; font-family: Inter, system-ui, sans-serif; }
+      @media (max-width: 860px) { .toolbar, .grid, .split { display: block; } section, .metric, .toolbar { margin-bottom: 12px; } .features ul { columns: 1; } }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>${escapeHtml(title)}</h1>
+      <p>Rustic depo defteri hissinde stok, raf, sevkiyat ve kritik seviye operasyon paneli. Kayitlar localStorage icinde kalici tutulur.</p>
+    </header>
+    <main>
+      <div class="toolbar">
+        <div><strong>Depo Kayit Defteri</strong><br><small>Kalici kayit: <code>localStorage</code></small></div>
+        <button id="resetDemo" class="secondary">Demo verileri sifirla</button>
+      </div>
+      <div class="metrics">
+        <div class="metric"><strong id="totalProducts">0</strong><span>Toplam urun</span></div>
+        <div class="metric"><strong id="criticalProducts">0</strong><span>Kritik stok</span></div>
+        <div class="metric"><strong id="todayShipments">0</strong><span>Bugunku sevkiyat</span></div>
+        <div class="metric"><strong id="pendingPackages">0</strong><span>Bekleyen paket</span></div>
+      </div>
+      <div class="grid">
+        <section>
+          <h2>Yeni Urun / Stok Hareketi</h2>
+          <label>Urun adi <input id="nameInput" value="Kraft koli 40x30" /></label>
+          <label>Barkod <input id="barcodeInput" value="DP-1040" /></label>
+          <label>Kategori <select id="categoryInput"><option>Ambalaj</option><option>Yedek Parca</option><option>Hammadde</option><option>Bitmis Urun</option></select></label>
+          <label>Raf <input id="shelfInput" value="A-03" /></label>
+          <label>Stok <input id="stockInput" type="number" value="24" /></label>
+          <label>Kritik seviye <input id="criticalInput" type="number" value="30" /></label>
+          <button id="addProduct">Depoya Kaydet</button>
+        </section>
+        <section>
+          <h2>Filtreler</h2>
+          <label>Arama <input id="search" placeholder="Urun, barkod veya raf ara" /></label>
+          <label>Kategori <select id="categoryFilter"><option value="">Tum kategoriler</option><option>Ambalaj</option><option>Yedek Parca</option><option>Hammadde</option><option>Bitmis Urun</option></select></label>
+          <label>Stok durumu <select id="stockFilter"><option value="">Tum durumlar</option><option value="critical">Kritik</option><option value="ok">Yeterli</option></select></label>
+        </section>
+      </div>
+      <div class="split">
+        <section>
+          <h2>Depo Listesi</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Urun</th><th>Barkod</th><th>Kategori</th><th>Raf</th><th>Stok</th><th>Durum</th></tr></thead>
+              <tbody id="productRows"></tbody>
+            </table>
+          </div>
+        </section>
+        <section>
+          <h2>Kritik Stok Damgalari</h2>
+          <div id="criticalCards" class="cards"></div>
+        </section>
+      </div>
+      <div class="split">
+        <section>
+          <h2>Bugunku Sevkiyat Fisleri</h2>
+          <div id="shipmentCards" class="cards"></div>
+        </section>
+        <section>
+          <h2>Sevkiyat Durumu</h2>
+          <div id="shipmentStatus" class="cards"></div>
+        </section>
+      </div>
+      <section class="features">
+        <h2>Tamamlanan Sprint Maddeleri</h2>
+        <ul>${completedItems.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+      </section>
+    </main>
+    <script>
+      const productKey = "ai-office-rustic-products";
+      const shipmentKey = "ai-office-rustic-shipments";
+      const demoProducts = [
+        { name: "Kraft koli 40x30", barcode: "DP-1040", category: "Ambalaj", shelf: "A-03", stock: 24, critical: 30 },
+        { name: "Filtre pompa seti", barcode: "YP-2210", category: "Yedek Parca", shelf: "B-11", stock: 8, critical: 12 },
+        { name: "Cam siseli urun", barcode: "BU-7741", category: "Bitmis Urun", shelf: "C-02", stock: 160, critical: 45 },
+        { name: "Keten ham bez", barcode: "HM-3318", category: "Hammadde", shelf: "D-07", stock: 54, critical: 40 }
+      ];
+      const demoShipments = [
+        { customer: "Atlas Market", product: "Cam siseli urun", amount: 36, status: "Hazirlaniyor" },
+        { customer: "Nova Klinik", product: "Filtre pompa seti", amount: 4, status: "Paketlendi" },
+        { customer: "Mavi Ofis", product: "Kraft koli 40x30", amount: 80, status: "Kargoya Verildi" }
+      ];
+      let products = load(productKey, demoProducts);
+      let shipments = load(shipmentKey, demoShipments);
+      const byId = (id) => document.getElementById(id);
+      function load(key, fallback) {
+        const raw = localStorage.getItem(key);
+        if (raw) return JSON.parse(raw);
+        localStorage.setItem(key, JSON.stringify(fallback));
+        return structuredClone(fallback);
+      }
+      function save() {
+        localStorage.setItem(productKey, JSON.stringify(products));
+        localStorage.setItem(shipmentKey, JSON.stringify(shipments));
+      }
+      const isCritical = (product) => Number(product.stock) <= Number(product.critical);
+      function filteredProducts() {
+        const q = byId("search").value.toLowerCase();
+        const category = byId("categoryFilter").value;
+        const stock = byId("stockFilter").value;
+        return products.filter((product) =>
+          (!q || product.name.toLowerCase().includes(q) || product.barcode.toLowerCase().includes(q) || product.shelf.toLowerCase().includes(q))
+          && (!category || product.category === category)
+          && (!stock || (stock === "critical" ? isCritical(product) : !isCritical(product)))
+        );
+      }
+      function renderMetrics() {
+        byId("totalProducts").textContent = products.length;
+        byId("criticalProducts").textContent = products.filter(isCritical).length;
+        byId("todayShipments").textContent = shipments.length;
+        byId("pendingPackages").textContent = shipments.filter((item) => item.status === "Hazirlaniyor").length;
+      }
+      function renderProducts() {
+        byId("productRows").innerHTML = filteredProducts().map((product) =>
+          "<tr><td><strong>" + product.name + "</strong></td><td>" + product.barcode + "</td><td>" + product.category + "</td><td>" + product.shelf + "</td><td>" + product.stock + " / " + product.critical + "</td><td><span class='tag " + (isCritical(product) ? "critical" : "packed") + "'>" + (isCritical(product) ? "Kritik" : "Yeterli") + "</span></td></tr>"
+        ).join("");
+      }
+      function renderCritical() {
+        const critical = products.filter(isCritical);
+        byId("criticalCards").innerHTML = critical.map((product) => "<article><span class='stamp'>Kritik</span><strong>" + product.name + "</strong><small>Raf " + product.shelf + " - Stok " + product.stock + " / " + product.critical + "</small></article>").join("") || "<article><strong>Kritik stok yok</strong><small>Depo seviyesi rahat.</small></article>";
+      }
+      function renderShipments() {
+        byId("shipmentCards").innerHTML = shipments.map((shipment) => "<article><strong>" + shipment.customer + "</strong><small>" + shipment.product + " - " + shipment.amount + " adet</small><p><span class='tag route'>" + shipment.status + "</span></p></article>").join("");
+        byId("shipmentStatus").innerHTML = shipments.map((shipment, index) => "<article><strong>" + shipment.customer + "</strong><label>Durum <select data-shipment='" + index + "'><option>Hazirlaniyor</option><option>Paketlendi</option><option>Kargoya Verildi</option><option>Iptal</option></select></label></article>").join("");
+        document.querySelectorAll("[data-shipment]").forEach((select) => {
+          select.value = shipments[Number(select.dataset.shipment)].status;
+          select.addEventListener("change", () => {
+            shipments[Number(select.dataset.shipment)].status = select.value;
+            save();
+            render();
+          });
+        });
+      }
+      function render() {
+        renderMetrics();
+        renderProducts();
+        renderCritical();
+        renderShipments();
+      }
+      byId("addProduct").addEventListener("click", () => {
+        products.unshift({
+          name: byId("nameInput").value,
+          barcode: byId("barcodeInput").value,
+          category: byId("categoryInput").value,
+          shelf: byId("shelfInput").value,
+          stock: Number(byId("stockInput").value || 0),
+          critical: Number(byId("criticalInput").value || 0)
+        });
+        save();
+        render();
+      });
+      byId("resetDemo").addEventListener("click", () => {
+        localStorage.removeItem(productKey);
+        localStorage.removeItem(shipmentKey);
+        products = load(productKey, demoProducts);
+        shipments = load(shipmentKey, demoShipments);
+        render();
+      });
+      ["search", "categoryFilter", "stockFilter"].forEach((id) => byId(id).addEventListener("input", render));
+      render();
+    </script>
+  </body>
+</html>
+`;
+}
+
 export function appHtmlForProject(projectName, title, tasks) {
   const searchText = `${projectName} ${title} ${tasks.map((task) => task.task).join(" ")}`.toLocaleLowerCase("tr-TR");
+  if (
+    searchText.includes("rustic") ||
+    searchText.includes("depo") ||
+    searchText.includes("stok") ||
+    searchText.includes("sevkiyat") ||
+    searchText.includes("raf")
+  ) {
+    return warehouseRusticAppHtml(title, tasks);
+  }
+
   if (
     searchText.includes("servis") ||
     searchText.includes("teknisyen") ||
